@@ -72,9 +72,9 @@
                         Nama:<br>
                         <input id="namainput" type="text" name="editednama" required><br>
                         Longitude:<br>
-                        <input id="longinput" type="text" name="editedlong" required><br>
+                        <input id="longinput" type="number" step ="0.0000001" min ="-180" max ="180" name="editedlong" required><br>
                         Latitude:<br>
-                        <input id="latinput" type="text" name="editedlat" required><br><br>
+                        <input id="latinput" type="number" step ="0.0000001" min ="-180" max ="180." name="editedlat" required><br><br>
                         <input type="submit" value="Save" />
                       </form>
                     </div>
@@ -99,9 +99,9 @@
             Nama:<br>
             <input id="ninput" type="text" name="newnama" required><br>
             Longitude:<br>
-            <input id="linput" type="text" name="newlong" required><br>
+            <input id="linput" type="number" step ="0.0000001" min ="-180" max ="180" name="newlong" required><br>
             Latitude:<br>
-            <input id="lainput" type="text" name="newlat" required><br><br>
+            <input id="lainput" type="number" step ="0.0000001" min ="-180" max ="180" name="newlat" required><br><br>
             <input type="submit" value="Save" />
         </form>
       </div>
