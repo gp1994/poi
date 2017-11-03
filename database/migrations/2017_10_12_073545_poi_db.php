@@ -25,7 +25,7 @@ class PoiDb extends Migration
         Schema::create('info_detail', function (Blueprint $table) {
             $table->increments('id');
             $table->longtext('keterangan');
-            $table->string('image',120);
+            $table->string('image',480);
             $table->integer('update_count')->default(0);
             $table->timestamps();
             $table->string('last_created_by',30);        
