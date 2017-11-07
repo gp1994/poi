@@ -111,7 +111,8 @@
                       Detail:<br>
                       <textarea id="detinput"  name="editeddet" style="width:870px;height:270px;" cols="40" rows="100" required></textarea><br>
                       Image: (Upload Image)<br>
-                      <input id="iminput" type="file"  name="editedim" required>
+                      <input id="iminput" type="file" name="editedim" onchange="$('#pik').val($(this).val());">
+                      <input id="pik" name="edtim" type="text" readonly>
                       <br><br>
                       <input type="submit" value="Save" />
                       </form>
@@ -211,9 +212,12 @@
                 var button = $(e.relatedTarget);
                 var iddc = button.data('id');
                 var dsc = button.data('desc');
+                var im = button.data('img');
                 $('.modal-body #idds').val(iddc);
-                $('.modal-body #detinput').val(dsc);      
+                $('.modal-body #detinput').val(dsc);    
+                $('.modal-body #pik').val(im);   
                 $('#dsc').html($(e.relatedTarget).data('desc'));
+                $('#im').html($(e.relatedTarget).data('im'));
             });
         });
     </script>

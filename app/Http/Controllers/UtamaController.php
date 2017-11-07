@@ -63,11 +63,18 @@ class UtamaController extends Controller
      public function editdet(Request $request){
         $iddesc = $request->input('iddts');
         $detl = $request->input('editeddet');
-        $img = $request->file('editedim')->getClientOriginalName();;
-        $request->file('editedim')->move(public_path('images'), $img);
+        $dat = $request->input('edtim');
         $det = Detil::find($iddesc);
         $det->keterangan=$detl;
+        $img = $request->file('editedim');
+        if (!empty ($img)){
+        $img = $request->file('editedim')->getClientOriginalName();
+        $request->file('editedim')->move(public_path('images'), $img);
         $det->image='images/'.$img;
+        }
+        else{
+        $det->image=$dat;
+        }
         $det->update_count=$det->update_count+1;
         $det->created_at = \Carbon\Carbon::now()->toDateTimeString();
         $det->updated_at = \Carbon\Carbon::now()->toDateTimeString();
