@@ -79,7 +79,7 @@
                         <ul class="nav navbar-nav navbar-right">
                         <li> @if ( Request::session()->has('usrn') )
                         <div id="sess" style ="position:relative;top:15px">
-                        Welcome {{session('usrn')}}! Click here to <a href="./logout">Logout</a> </div><br> 
+                        Welcome {{session('usrn')}}! Click here to <a href="./logout2">Logout</a> </div><br> 
                         @else
                         <a class="btn big-login" data-toggle="modal" href="javascript:void(0)" style ="position:relative;left:-10px"onclick="openLoginModal();">Login</a>
                         @endif

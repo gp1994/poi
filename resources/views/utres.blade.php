@@ -71,7 +71,7 @@
                         <ul class="nav navbar-nav navbar-right">
                         <li> @if ( Request::session()->has('usrn') )
                         <div id="sess" style ="position:relative;top:15px">
-                        Welcome {{session('usrn')}}! Click here to <a href="./logout">Logout</a> </div><br> 
+                        Welcome {{session('usrn')}}! Click here to <a href="./logout3">Logout</a> </div><br> 
                         @else
                         <a class="btn big-login" data-toggle="modal" href="javascript:void(0)" style ="position:relative;left:-10px"onclick="openLoginModal();">Login</a>
                         @endif
@@ -95,7 +95,7 @@
                         <div class="box">
                            <div class="content">
                               <div class="form loginBox">
-                                <form method="post" action="{{action('PenggunaController@cekLogin')}}">
+                                <form method="post" action="{{action('PenggunaController@cekLogin2')}}">
                                 {{ csrf_field() }}
                                 <br>    
                                 <label>Username</label>
