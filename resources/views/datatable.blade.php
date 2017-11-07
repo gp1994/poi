@@ -117,6 +117,7 @@
         <table id="fresh-table" class="table">
             <thead>
             <tr>
+                <th>ID</th>
                 <th>Nama</th>
                 <th>Longitude</th>
                 <th>Latitude</th>
@@ -127,6 +128,7 @@
                 @if (count($locs))
         @foreach($locs as $loc)    
             <tr>
+                <td>{{$loc->id}}</td>
                 <td>{{$loc->lokasi}}</td>
                 <td>{{$loc->longitude}}</td>
                 <td>{{$loc->latitude}}</td>

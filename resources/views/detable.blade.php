@@ -70,6 +70,7 @@
         <table id="fresh-table" class="table">
             <thead>
             <tr>
+                <th>ID</th>
                 <th>Detail</th>
                 <th>Gambar</th>
                 <th></th>
@@ -79,6 +80,7 @@
                 @if (count($dets))
         @foreach($dets as $detail)    
             <tr>
+              <td>{{$detail->id}}</td>
               <td>{{$detail->keterangan}}</td>
               <td><img src="{{$detail->image}}" width="400" height="200"/></td>
               <td>
