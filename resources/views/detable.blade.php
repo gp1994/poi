@@ -31,20 +31,16 @@
                         </a>
                     </li>
                     <li>
-                         @if(session('roles') == 'admin')
                         <a href="./datatable">
                             <i class="material-icons">content_paste</i>
                             <p>Datatable Utama</p>
                         </a>
-                        @endif
                     </li>
                     <li  class="active">
-                        @if(session('roles') == 'admin')
                         <a href="./detable">
                             <i class="material-icons">content_paste</i>
                             <p>Datatable Detail</p>
                         </a>
-                        @endif
                     </li>
                 </ul>
             </div>

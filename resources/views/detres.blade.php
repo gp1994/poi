@@ -34,7 +34,7 @@
         </div>
             <div class="sidebar-wrapper">
                 <ul class="nav">
-                    <li class="active">
+                    <li>
                         <a href="./">
                             <i class="material-icons">location_on</i>
                             <p>POI List</p>
@@ -46,7 +46,7 @@
                             <p>Datatable Utama</p>
                         </a>
                     </li>
-                    <li>
+                    <li  class="active">
                         <a href="./detable">
                             <i class="material-icons">content_paste</i>
                             <p>Datatable Detail</p>
@@ -65,7 +65,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <div class="navbar-brand"> POI List </div>
+                        <div class="navbar-brand"> Datatable Detail </div>
                     </div>
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
@@ -117,7 +117,24 @@
   Maaf Username atau Password anda salah!
   @endif
 </div>
-  <div id="mymap" style="position:relative;top:-40px;width:950px;height:520px"></div>    
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header" data-background-color="purple">
+                                    <h4 class="title">Error</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div id="typography">
+                                        <div class="title">
+                                            <h2>You're not logged in or you're not logged in as an admin. Log in as an admin to see this datatable feature....</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
       </div>
     </div>
 </body>
@@ -133,66 +150,4 @@
 <script src="http://localhost/poi/public/BSDash/assets/js/perfect-scrollbar.jquery.min.js"></script>
 <!--  Notifications Plugin    -->
 <script src="http://localhost/poi/public/BSDash/assets/js/bootstrap-notify.js"></script>
-<!--  Google Maps Plugin    -->
-<script src="http://maps.google.com/maps/api/js?key=AIzaSyC5BGMy8w4z0CZm022t08c5mLhOjslHJZQ"></script>
-<!-- Material Dashboard javascript methods -->
-<script>
-function initMap() {
-    var map;
-    var bounds = new google.maps.LatLngBounds();
-    var mapOptions = {
-        mapTypeId: 'roadmap'
-    };
-                    
-    // Display a map on the web page
-    map = new google.maps.Map(document.getElementById("mymap"), mapOptions);
-    map.setTilt(50);
-        
-    // Multiple markers location, latitude, and longitude
-    var markers = [
-    @foreach ($locations as $loc)
-      [ "{{ $loc->lokasi }}","{{ $loc->latitude }}", "{{ $loc->longitude }}" ,"{{ $loc->id}}"], 
-    @endforeach
-    ];
-                        
-    // Info window content
-    var infoWindowContent = [
-    @foreach ($det as $detail)
-      ["{{$detail->image}}","{{ $detail->keterangan}}","{{$detail->id}}"], 
-    @endforeach
-    ];
-        
-    // Add multiple markers to map
-    var infoWindow = new google.maps.InfoWindow(), marker, i;
-    
-    // Place each marker on the map  
-    for( i = 0; i < markers.length; i++ ) {
-        var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
-        bounds.extend(position);
-        marker = new google.maps.Marker({
-            position: position,
-            map: map,
-            title: markers[i][0]
-        });
-        
-        // Add info window to marker    
-      google.maps.event.addListener(marker, 'click', (function(marker, i) {return function() {infoWindow.setContent('<div id ="nama_lokasi"><h4>'+markers[i][0]+'</h4></div>'+ '<div id ="gambar">'+'<img src='+infoWindowContent[i][0]+'>'+'</div>'+'<div id="info_content">'+infoWindowContent[i][1]+'</div>'+'@if(session('roles') == 'user')'+'<a href="./downloadPDF/' +markers[i][3]+'">'+'Download PDF'+'</a>'+ '@endif'+ '@if(session('roles') == 'admin')'+'<a href="./downloadPDF/' +markers[i][3]+'">'+'Download PDF'+'</a>'+ '@endif');
-        infoWindow.open(map, marker);
-            }
-        })(marker, i));
-
-        // Center the map to fit all markers on the screen
-        map.fitBounds(bounds);
-    }
-
-    // Set zoom level
-    var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
-        this.setZoom(5);
-        google.maps.event.removeListener(boundsListener);
-    });
-    
-}
-// Load initialize function
-google.maps.event.addDomListener(window, 'load', initMap);
-</script>
 </html>

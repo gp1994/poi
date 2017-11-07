@@ -20,6 +20,14 @@ Route::get('/login',  function(){
 	return view('login');
 });
 
+Route::get('/detres',  function(){
+	return view('detres');
+});
+
+Route::get('/utres',  function(){
+	return view('utres');
+});
+
 Route::get('/datatable', 'UtamaController@infoutama');
 
 Route::post('/editloc','UtamaController@editloc');

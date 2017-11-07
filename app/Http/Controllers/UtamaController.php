@@ -29,7 +29,7 @@ class UtamaController extends Controller
     	return view('datatable',compact('locs'));
         }
         else{
-            return redirect('/');
+            return redirect('utres');
         }
     }
 
@@ -39,7 +39,7 @@ class UtamaController extends Controller
         return view('detable',compact('dets'));
         }
         else{
-            return redirect('/');
+            return view('detres');
         }
     }
 
