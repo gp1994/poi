@@ -63,15 +63,17 @@ class UtamaController extends Controller
      public function editdet(Request $request){
         $iddesc = $request->input('iddts');
         $detl = $request->input('editeddet');
-        $img = $request->input('editedim');
+        $img = $request->file('editedim')->getClientOriginalName();;
+        $request->file('editedim')->move(public_path('images'), $img);
         $det = Detil::find($iddesc);
         $det->keterangan=$detl;
-        $det->image=$img;
+        $det->image='images/'.$img;
         $det->update_count=$det->update_count+1;
         $det->created_at = \Carbon\Carbon::now()->toDateTimeString();
         $det->updated_at = \Carbon\Carbon::now()->toDateTimeString();
         $det->last_created_by=Session::get('usrn');
         $det->save();
+
         
         return redirect ('detable');
     }
@@ -98,13 +100,17 @@ class UtamaController extends Controller
 
     public function storedet(Request $request)
     {
+        $this->validate($request, [
+            'image' => 'mimes:jpeg,bmp,png', //only allow this type extension file.
+        ]);
         $idd = Detil::max('id');
         $desc = $request->input('newdet');
-        $img = $request->input('newim');
+        $imgName = $request->file('newim')->getClientOriginalName();
+        $request->file('newim')->move(public_path('images'), $imgName);
         DB::table('info_detail')->insert([
                 'id' => $idd + 1,
                 'keterangan' => $desc,
-                'image' => $img,
+                'image' => 'images/'.$imgName,
                 'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
                 'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
                 'last_created_by' =>Session::get('usrn')

@@ -1,10 +1,7 @@
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 
 #mymap {
-      	border:1px solid red;
-      	width: 800px;
-      	height: 590px;
-        position:relative;
+      	border:1px solid red; 
         top:10px;
 }
 body {
