@@ -112,7 +112,7 @@
                       <textarea id="detinput"  name="editeddet" style="width:870px;height:270px;" cols="40" rows="100" required></textarea><br>
                       Image: (Upload Image)<br>
                       <input id="iminput" type="file" name="editedim" onchange="$('#pik').val($(this).val());">
-                      <input id="pik" name="edtim" type="text" readonly>
+                      <input id="pik" name="edtim" size ="40" type="text" readonly>
                       <br><br>
                       <input type="submit" value="Save" />
                       </form>

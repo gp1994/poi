@@ -8,7 +8,7 @@
   </head>
 <body>
 <h4>{{$locations->lokasi}}</h4>
-<div id ="img"><img src="{{$det->image}}" width="640" height="580"></div>
+<div id ="img"><img src="{{$det->image}}" width="700" height="380"></div>
 <div id ="keterangan">{{$det->keterangan}}</div>
 </body>
 </html>
