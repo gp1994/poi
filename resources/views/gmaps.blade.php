@@ -176,7 +176,7 @@ function initMap() {
         });
         
         // Add info window to marker    
-      google.maps.event.addListener(marker, 'click', (function(marker, i) {return function() {infoWindow.setContent('<div id ="nama_lokasi"><h4>'+markers[i][0]+'</h4></div>'+ '<div id ="gambar">'+'<img src='+infoWindowContent[i][0]+'>'+'</div>'+'<div id="info_content">'+infoWindowContent[i][1]+'</div>'+'@if(session('roles') == 'user')'+'<a href="./downloadPDF/' +markers[i][3]+'">'+'Download PDF'+'</a>'+ '@endif'+ '@if(session('roles') == 'admin')'+'<a href="./downloadPDF/' +markers[i][3]+'">'+'Download PDF'+'</a>'+ '@endif');
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {return function() {infoWindow.setContent('<div id ="nama_lokasi"><h4>'+markers[i][0]+'</h4></div>'+ '<div id ="gambar">'+'<img src='+infoWindowContent[i][0]+' width="640" height="400"'+'>'+'</div>'+'<div id="info_content">'+infoWindowContent[i][1]+'</div>'+'@if(session('roles') == 'user')'+'<a href="./downloadPDF/' +markers[i][3]+'">'+'Download PDF'+'</a>'+ '@endif'+ '@if(session('roles') == 'admin')'+'<a href="./downloadPDF/' +markers[i][3]+'">'+'Download PDF'+'</a>'+ '@endif');
         infoWindow.open(map, marker);
             }
         })(marker, i));
