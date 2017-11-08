@@ -75,18 +75,13 @@ class UtamaController extends Controller
         else{
         $det->image=$dat;
         }
-        if($det->isDirty('keterangan')){
+        if($det->isDirty('keterangan') || $det->isDirty('image')){
         $det->update_count=$det->update_count+1;
         $det->created_at = \Carbon\Carbon::now()->toDateTimeString();
         $det->updated_at = \Carbon\Carbon::now()->toDateTimeString();
         $det->last_created_by=Session::get('usrn');
         }
-        if($det->isDirty('image')){
-        $det->update_count=$det->update_count+1;
-        $det->created_at = \Carbon\Carbon::now()->toDateTimeString();
-        $det->updated_at = \Carbon\Carbon::now()->toDateTimeString();
-        $det->last_created_by=Session::get('usrn');
-        }
+    
         $det->save();
 
         
