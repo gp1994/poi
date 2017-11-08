@@ -230,6 +230,4 @@
 <script src="http://localhost/poi/public/BSDash/assets/js/bootstrap-notify.js"></script>
 <!--  Google Maps Plugin    -->
 <script src="http://maps.google.com/maps/api/js?key=AIzaSyC5BGMy8w4z0CZm022t08c5mLhOjslHJZQ"></script>
-<!-- Material Dashboard javascript methods -->
-<script src="http://localhost/poi/public/BSDash/assets/js/material-dashboard.js?v=1.2.0"></script>
 </html>
