@@ -65,8 +65,8 @@ class UtamaController extends Controller
         $detl = $request->input('editeddet');
         $dat = $request->input('edtim');
         $det = Detil::find($iddesc);
-        $det->keterangan=$detl;
         $img = $request->file('editedim');
+        $det->keterangan=$detl;
         if (!empty ($img)){
         $img = $request->file('editedim')->getClientOriginalName();
         $request->file('editedim')->move(public_path('images'), $img);
@@ -75,10 +75,18 @@ class UtamaController extends Controller
         else{
         $det->image=$dat;
         }
+        if($det->isDirty('keterangan')){
         $det->update_count=$det->update_count+1;
         $det->created_at = \Carbon\Carbon::now()->toDateTimeString();
         $det->updated_at = \Carbon\Carbon::now()->toDateTimeString();
         $det->last_created_by=Session::get('usrn');
+        }
+        if($det->isDirty('image')){
+        $det->update_count=$det->update_count+1;
+        $det->created_at = \Carbon\Carbon::now()->toDateTimeString();
+        $det->updated_at = \Carbon\Carbon::now()->toDateTimeString();
+        $det->last_created_by=Session::get('usrn');
+        }
         $det->save();
 
         
