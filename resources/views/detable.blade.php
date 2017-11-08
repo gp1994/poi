@@ -168,7 +168,6 @@
             $table.bootstrapTable({
                 toolbar: ".toolbar",
 
-                showRefresh: true,
                 search: true,
                 showToggle: true,
                 showColumns: true,
