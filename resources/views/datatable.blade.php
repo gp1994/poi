@@ -20,7 +20,7 @@
         <div class="modal-content">
           <div class="modal-header" style="color:#0000FF">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-              Edit <span id="namaloc"></span>
+              Edit Location<span id="namaloc"></span>
                 </div>
                   <div class="modal-body" style="color:#0000FF">
                     <form method="POST" action="./editloc" id="editloc">
@@ -93,7 +93,7 @@
     <div class="modal-content">
       <div class="modal-header" style="color:#0000FF">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-          Add Loc<span id="namaloc"></span>
+          Add Location<span id="namaloc"></span>
       </div>
       <div class="modal-body" style="color:#0000FF">
          <form method="POST" action="./storeloc" id="stloc">
@@ -113,7 +113,7 @@
 </div>  
 
     <div class="fresh-table full-color-orange full-screen-table">        
-    <button id="addLocButton" data-toggle="modal" data-target="#addLocModal" style="position:relative;left:29px;top:70px;">Add Loc</button>       
+    <button id="addLocButton" data-toggle="modal" data-target="#addLocModal" style="position:relative;left:29px;top:70px;">Add Location</button>       
         <table id="fresh-table" class="table">
             <thead>
             <tr>
@@ -135,7 +135,7 @@
                 <td>
                  <div class="col-md-3">          
             <button id="editpoibutton" data-toggle="modal" data-target="#editPoiModal"
-            data-id="{{$loc->id}}" data-nama="{{$loc->lokasi}}" data-longitude="{{$loc->longitude}}" data-latitude="{{$loc->latitude}}" style="color:#0000FF">Edit</button>
+            data-id="{{$loc->id}}" data-nama="{{$loc->lokasi}}" data-longitude="{{$loc->longitude}}" data-latitude="{{$loc->latitude}}" style="color:#0000FF">Edit Location</button>
               </div>     
               </td>
             </tr>
