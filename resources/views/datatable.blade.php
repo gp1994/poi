@@ -20,7 +20,7 @@
         <div class="modal-content">
           <div class="modal-header" style="color:#0000FF">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-              Edit Location<span id="namaloc"></span>
+              Edit <span id="namaloc"></span>
                 </div>
                   <div class="modal-body" style="color:#0000FF">
                     <form method="POST" action="./editloc" id="editloc">
@@ -93,7 +93,7 @@
     <div class="modal-content">
       <div class="modal-header" style="color:#0000FF">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-          Add Location<span id="namaloc"></span>
+          Add<span id="namaloc"></span>
       </div>
       <div class="modal-body" style="color:#0000FF">
          <form method="POST" action="./storeloc" id="stloc">
@@ -113,7 +113,7 @@
 </div>  
 
     <div class="fresh-table full-color-orange full-screen-table">        
-    <button id="addLocButton" data-toggle="modal" data-target="#addLocModal" style="position:relative;left:29px;top:70px;">Add Location</button>       
+    <button id="addLocButton" data-toggle="modal" data-target="#addLocModal" style="position:relative;left:29px;top:70px;">Add </button>       
         <table id="fresh-table" class="table">
             <thead>
             <tr>
@@ -135,7 +135,7 @@
                 <td>
                  <div class="col-md-3">          
             <button id="editpoibutton" data-toggle="modal" data-target="#editPoiModal"
-            data-id="{{$loc->id}}" data-nama="{{$loc->lokasi}}" data-longitude="{{$loc->longitude}}" data-latitude="{{$loc->latitude}}" style="color:#0000FF">Edit Location</button>
+            data-id="{{$loc->id}}" data-nama="{{$loc->lokasi}}" data-longitude="{{$loc->longitude}}" data-latitude="{{$loc->latitude}}" style="color:#0000FF">Edit</button>
               </div>     
               </td>
             </tr>
@@ -166,6 +166,7 @@
             $table.bootstrapTable({
                 toolbar: ".toolbar",
 
+                showRefresh: true,
                 search: true,
                 showToggle: true,
                 showColumns: true,
@@ -233,4 +234,6 @@
 <script src="http://localhost/poi/public/BSDash/assets/js/bootstrap-notify.js"></script>
 <!--  Google Maps Plugin    -->
 <script src="http://maps.google.com/maps/api/js?key=AIzaSyC5BGMy8w4z0CZm022t08c5mLhOjslHJZQ"></script>
+<!-- Material Dashboard javascript methods -->
+<script src="http://localhost/poi/public/BSDash/assets/js/material-dashboard.js?v=1.2.0"></script>
 </html>

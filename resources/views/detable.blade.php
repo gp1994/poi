@@ -66,7 +66,7 @@
                 </div>
             </nav>
     <div class="fresh-table full-color-orange full-screen-table">          
-        <button id="addDetButton" data-toggle="modal" data-target="#addDetModal" style="position:relative;left:29px;top:70px;">Add Det</button>     
+        <button id="addDetButton" data-toggle="modal" data-target="#addDetModal" style="position:relative;left:29px;top:70px;">Add </button>     
         <table id="fresh-table" class="table">
             <thead>
             <tr>
@@ -85,7 +85,7 @@
               <td><img src="{{$detail->image}}" width="400" height="200"/></td>
               <td>
                 <div class="col-md-3">          
-                  <button id="editpoibutton" data-toggle="modal" data-target="#editPoiModal" data-id="{{$detail->id}}" data-desc="{{$detail->keterangan}}" data-img="{{$detail->image}}" style="color:#0000FF">Edit Detail</button>
+                  <button id="editpoibutton" data-toggle="modal" data-target="#editPoiModal" data-id="{{$detail->id}}" data-desc="{{$detail->keterangan}}" data-img="{{$detail->image}}" style="color:#0000FF">Edit </button>
                 </div>   
               </div>    
                 </td>
@@ -130,7 +130,7 @@
     <!-- DIV Modal Add Term 2-->
       <div class="modal-header" style="color:#0000FF">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-          Add Detail<span id="namadet"></span>
+          Add <span id="namadet"></span>
       </div>
       <div class="modal-body" style="color:#0000FF">
          <form method="POST" action="./storedet" enctype="multipart/form-data" id="strdt">
