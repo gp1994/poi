@@ -201,8 +201,10 @@
                                     @else
                                     <iframe width="900" height="400" src="{{ $det->videos }}"  frameborder="0" allowfullscreen></iframe>
                                     @endif
-                                    <div class="col-md-3">          
+                                    <div class="col-md-3">
+                                    @if (Session('roles')=='admin')          
                   <button id="editpoibutton" data-toggle="modal" data-target="#editPoiModal" data-id="{{$det->id}}" data-desc="{{$det->keterangan}}" data-img="{{$det->image}}" data-img2="{{$det->image2}}" data-img3="{{$det->image3}}" data-img4="{{$det->image4}}" data-img5="{{$det->image5}}" data-img6="{{$det->image6}}" data-img7="{{$det->image7}}" data-img8="{{$det->image8}}" data-img9="{{$det->image9}}" data-img10="{{$det->image10}}" data-vid="{{$det->videos}}">Edit </button>
+                  @endif
                 </div>
                 <div id="editPoiModal" class="modal fade">
                 <div class="modal-dialog modal-lg">
