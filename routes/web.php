@@ -16,21 +16,11 @@ Route::get('/', 'UtamaController@gmaps');
 
 Route::post('/login','PenggunaController@cekLogin');
 
-Route::post('/login2','PenggunaController@cekLogin2');
-
-Route::post('/login3','PenggunaController@cekLogin3');
 
 Route::get('/login',  function(){
 	return view('login');
 });
 
-Route::get('/detres',  function(){
-	return view('detres');
-});
-
-Route::get('/utres',  function(){
-	return view('utres');
-});
 
 Route::get('/datatable', 'UtamaController@infoutama');
 
@@ -46,8 +36,6 @@ Route::post('/editdet','UtamaController@editdet');
 
 Route::get('/logout', 'PenggunaController@logout');
 
-Route::get('/logout2', 'PenggunaController@logout2');
-
-Route::get('/logout3', 'PenggunaController@logout3');
-
 Route::get('/downloadPDF/{id}','UtamaController@downloadPDF');
+
+Route::get('/showDet{id}','UtamaController@showDet');

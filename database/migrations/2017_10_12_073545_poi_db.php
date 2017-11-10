@@ -26,6 +26,16 @@ class PoiDb extends Migration
             $table->increments('id');
             $table->longtext('keterangan');
             $table->string('image',480)->nullable();
+            $table->string('image2',480)->nullable();
+            $table->string('image3',480)->nullable();
+            $table->string('image4',480)->nullable();
+            $table->string('image5',480)->nullable();
+            $table->string('image6',480)->nullable();
+            $table->string('image7',480)->nullable();
+            $table->string('image8',480)->nullable();
+            $table->string('image9',480)->nullable();
+            $table->string('image10',480)->nullable();
+            $table->string('videos',480)->nullable();
             $table->integer('update_count')->default(0);
             $table->timestamps();
             $table->string('last_created_by',30);        

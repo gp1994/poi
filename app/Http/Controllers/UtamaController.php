@@ -29,7 +29,7 @@ class UtamaController extends Controller
     	return view('datatable',compact('locs'));
         }
         else{
-            return redirect('utres');
+            return redirect('/');
         }
     }
 
@@ -39,7 +39,7 @@ class UtamaController extends Controller
         return view('detable',compact('dets'));
         }
         else{
-            return view('detres');
+            return view('/');
         }
     }
 
@@ -64,8 +64,28 @@ class UtamaController extends Controller
         $iddesc = $request->input('iddts');
         $detl = $request->input('editeddet');
         $dat = $request->input('edtim');
+        $dat2 = $request->input('edtim2');
+        $dat3 = $request->input('edtim3');
+        $dat4 = $request->input('edtim4');
+        $dat5 = $request->input('edtim5');
+        $dat6 = $request->input('edtim6');
+        $dat7 = $request->input('edtim7');
+        $dat8 = $request->input('edtim8');
+        $dat9 = $request->input('edtim9');
+        $dat10 = $request->input('edtim10');
+        $bid = $request->input('edtvid');
         $det = Detil::find($iddesc);
         $img = $request->file('editedim');
+        $img2 = $request->file('editedim2');
+        $img3 = $request->file('editedim3');
+        $img4 = $request->file('editedim4');
+        $img5 = $request->file('editedim5');
+        $img6 = $request->file('editedim6');
+        $img7 = $request->file('editedim7');
+        $img8 = $request->file('editedim8');
+        $img9 = $request->file('editedim9');
+        $img10 = $request->file('editedim10');
+        $bd = $request->file('editedvid');
         $det->keterangan=$detl;
         if (!empty ($img)){
         $img = $request->file('editedim')->getClientOriginalName();
@@ -75,7 +95,89 @@ class UtamaController extends Controller
         else{
         $det->image=$dat;
         }
-        if($det->isDirty('keterangan') || $det->isDirty('image')){
+
+        if (!empty ($img2)){
+        $img2 = $request->file('editedim2')->getClientOriginalName();
+        $request->file('editedim2')->move(public_path('images'), $img2);
+        $det->image2='images/'.$img2;
+        }
+        else{
+        $det->image2=$dat2;
+        }
+        if (!empty ($img3)){
+        $img3 = $request->file('editedim3')->getClientOriginalName();
+        $request->file('editedim3')->move(public_path('images'), $img3);
+        $det->image3='images/'.$img3;
+        }
+        else{
+        $det->image3=$dat3;
+        }
+        if (!empty ($img4)){
+        $img4 = $request->file('editedim4')->getClientOriginalName();
+        $request->file('editedim4')->move(public_path('images'), $img4);
+        $det->image4='images/'.$img4;
+        }
+        else{
+        $det->image4=$dat4;
+        }
+        if (!empty ($img5)){
+        $img5 = $request->file('editedim5')->getClientOriginalName();
+        $request->file('editedim5')->move(public_path('images'), $img5);
+        $det->image5='images/'.$img5;
+        }
+        else{
+        $det->image5=$dat5;
+        }
+        if (!empty ($img6)){
+        $img6 = $request->file('editedim6')->getClientOriginalName();
+        $request->file('editedim6')->move(public_path('images'), $img6);
+        $det->image6='images/'.$img6;
+        }
+        else{
+        $det->image6=$dat6;
+        }
+        if (!empty ($img7)){
+        $img7 = $request->file('editedim7')->getClientOriginalName();
+        $request->file('editedim7')->move(public_path('images'), $img7);
+        $det->image7='images/'.$img7;
+        }
+        else{
+        $det->image7=$dat7;
+        }
+        if (!empty ($img8)){
+        $img8 = $request->file('editedim8')->getClientOriginalName();
+        $request->file('editedim8')->move(public_path('images'), $img8);
+        $det->image8='images/'.$img8;
+        }
+        else{
+        $det->image8=$dat8;
+        }
+        if (!empty ($img9)){
+        $img9 = $request->file('editedim9')->getClientOriginalName();
+        $request->file('editedim9')->move(public_path('images'), $img9);
+        $det->image9='images/'.$img9;
+        }
+        else{
+        $det->image9=$dat9;
+        }
+        if (!empty ($img10)){
+        $img10 = $request->file('editedim10')->getClientOriginalName();
+        $request->file('editedim10')->move(public_path('images'), $img10);
+        $det->image10='images/'.$img10;
+        }
+        else{
+        $det->image10=$dat10;
+        }
+        if (!empty ($bd)){
+        $bd= $request->file('editedvid')->getClientOriginalName();
+        $request->file('editedvid')->move(public_path('videos'), $bd);
+        $det->videos='videos/'.$bd;
+        }
+        else{
+        $det->videos=$bid;
+        }
+
+        if($det->isDirty('keterangan') || $det->isDirty('image') || $det->isDirty('image2') || $det->isDirty('image3') || $det->isDirty('image4') || $det->isDirty('image5') || $det->isDirty('image6') || $det->isDirty('image7') || $det->isDirty('image8') || $det->isDirty('image9') || $det->isDirty('image10')|| $det->isDirty('videos')){
         $det->update_count=$det->update_count+1;
         $det->created_at = \Carbon\Carbon::now()->toDateTimeString();
         $det->updated_at = \Carbon\Carbon::now()->toDateTimeString();
@@ -115,16 +217,207 @@ class UtamaController extends Controller
         ]);
         $idd = Detil::max('id');
         $desc = $request->input('newdet');
-        $imgName = $request->file('newim')->getClientOriginalName();
-        $request->file('newim')->move(public_path('images'), $imgName);
-        DB::table('info_detail')->insert([
-                'id' => $idd + 1,
-                'keterangan' => $desc,
-                'image' => 'images/'.$imgName,
-                'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
-                'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
-                'last_created_by' =>Session::get('usrn')
-            ]);
+        $newim = array();
+        $bd= $request->file('newvid');
+        if (!empty ($bd)){
+        $bd= $request->file('newvid')->getClientOriginalName();
+        $request->file('newvid')->move(public_path('videos'), $bd);
+        }
+        if($files=$request->file('newim')){
+            foreach($files as $file){
+                $name=$file->getClientOriginalName();
+                $file->move(public_path('images'),$name);
+                $newim[]=$name;
+            }
+        }
+        if(count($newim)==0){
+        $data_to_insert = [
+            'id' => $idd + 1,
+            'keterangan' => $desc,
+            'videos' =>  'videos/'.$bd,
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'last_created_by' =>Session::get('usrn')
+            ];
+
+        DB::table('info_detail')->insert($data_to_insert);
+        }
+        if(count($newim)==1){
+        $data_to_insert = [
+            'id' => $idd + 1,
+            'keterangan' => $desc,
+            'image' => 'images/'.$newim[0],
+            'videos' =>  'videos/'.$bd,
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'last_created_by' =>Session::get('usrn')
+            ];
+
+        DB::table('info_detail')->insert($data_to_insert);
+        }
+        if(count($newim)==2){
+        $data_to_insert = [
+            'id' => $idd + 1,
+            'keterangan' => $desc,
+            'image' => 'images/'.$newim[0],
+            'image2' => 'images/'.$newim[1],
+            'videos' =>  'videos/'.$bd,
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'last_created_by' =>Session::get('usrn')
+            ];
+
+        DB::table('info_detail')->insert($data_to_insert);
+        }
+        if(count($newim)==3){
+        $data_to_insert = [
+            'id' => $idd + 1,
+            'keterangan' => $desc,
+            'image' => 'images/'.$newim[0],
+            'image2' => 'images/'.$newim[1],
+            'image3' => 'images/'.$newim[2],
+            'videos' =>  'videos/'.$bd,
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'last_created_by' =>Session::get('usrn')
+            ];
+
+        DB::table('info_detail')->insert($data_to_insert);
+        }
+        if(count($newim)==4){
+        $data_to_insert = [
+            'id' => $idd + 1,
+            'keterangan' => $desc,
+            'image' => 'images/'.$newim[0],
+            'image2' => 'images/'.$newim[1],
+            'image3' => 'images/'.$newim[2],
+            'image4' => 'images/'.$newim[3],
+            'videos' =>  'videos/'.$bd,
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'last_created_by' =>Session::get('usrn')
+            ];
+
+        DB::table('info_detail')->insert($data_to_insert);
+        }
+        if(count($newim)==5){
+        $data_to_insert = [
+            'id' => $idd + 1,
+            'keterangan' => $desc,
+            'image' => 'images/'.$newim[0],
+            'image2' => 'images/'.$newim[1],
+            'image3' => 'images/'.$newim[2],
+            'image4' => 'images/'.$newim[3],
+            'image5' => 'images/'.$newim[4],
+            'videos' =>  'videos/'.$bd,
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'last_created_by' =>Session::get('usrn')
+            ];
+
+        DB::table('info_detail')->insert($data_to_insert);
+        }
+        if(count($newim)==6){
+        $data_to_insert = [
+            'id' => $idd + 1,
+            'keterangan' => $desc,
+            'image' => 'images/'.$newim[0],
+            'image2' => 'images/'.$newim[1],
+            'image3' => 'images/'.$newim[2],
+            'image4' => 'images/'.$newim[3],
+            'image5' => 'images/'.$newim[4],
+            'image6' => 'images/'.$newim[5],
+            'videos' =>  'videos/'.$bd,
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'last_created_by' =>Session::get('usrn')
+            ];
+
+        DB::table('info_detail')->insert($data_to_insert);
+        }
+        if(count($newim)==7){
+        $data_to_insert = [
+            'id' => $idd + 1,
+            'keterangan' => $desc,
+            'image' => 'images/'.$newim[0],
+            'image2' => 'images/'.$newim[1],
+            'image3' => 'images/'.$newim[2],
+            'image4' => 'images/'.$newim[3],
+            'image5' => 'images/'.$newim[4],
+            'image6' => 'images/'.$newim[5],
+            'image7' => 'images/'.$newim[6],
+            'videos' =>  'videos/'.$bd,
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'last_created_by' =>Session::get('usrn')
+            ];
+
+        DB::table('info_detail')->insert($data_to_insert);
+        }
+        if(count($newim)==8){
+        $data_to_insert = [
+            'id' => $idd + 1,
+            'keterangan' => $desc,
+            'image' => 'images/'.$newim[0],
+            'image2' => 'images/'.$newim[1],
+            'image3' => 'images/'.$newim[2],
+            'image4' => 'images/'.$newim[3],
+            'image5' => 'images/'.$newim[4],
+            'image6' => 'images/'.$newim[5],
+            'image7' => 'images/'.$newim[6],
+            'image8' => 'images/'.$newim[7],
+            'videos' =>  'videos/'.$bd,
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'last_created_by' =>Session::get('usrn')
+            ];
+
+        DB::table('info_detail')->insert($data_to_insert);
+        }
+        if(count($newim)==9){
+        $data_to_insert = [
+            'id' => $idd + 1,
+            'keterangan' => $desc,
+            'image' => 'images/'.$newim[0],
+            'image2' => 'images/'.$newim[1],
+            'image3' => 'images/'.$newim[2],
+            'image4' => 'images/'.$newim[3],
+            'image5' => 'images/'.$newim[4],
+            'image6' => 'images/'.$newim[5],
+            'image7' => 'images/'.$newim[6],
+            'image8' => 'images/'.$newim[7],
+            'image9' => 'images/'.$newim[8],
+            'videos' =>  'videos/'.$bd,
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'last_created_by' =>Session::get('usrn')
+            ];
+
+        DB::table('info_detail')->insert($data_to_insert);
+        }
+        if(count($newim)==10){
+        $data_to_insert = [
+            'id' => $idd + 1,
+            'keterangan' => $desc,
+            'image' => 'images/'.$newim[0],
+            'image2' => 'images/'.$newim[1],
+            'image3' => 'images/'.$newim[2],
+            'image4' => 'images/'.$newim[3],
+            'image5' => 'images/'.$newim[4],
+            'image6' => 'images/'.$newim[5],
+            'image7' => 'images/'.$newim[6],
+            'image8' => 'images/'.$newim[7],
+            'image9' => 'images/'.$newim[8],
+            'image10' => 'images/'.$newim[9],
+            'videos' =>  'videos/'.$bd,
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'last_created_by' =>Session::get('usrn')
+            ];
+
+        DB::table('info_detail')->insert($data_to_insert);
+        }
+
         return redirect ('detable');
         // echo "Term added successfully.<br/>";
         // echo '<a href="./archive">Click Here</a> to go back';
@@ -135,5 +428,11 @@ class UtamaController extends Controller
       $det = Detil::find($idlok);
       $pdf = PDF::loadView('pdf', compact('det','locations'));
       return $pdf->download('PointOfInterest.pdf');
+    }
+
+    public function showDet($id) {
+        $utama = Utama::where('id',$id)->get();
+        $detil = Detil::where('id',$id)->get();
+        return view('detail',compact('detil','utama'));
     }
 }
