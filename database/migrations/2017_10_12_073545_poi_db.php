@@ -24,7 +24,7 @@ class PoiDb extends Migration
 
         Schema::create('info_detail', function (Blueprint $table) {
             $table->increments('id');
-            $table->longtext('keterangan');
+            $table->longtext('keterangan')->nullable();
             $table->string('image',480)->nullable();
             $table->string('image2',480)->nullable();
             $table->string('image3',480)->nullable();

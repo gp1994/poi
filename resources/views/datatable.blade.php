@@ -124,6 +124,7 @@
                 <th>Longitude</th>
                 <th>Latitude</th>
                 <th></th>
+                <th></th>
             </tr>
         </thead>
             <tbody>
@@ -140,6 +141,7 @@
             data-id="{{$loc->id}}" data-nama="{{$loc->lokasi}}" data-longitude="{{$loc->longitude}}" data-latitude="{{$loc->latitude}}" style="color:#0000FF">Edit</button>
               </div>     
               </td>
+              <td><a href="./showDet{{$loc->id}}">Detail</a></td>
             </tr>
             @endforeach
         @endif

@@ -186,8 +186,8 @@ class UtamaController extends Controller
     
         $det->save();
 
-        
-        return redirect ('detable');
+        return redirect()->back();
+
     }
 
     public function storeloc(Request $request)
@@ -212,9 +212,6 @@ class UtamaController extends Controller
 
     public function storedet(Request $request)
     {
-        $this->validate($request, [
-            'image' => 'mimes:jpeg,bmp,png', //only allow this type extension file.
-        ]);
         $idd = Detil::max('id');
         $desc = $request->input('newdet');
         $newim = array();

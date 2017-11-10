@@ -75,7 +75,6 @@
                 <th>ID</th>
                 <th>Detail</th>
                 <th>Gambar</th>
-                <th></th>
             </tr>
         </thead>
             <tbody>
@@ -85,72 +84,14 @@
               <td>{{$detail->id}}</td>
               <td>{{$detail->keterangan}}</td>
               <td><img src="{{$detail->image}}" width="400" height="200"/></td>
-              <td>
-                <div class="col-md-3">          
-                  <button id="editpoibutton" data-toggle="modal" data-target="#editPoiModal" data-id="{{$detail->id}}" data-desc="{{$detail->keterangan}}" data-img="{{$detail->image}}" data-img2="{{$detail->image2}}" data-img3="{{$detail->image3}}" data-img4="{{$detail->image4}}" data-img5="{{$detail->image5}}" data-img6="{{$detail->image6}}" data-img7="{{$detail->image7}}" data-img8="{{$detail->image8}}" data-img9="{{$detail->image9}}" data-img10="{{$detail->image10}}" data-vid="{{$detail->videos}}" style="color:#0000FF">Edit </button>
-                </div>   
-              </div>    
-                </td>
             </tr>
           @endforeach
         @endif
           </tbody>
     </table>
-    <div id="editPoiModal" class="modal fade">
-                <div class="modal-dialog modal-lg">
-                  <div class="modal-content">
-                  <!-- Script modal load -->
-                  
-                  <!-- DIV Modal Edit Term -->
-                  <div class="modal-header" style="color:#0000FF">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    Edit <span id="namadet"></span>
-                  </div>
-                    <div class="modal-body" style="color:#0000FF">
-                     <form method="POST" action="./editdet" enctype="multipart/form-data" id="editdt">
-                      <input name="_token" type="hidden" value="{{ csrf_token() }}">
-                      <input id="idds" type="hidden" name="iddts">
-                      Detail:<br>
-                      <textarea id="detinput"  name="editeddet" style="width:870px;height:270px;" cols="40" rows="100" required></textarea><br>
-                      Image: (Upload Image)<br>
-                      <input id="iminput" type="file" name="editedim" onchange="$('#pik').val($(this).val());">
-                      <input id="pik" name="edtim" size ="40" type="text" readonly>
-                      <input id="iminput2" type="file" name="editedim2" onchange="$('#pik2').val($(this).val());">
-                      <input id="pik2" name="edtim2" size ="40" type="text" readonly>
-                      <input id="iminput3" type="file" name="editedim3" onchange="$('#pik3').val($(this).val());">
-                      <input id="pik3" name="edtim3" size ="40" type="text" readonly>
-                      <input id="iminput4" type="file" name="editedim4" onchange="$('#pik4').val($(this).val());">
-                      <input id="pik4" name="edtim4" size ="40" type="text" readonly>
-                      <input id="iminput5" type="file" name="editedim5" onchange="$('#pik5').val($(this).val());">
-                      <input id="pik5" name="edtim5" size ="40" type="text" readonly>
-                      <input id="iminput6" type="file" name="editedim6" onchange="$('#pik6').val($(this).val());">
-                      <input id="pik6" name="edtim6" size ="40" type="text" readonly>
-                      <input id="iminput7" type="file" name="editedim7" onchange="$('#pik7').val($(this).val());">
-                      <input id="pik7" name="edtim7" size ="40" type="text" readonly>
-                      <input id="iminput8" type="file" name="editedim8" onchange="$('#pik8').val($(this).val());">
-                      <input id="pik8" name="edtim8" size ="40" type="text" readonly>
-                      <input id="iminput9" type="file" name="editedim9" onchange="$('#pik9').val($(this).val());">
-                      <input id="pik9" name="edtim9" size ="40" type="text" readonly>
-                      <input id="iminput10" type="file" name="editedim10" onchange="$('#pik10').val($(this).val());">
-                      <input id="pik10" name="edtim10" size ="40" type="text" readonly><br><br>
-                      Video: (Upload Video)<br>
-                      <input id="vdinput" type="file" name="editedvid" onchange="$('#video').val($(this).val());">
-                      <input id="video" name="edtvid" size ="40" type="text" readonly>
-                      <br><br>
-                      <input type="submit" value="Save" />
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              </div>
-     
-  <!-- DIV Modal Add Term 1-->
   <div id="addDetModal" class="modal fade">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-    <!-- Script modal load -->
-    
-    <!-- DIV Modal Add Term 2-->
       <div class="modal-header" style="color:#0000FF">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
           Add <span id="namadet"></span>
@@ -160,11 +101,11 @@
             <input name="_token" type="hidden" value="{{ csrf_token() }}">
             <input id="iddt" type="hidden" name="iddsc">
             Detail:<br>
-            <textarea id="dinput" name="newdet" style="width:870px;height:270px;" cols="40" rows="100" required></textarea><br>
+            <textarea id="dinput" name="newdet" style="width:870px;height:270px;" cols="40" rows="100"></textarea><br>
             Image: (Upload Image)<br>
-            <input id="iinput" type="file" name="newim[]" class="form-control" multiple><br><br>
+            <input id="iinput" type="file" name="newim[]" accept="image/*" class="form-control" multiple><br><br>
             Video: (Upload Video)<br>
-            <input id="vinput" type="file" name="newvid" class="form-control"><br><br>
+            <input id="vinput" type="file" name="newvid" accept="video/*" class="form-control"><br><br>
             <input type="submit" value="Save" />
         </form>
       </div>
@@ -229,51 +170,6 @@
           var button = $(e.relatedTarget);
         });
       });
-    </script>
-    <script>
-        $(function() {
-            $('#editPoiModal').on('show.bs.modal', function (e) {
-                var button = $(e.relatedTarget);
-                var iddc = button.data('id');
-                var dsc = button.data('desc');
-                var im = button.data('img');
-                var im2 = button.data('img2');
-                var im3 = button.data('img3');
-                var im4 = button.data('img4');
-                var im5 = button.data('img5');
-                var im6 = button.data('img6');
-                var im7 = button.data('img7');
-                var im8 = button.data('img8');
-                var im9 = button.data('img9');
-                var im10 = button.data('img10');
-                var vd = button.data('vid');
-                $('.modal-body #idds').val(iddc);
-                $('.modal-body #detinput').val(dsc);    
-                $('.modal-body #pik').val(im);
-                $('.modal-body #pik2').val(im2); 
-                $('.modal-body #pik3').val(im3); 
-                $('.modal-body #pik4').val(im4); 
-                $('.modal-body #pik5').val(im5); 
-                $('.modal-body #pik6').val(im6); 
-                $('.modal-body #pik7').val(im7); 
-                $('.modal-body #pik8').val(im8); 
-                $('.modal-body #pik9').val(im9);    
-                $('.modal-body #pik10').val(im10);
-                $('.modal-body #video').val(vd);  
-                $('#dsc').html($(e.relatedTarget).data('desc'));
-                $('#im').html($(e.relatedTarget).data('im1'));
-                $('#im2').html($(e.relatedTarget).data('im2'));
-                $('#im3').html($(e.relatedTarget).data('im3'));
-                $('#im4').html($(e.relatedTarget).data('im4'));
-                $('#im5').html($(e.relatedTarget).data('im5'));
-                $('#im6').html($(e.relatedTarget).data('im6'));
-                $('#im7').html($(e.relatedTarget).data('im7'));
-                $('#im8').html($(e.relatedTarget).data('im8'));
-                $('#im9').html($(e.relatedTarget).data('im9'));
-                $('#im10').html($(e.relatedTarget).data('im10'));
-                $('#vd').html($(e.relatedTarget).data('vid'));
-            });
-        });
     </script>
     <!--  Charts Plugin -->
 <script src="http://localhost/poi/public/BSDash/assets/js/chartist.min.js"></script>

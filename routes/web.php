@@ -39,3 +39,5 @@ Route::get('/logout', 'PenggunaController@logout');
 Route::get('/downloadPDF/{id}','UtamaController@downloadPDF');
 
 Route::get('/showDet{id}','UtamaController@showDet');
+
+Route::get('/showDet{id}','UtamaController@showDet');
