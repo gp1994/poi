@@ -890,6 +890,76 @@ class UtamaController extends Controller
             ]);
         }
         }
+        if(count($newim)>10){
+        if (!empty($bd)){
+        $ext = $request->file('newvid')->getClientOriginalExtension();
+        if ($ext == 'mp4'){
+        $bd= $request->file('newvid')->getClientOriginalName();
+        $request->file('newvid')->move(public_path('videos'), $bd);
+        Session::flash('fmsg', 'Multi Upload Reached Maximum, Some May Not Uploaded');
+        DB::table('info_detail')->insert([
+            'id' => $idd + 1,
+            'keterangan' => $desc,
+            'image' => 'images/'.$newim[0],
+            'image2' => 'images/'.$newim[1],
+            'image3' => 'images/'.$newim[2],
+            'image4' => 'images/'.$newim[3],
+            'image5' => 'images/'.$newim[4],
+            'image6' => 'images/'.$newim[5],
+            'image7' => 'images/'.$newim[6],
+            'image8' => 'images/'.$newim[7],
+            'image9' => 'images/'.$newim[8],
+            'image10' => 'images/'.$newim[9],
+            'videos' => 'videos/'. $bd,
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'last_created_by' =>Session::get('usrn')
+            ]);
+        }
+        else{
+             Session::flash('fmsg', 'Multi Upload Reached Maximum and Video Not Uploaded');
+             DB::table('info_detail')->insert([
+            'id' => $idd + 1,
+            'keterangan' => $desc,
+            'image' => 'images/'.$newim[0],
+            'image2' => 'images/'.$newim[1],
+            'image3' => 'images/'.$newim[2],
+            'image4' => 'images/'.$newim[3],
+            'image5' => 'images/'.$newim[4],
+            'image6' => 'images/'.$newim[5],
+            'image7' => 'images/'.$newim[6],
+            'image8' => 'images/'.$newim[7],
+            'image9' => 'images/'.$newim[8],
+            'image10' => 'images/'.$newim[9],
+            'videos' => 'videos/',
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'last_created_by' =>Session::get('usrn')
+            ]);
+        }
+        }
+        else{
+             Session::flash('fmsg', 'Multi Upload Reached Maximum, Some May Not Uploaded');
+             DB::table('info_detail')->insert([
+            'id' => $idd + 1,
+            'keterangan' => $desc,
+            'image' => 'images/'.$newim[0],
+            'image2' => 'images/'.$newim[1],
+            'image3' => 'images/'.$newim[2],
+            'image4' => 'images/'.$newim[3],
+            'image5' => 'images/'.$newim[4],
+            'image6' => 'images/'.$newim[5],
+            'image7' => 'images/'.$newim[6],
+            'image8' => 'images/'.$newim[7],
+            'image9' => 'images/'.$newim[8],
+            'image10' => 'images/'.$newim[9],
+            'videos' => 'videos/',
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'last_created_by' =>Session::get('usrn')
+            ]);
+        }
+        }
         return redirect()->back();
     }
 
