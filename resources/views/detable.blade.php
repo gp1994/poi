@@ -124,8 +124,8 @@
     <script type="text/javascript" src="http://localhost/poi/public/BSDat/assets/js/jquery-1.11.2.min.js"></script>
     <script type="text/javascript" src="http://localhost/poi/public/BSDat/assets/js/bootstrap.js"></script>
     <script type="text/javascript" src="http://localhost/poi/public/BSDat/assets/js/bootstrap-table.js"></script>
-        
     <script type="text/javascript">
+   
         var $table = $('#fresh-table'), 
             full_screen = false,
             window_height;

@@ -118,7 +118,7 @@ class UtamaController extends Controller
         $det->image='images/'.$img;
         }
         else{
-        Session::flash('fmsg', 'Video or Picture of Multi Pic upload failed');
+        Session::flash('fmsg','Video or Picture(s) Update Failed');
         }
         }
         else{
@@ -133,7 +133,7 @@ class UtamaController extends Controller
         $det->image2='images/'.$img2;
         }
         else{
-        Session::flash('fmsg', 'Video or Picture of Multi Pic upload failed');
+        Session::flash('fmsg', 'Video or Picture(s) Update Failed');
         }
         }   
         else{
@@ -147,7 +147,7 @@ class UtamaController extends Controller
         $det->image3='images/'.$img3;
         }
         else{
-        Session::flash('fmsg', 'Video or Picture of Multi Pic upload failed');
+        Session::flash('fmsg', 'Video or Picture(s) Update Failed');
         }
         }
         else{
@@ -161,7 +161,7 @@ class UtamaController extends Controller
         $det->image4='images/'.$img4;
         }
         else{
-        Session::flash('fmsg', 'Video or Picture of Multi Pic upload failed');
+        Session::flash('fmsg', 'Video or Picture(s) Update Failed');
         }
         }
         else{
@@ -175,7 +175,7 @@ class UtamaController extends Controller
         $det->image5='images/'.$img5;
         }
         else{
-        Session::flash('fmsg', 'Video or Picture of Multi Pic upload failed');
+        Session::flash('fmsg', 'Video or Picture(s) Update Failed');
         }
         }
         else{
@@ -189,7 +189,7 @@ class UtamaController extends Controller
         $det->image6='images/'.$img6;
         }
         else{
-        Session::flash('fmsg', 'Video or Picture of Multi Pic upload failed');
+        Session::flash('fmsg', 'Video or Picture(s) Update Failed');
         }
         }
         else{
@@ -203,7 +203,7 @@ class UtamaController extends Controller
         $det->image7='images/'.$img7;
         }
         else{
-        Session::flash('fmsg', 'Video or Picture of Multi Pic upload failed');
+        Session::flash('fmsg', 'Video or Picture(s) Update Failed');
         }
         }
         else{
@@ -217,7 +217,7 @@ class UtamaController extends Controller
         $det->image8='images/'.$img8;
         }
         else{
-        Session::flash('fmsg', 'Video or Picture of Multi Pic upload failed');
+        Session::flash('fmsg', 'Video or Picture(s) Update Failed');
         }
         }
         else{
@@ -231,7 +231,7 @@ class UtamaController extends Controller
         $det->image9='images/'.$img9;
         }
         else{
-        Session::flash('fmsg', 'Video or Picture of Multi Pic upload failed');
+        Session::flash('fmsg', 'Video or Picture(s) Update Failed');
         }
         }
         else{
@@ -245,7 +245,7 @@ class UtamaController extends Controller
         $det->image10='images/'.$img10;
         }
         else{
-        Session::flash('fmsg', 'Video or Picture of Multi Pic upload failed');
+        Session::flash('fmsg', 'Video or Picture(s) Update Failed');
         }
         }
         else{
@@ -253,13 +253,13 @@ class UtamaController extends Controller
         }
         if (!empty ($bd)){
         $ext11 = $request->file('editedvid')->getClientOriginalExtension();
-        if ($ext11 == 'mp4' || $ext11 == 'mov'|| $ext11 = 'avi' ){
+        if ($ext11 == 'mp4'){
         $bd= $request->file('editedvid')->getClientOriginalName();
         $request->file('editedvid')->move(public_path('videos'), $bd);
         $det->videos='videos/'.$bd;
         }
         else{
-        Session::flash('fmsg', 'Video or Picture of Multi Pic upload failed');
+        Session::flash('fmsg', 'Video or Picture(s) Update Failed');
         }
         }
         else{
@@ -304,6 +304,7 @@ class UtamaController extends Controller
         $idd = Detil::max('id');
         $desc = $request->input('newdet');
         $newim = array();
+        $bd = $request->file('newvid');
         if($files=$request->file('newim')){
             foreach($files as $file){
                 $ext2 = $file->getClientOriginalExtension();
@@ -313,68 +314,191 @@ class UtamaController extends Controller
                 $newim[]=$name;
                 }
                 else{
-                Session::flash('fmsg', 'Video or Picture of Multi Pic upload failed');
+                Session::flash('fmsg', 'Upload Failed or Some Multiple Files Not Uploaded');
                 }
             }
         }
         
+        if (count($newim)==0 ){
+        if (!empty($bd)){
         $ext = $request->file('newvid')->getClientOriginalExtension();
-        if ($ext == 'mp4'|| $ext =='mov' || $ext = 'avi'){
+        if ($ext == 'mp4'){
         $bd= $request->file('newvid')->getClientOriginalName();
         $request->file('newvid')->move(public_path('videos'), $bd);
-        $newvid = $bd;
-    }
-        else{
-        Session::flash('fmsg', 'Video or Picture or Multi Pic upload failed');
-        }
-
-        if (count($newim)==0 ){
-        DB::table('info_detail')->insert([
+         DB::table('info_detail')->insert([
             'id' => $idd + 1,
             'keterangan' => $desc,
-            'videos' => 'videos/'. $newvid,
+            'videos' => 'videos/'. $bd,
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'last_created_by' =>Session::get('usrn')
             ]);
         }
+        else{
+        Session::flash('fmsg', 'Upload Failed or Some Multiple Files Not Uploaded');
+        DB::table('info_detail')->insert([
+            'id' => $idd + 1,
+            'keterangan' => $desc,
+            'videos' => 'videos/',
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'last_created_by' =>Session::get('usrn')
+            ]);
+        }
+        }
+        else{
+            DB::table('info_detail')->insert([
+            'id' => $idd + 1,
+            'keterangan' => $desc,
+            'videos' => 'videos/',
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'last_created_by' =>Session::get('usrn')
+            ]);
+        }     
+        }
+
         if(count($newim)==1){
+        if (!empty($bd)){
+        $ext = $request->file('newvid')->getClientOriginalExtension();
+        if ($ext == 'mp4'){
+        $bd= $request->file('newvid')->getClientOriginalName();
+        $request->file('newvid')->move(public_path('videos'), $bd);
         DB::table('info_detail')->insert([
             'id' => $idd + 1,
             'keterangan' => $desc,
             'image' => 'images/'.$newim[0],
-            'videos' => 'videos/'. $newvid,
+            'videos' => 'videos/'. $bd,
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'last_created_by' =>Session::get('usrn')
             ]);
         }
+        else{
+            Session::flash('fmsg', 'Upload Failed or Some Multiple Files Not Uploaded');
+             DB::table('info_detail')->insert([
+            'id' => $idd + 1,
+            'keterangan' => $desc,
+            'image' => 'images/'.$newim[0],
+            'videos' => 'videos/',
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'last_created_by' =>Session::get('usrn')
+            ]);
+        }
+        }
+        else{
+             DB::table('info_detail')->insert([
+            'id' => $idd + 1,
+            'keterangan' => $desc,
+            'image' => 'images/'.$newim[0],
+            'videos' => 'videos/',
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'last_created_by' =>Session::get('usrn')
+            ]);
+        }
+        }
+
         if(count($newim)==2){
+        if (!empty($bd)){
+        $ext = $request->file('newvid')->getClientOriginalExtension();
+        if ($ext == 'mp4'){
+        $bd= $request->file('newvid')->getClientOriginalName();
+        $request->file('newvid')->move(public_path('videos'), $bd);
         DB::table('info_detail')->insert([
             'id' => $idd + 1,
             'keterangan' => $desc,
             'image' => 'images/'.$newim[0],
             'image2' => 'images/'.$newim[1],
-            'videos' => 'videos/'. $newvid,
+            'videos' => 'videos/'. $bd,
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'last_created_by' =>Session::get('usrn')
             ]);
         }
+        else{
+            Session::flash('fmsg', 'Upload Failed or Some Multiple Files Not Uploaded');
+            DB::table('info_detail')->insert([
+            'id' => $idd + 1,
+            'keterangan' => $desc,
+            'image' => 'images/'.$newim[0],
+            'image2' => 'images/'.$newim[1],
+            'videos' => 'videos/',
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'last_created_by' =>Session::get('usrn')
+            ]);
+        }
+        }
+        else{
+             DB::table('info_detail')->insert([
+            'id' => $idd + 1,
+            'keterangan' => $desc,
+            'image' => 'images/'.$newim[0],
+            'image2' => 'images/'.$newim[1],
+            'videos' => 'videos/',
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'last_created_by' =>Session::get('usrn')
+            ]);
+        }
+        }
+
         if(count($newim)==3){
+        if (!empty($bd)){
+        $ext = $request->file('newvid')->getClientOriginalExtension();
+        if ($ext == 'mp4'){
+        $bd= $request->file('newvid')->getClientOriginalName();
+        $request->file('newvid')->move(public_path('videos'), $bd);
         DB::table('info_detail')->insert([
             'id' => $idd + 1,
             'keterangan' => $desc,
             'image' => 'images/'.$newim[0],
             'image2' => 'images/'.$newim[1],
             'image3' => 'images/'.$newim[2],
-            'videos' => 'videos/'. $newvid,
+            'videos' => 'videos/'. $bd,
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'last_created_by' =>Session::get('usrn')
             ]);
         }
+        else{
+            Session::flash('fmsg', 'Upload Failed or Some Multiple Files Not Uploaded');
+            DB::table('info_detail')->insert([
+            'id' => $idd + 1,
+            'keterangan' => $desc,
+            'image' => 'images/'.$newim[0],
+            'image2' => 'images/'.$newim[1],
+            'image3' => 'images/'.$newim[2],
+            'videos' => 'videos/',
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'last_created_by' =>Session::get('usrn')
+            ]);
+        }
+        }
+        else{
+             DB::table('info_detail')->insert([
+            'id' => $idd + 1,
+            'keterangan' => $desc,
+            'image' => 'images/'.$newim[0],
+            'image2' => 'images/'.$newim[1],
+            'image3' => 'images/'.$newim[2],
+            'videos' => 'videos/',
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'last_created_by' =>Session::get('usrn')
+            ]);
+        }
+        }
+
         if(count($newim)==4){
+        if (!empty($bd)){
+        $ext = $request->file('newvid')->getClientOriginalExtension();
+        if ($ext == 'mp4'){
+        $bd= $request->file('newvid')->getClientOriginalName();
+        $request->file('newvid')->move(public_path('videos'), $bd);
         DB::table('info_detail')->insert([
             'id' => $idd + 1,
             'keterangan' => $desc,
@@ -382,13 +506,50 @@ class UtamaController extends Controller
             'image2' => 'images/'.$newim[1],
             'image3' => 'images/'.$newim[2],
             'image4' => 'images/'.$newim[3],
-            'videos' => 'videos/'. $newvid,
+            'videos' => 'videos/'.$bd,
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'last_created_by' =>Session::get('usrn')
             ]);
         }
+        else{
+            Session::flash('fmsg', 'Upload Failed or Some Multiple Files Not Uploaded');
+            DB::table('info_detail')->insert([
+            'id' => $idd + 1,
+            'keterangan' => $desc,
+            'image' => 'images/'.$newim[0],
+            'image2' => 'images/'.$newim[1],
+            'image3' => 'images/'.$newim[2],
+            'image4' => 'images/'.$newim[3],
+            'videos' => 'videos/',
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'last_created_by' =>Session::get('usrn')
+            ]);
+        }
+        }
+        else{
+             DB::table('info_detail')->insert([
+            'id' => $idd + 1,
+            'keterangan' => $desc,
+            'image' => 'images/'.$newim[0],
+            'image2' => 'images/'.$newim[1],
+            'image3' => 'images/'.$newim[2],
+            'image4' => 'images/'.$newim[3],
+            'videos' => 'videos/',
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'last_created_by' =>Session::get('usrn')
+            ]);
+        }
+        }
+
         if(count($newim)==5){
+         if (!empty($bd)){
+        $ext = $request->file('newvid')->getClientOriginalExtension();
+        if ($ext == 'mp4'){
+        $bd= $request->file('newvid')->getClientOriginalName();
+        $request->file('newvid')->move(public_path('videos'), $bd);
         DB::table('info_detail')->insert([
             'id' => $idd + 1,
             'keterangan' => $desc,
@@ -397,13 +558,52 @@ class UtamaController extends Controller
             'image3' => 'images/'.$newim[2],
             'image4' => 'images/'.$newim[3],
             'image5' => 'images/'.$newim[4],
-            'videos' => 'videos/'. $newvid,
+            'videos' => 'videos/'. $bd,
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'last_created_by' =>Session::get('usrn')
             ]);
         }
+        else{
+            Session::flash('fmsg', 'Upload Failed or Some Multiple Files Not Uploaded');
+             DB::table('info_detail')->insert([
+            'id' => $idd + 1,
+            'keterangan' => $desc,
+            'image' => 'images/'.$newim[0],
+            'image2' => 'images/'.$newim[1],
+            'image3' => 'images/'.$newim[2],
+            'image4' => 'images/'.$newim[3],
+            'image5' => 'images/'.$newim[4],
+            'videos' => 'videos/',
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'last_created_by' =>Session::get('usrn')
+            ]);
+        }
+        }
+        else{
+            DB::table('info_detail')->insert([
+            'id' => $idd + 1,
+            'keterangan' => $desc,
+            'image' => 'images/'.$newim[0],
+            'image2' => 'images/'.$newim[1],
+            'image3' => 'images/'.$newim[2],
+            'image4' => 'images/'.$newim[3],
+            'image5' => 'images/'.$newim[4],
+            'videos' => 'videos/',
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'last_created_by' =>Session::get('usrn')
+            ]);
+        }
+        }
+
         if(count($newim)==6){
+        if (!empty($bd)){
+        $ext = $request->file('newvid')->getClientOriginalExtension();
+        if ($ext == 'mp4'){
+        $bd= $request->file('newvid')->getClientOriginalName();
+        $request->file('newvid')->move(public_path('videos'), $bd);
         DB::table('info_detail')->insert([
             'id' => $idd + 1,
             'keterangan' => $desc,
@@ -413,13 +613,54 @@ class UtamaController extends Controller
             'image4' => 'images/'.$newim[3],
             'image5' => 'images/'.$newim[4],
             'image6' => 'images/'.$newim[5],
-            'videos' => 'videos/'. $newvid,
+            'videos' => 'videos/'. $bd,
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'last_created_by' =>Session::get('usrn')
             ]);
         }
+        else{
+            Session::flash('fmsg', 'Upload Failed or Some Multiple Files Not Uploaded');
+             DB::table('info_detail')->insert([
+            'id' => $idd + 1,
+            'keterangan' => $desc,
+            'image' => 'images/'.$newim[0],
+            'image2' => 'images/'.$newim[1],
+            'image3' => 'images/'.$newim[2],
+            'image4' => 'images/'.$newim[3],
+            'image5' => 'images/'.$newim[4],
+            'image6' => 'images/'.$newim[5],
+            'videos' => 'videos/',
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'last_created_by' =>Session::get('usrn')
+            ]);
+        }
+        }
+        else{
+            DB::table('info_detail')->insert([
+            'id' => $idd + 1,
+            'keterangan' => $desc,
+            'image' => 'images/'.$newim[0],
+            'image2' => 'images/'.$newim[1],
+            'image3' => 'images/'.$newim[2],
+            'image4' => 'images/'.$newim[3],
+            'image5' => 'images/'.$newim[4],
+            'image6' => 'images/'.$newim[5],
+            'videos' => 'videos/',
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'last_created_by' =>Session::get('usrn')
+            ]);
+        }
+        }
+
         if(count($newim)==7){
+        if (!empty($bd)){
+        $ext = $request->file('newvid')->getClientOriginalExtension();
+        if ($ext == 'mp4'){
+        $bd= $request->file('newvid')->getClientOriginalName();
+        $request->file('newvid')->move(public_path('videos'), $bd);
         DB::table('info_detail')->insert([
             'id' => $idd + 1,
             'keterangan' => $desc,
@@ -430,13 +671,56 @@ class UtamaController extends Controller
             'image5' => 'images/'.$newim[4],
             'image6' => 'images/'.$newim[5],
             'image7' => 'images/'.$newim[6],
-            'videos' => 'videos/'. $newvid,
+            'videos' => 'videos/'. $bd,
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'last_created_by' =>Session::get('usrn')
             ]);
         }
+        else{
+            Session::flash('fmsg', 'Upload Failed or Some Multiple Files Not Uploaded');
+             DB::table('info_detail')->insert([
+            'id' => $idd + 1,
+            'keterangan' => $desc,
+            'image' => 'images/'.$newim[0],
+            'image2' => 'images/'.$newim[1],
+            'image3' => 'images/'.$newim[2],
+            'image4' => 'images/'.$newim[3],
+            'image5' => 'images/'.$newim[4],
+            'image6' => 'images/'.$newim[5],
+            'image7' => 'images/'.$newim[6],
+            'videos' => 'videos/',
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'last_created_by' =>Session::get('usrn')
+            ]);
+        }
+        }
+        else{
+             DB::table('info_detail')->insert([
+            'id' => $idd + 1,
+            'keterangan' => $desc,
+            'image' => 'images/'.$newim[0],
+            'image2' => 'images/'.$newim[1],
+            'image3' => 'images/'.$newim[2],
+            'image4' => 'images/'.$newim[3],
+            'image5' => 'images/'.$newim[4],
+            'image6' => 'images/'.$newim[5],
+            'image7' => 'images/'.$newim[6],
+            'videos' => 'videos/',
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'last_created_by' =>Session::get('usrn')
+            ]);
+        }
+        }
+
         if(count($newim)==8){
+        if (!empty($bd)){
+        $ext = $request->file('newvid')->getClientOriginalExtension();
+        if ($ext == 'mp4'){
+        $bd= $request->file('newvid')->getClientOriginalName();
+        $request->file('newvid')->move(public_path('videos'), $bd);
         DB::table('info_detail')->insert([
             'id' => $idd + 1,
             'keterangan' => $desc,
@@ -448,13 +732,58 @@ class UtamaController extends Controller
             'image6' => 'images/'.$newim[5],
             'image7' => 'images/'.$newim[6],
             'image8' => 'images/'.$newim[7],
-            'videos' => 'videos/'. $newvid,
+            'videos' => 'videos/'. $bd,
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'last_created_by' =>Session::get('usrn')
             ]);
         }
+        else{
+             Session::flash('fmsg', 'Upload Failed or Some Multiple Files Not Uploaded');
+              DB::table('info_detail')->insert([
+            'id' => $idd + 1,
+            'keterangan' => $desc,
+            'image' => 'images/'.$newim[0],
+            'image2' => 'images/'.$newim[1],
+            'image3' => 'images/'.$newim[2],
+            'image4' => 'images/'.$newim[3],
+            'image5' => 'images/'.$newim[4],
+            'image6' => 'images/'.$newim[5],
+            'image7' => 'images/'.$newim[6],
+            'image8' => 'images/'.$newim[7],
+            'videos' => 'videos/',
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'last_created_by' =>Session::get('usrn')
+            ]);
+        }
+        }
+        else{
+            DB::table('info_detail')->insert([
+            'id' => $idd + 1,
+            'keterangan' => $desc,
+            'image' => 'images/'.$newim[0],
+            'image2' => 'images/'.$newim[1],
+            'image3' => 'images/'.$newim[2],
+            'image4' => 'images/'.$newim[3],
+            'image5' => 'images/'.$newim[4],
+            'image6' => 'images/'.$newim[5],
+            'image7' => 'images/'.$newim[6],
+            'image8' => 'images/'.$newim[7],
+            'videos' => 'videos/',
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'last_created_by' =>Session::get('usrn')
+            ]);
+        }
+        }
+
         if(count($newim)==9){
+        if (!empty($bd)){
+        $ext = $request->file('newvid')->getClientOriginalExtension();
+        if ($ext == 'mp4'){
+        $bd= $request->file('newvid')->getClientOriginalName();
+        $request->file('newvid')->move(public_path('videos'), $bd);
         DB::table('info_detail')->insert([
             'id' => $idd + 1,
             'keterangan' => $desc,
@@ -467,13 +796,60 @@ class UtamaController extends Controller
             'image7' => 'images/'.$newim[6],
             'image8' => 'images/'.$newim[7],
             'image9' => 'images/'.$newim[8],
-            'videos' => 'videos/'. $newvid,
+            'videos' => 'videos/'. $bd,
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'last_created_by' =>Session::get('usrn')
             ]);
         }
+        else{
+             Session::flash('fmsg', 'Upload Failed or Some Multiple Files Not Uploaded');
+             DB::table('info_detail')->insert([
+            'id' => $idd + 1,
+            'keterangan' => $desc,
+            'image' => 'images/'.$newim[0],
+            'image2' => 'images/'.$newim[1],
+            'image3' => 'images/'.$newim[2],
+            'image4' => 'images/'.$newim[3],
+            'image5' => 'images/'.$newim[4],
+            'image6' => 'images/'.$newim[5],
+            'image7' => 'images/'.$newim[6],
+            'image8' => 'images/'.$newim[7],
+            'image9' => 'images/'.$newim[8],
+            'videos' => 'videos/',
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'last_created_by' =>Session::get('usrn')
+            ]);
+        }
+        }
+        else{
+             DB::table('info_detail')->insert([
+            'id' => $idd + 1,
+            'keterangan' => $desc,
+            'image' => 'images/'.$newim[0],
+            'image2' => 'images/'.$newim[1],
+            'image3' => 'images/'.$newim[2],
+            'image4' => 'images/'.$newim[3],
+            'image5' => 'images/'.$newim[4],
+            'image6' => 'images/'.$newim[5],
+            'image7' => 'images/'.$newim[6],
+            'image8' => 'images/'.$newim[7],
+            'image9' => 'images/'.$newim[8],
+            'videos' => 'videos/',
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'last_created_by' =>Session::get('usrn')
+            ]);
+        }
+        }
+
         if(count($newim)==10){
+        if (!empty($bd)){
+        $ext = $request->file('newvid')->getClientOriginalExtension();
+        if ($ext == 'mp4'){
+        $bd= $request->file('newvid')->getClientOriginalName();
+        $request->file('newvid')->move(public_path('videos'), $bd);
         DB::table('info_detail')->insert([
             'id' => $idd + 1,
             'keterangan' => $desc,
@@ -487,15 +863,56 @@ class UtamaController extends Controller
             'image8' => 'images/'.$newim[7],
             'image9' => 'images/'.$newim[8],
             'image10' => 'images/'.$newim[9],
-            'videos' => 'videos/'. $newvid,
+            'videos' => 'videos/'. $bd,
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'last_created_by' =>Session::get('usrn')
             ]);
         }
+        else{
+             Session::flash('fmsg', 'Upload Failed or Some Multiple Files Not Uploaded');
+             DB::table('info_detail')->insert([
+            'id' => $idd + 1,
+            'keterangan' => $desc,
+            'image' => 'images/'.$newim[0],
+            'image2' => 'images/'.$newim[1],
+            'image3' => 'images/'.$newim[2],
+            'image4' => 'images/'.$newim[3],
+            'image5' => 'images/'.$newim[4],
+            'image6' => 'images/'.$newim[5],
+            'image7' => 'images/'.$newim[6],
+            'image8' => 'images/'.$newim[7],
+            'image9' => 'images/'.$newim[8],
+            'image10' => 'images/'.$newim[9],
+            'videos' => 'videos/',
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'last_created_by' =>Session::get('usrn')
+            ]);
+        }
+        }
+        else{
+             DB::table('info_detail')->insert([
+            'id' => $idd + 1,
+            'keterangan' => $desc,
+            'image' => 'images/'.$newim[0],
+            'image2' => 'images/'.$newim[1],
+            'image3' => 'images/'.$newim[2],
+            'image4' => 'images/'.$newim[3],
+            'image5' => 'images/'.$newim[4],
+            'image6' => 'images/'.$newim[5],
+            'image7' => 'images/'.$newim[6],
+            'image8' => 'images/'.$newim[7],
+            'image9' => 'images/'.$newim[8],
+            'image10' => 'images/'.$newim[9],
+            'videos' => 'videos/',
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'last_created_by' =>Session::get('usrn')
+            ]);
+        }
+        }
         return redirect ('detable');
-        // echo "Term added successfully.<br/>";
-        // echo '<a href="./archive">Click Here</a> to go back';
     }
 
     public function downloadPDF($idlok){

@@ -114,7 +114,7 @@
           </div>
       </div>
     </div>
-    <div id="falert" style="position:relative;left:70px;top:47px;">
+    <div id="falert" style="position:relative;left:50px;top:-37px;">
           @if(Session::has('fmsg'))
           {{Session::get('fmsg')}}
           @endif 
@@ -274,7 +274,6 @@
                   </table><br>
                       Video: (Upload Video)<br>
                       <input id="vdinput" type="file" accept="video/*" name="editedvid" style="position:relative;top:10px;" onchange="$('#video').val($(this).val());">
-                     @if ($errors->has('editedvid')) <p class="help-block">{{ $errors->first('editedvid') }}</p> @endif
                       <input id="video" name="edtvid" style="position:relative;top:15px;" size ="89" type="text" readonly>
                       <br><br><br>
                       <input type="submit" value="Save" />
