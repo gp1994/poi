@@ -44,13 +44,7 @@
                     <li>
                         <a href="./datatable">
                             <i class="material-icons">content_paste</i>
-                            <p>Datatable Utama</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="./detable">
-                            <i class="material-icons">content_paste</i>
-                            <p>Datatable Detail</p>
+                            <p>Datatable POI</p>
                         </a>
                     </li>
                     @endif

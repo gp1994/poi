@@ -44,13 +44,7 @@
                     <li>
                         <a href="./datatable">
                             <i class="material-icons">content_paste</i>
-                            <p>Datatable Utama</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="./detable">
-                            <i class="material-icons">content_paste</i>
-                            <p>Datatable Detail</p>
+                            <p>Datatable POI</p>
                         </a>
                     </li>
                     @endif
@@ -82,10 +76,8 @@
                     </div>
                 </div>
             </nav>
-            <div class="content" style="position:relative;top:-40px">
-           
+            <div class="content" style="position:relative;top:-40px">    
   <div class="container">
-   
      <div class="modal fade login" id="loginModal">
           <div class="modal-dialog login animated">
               <div class="modal-content">
@@ -202,7 +194,8 @@
                                     <iframe width="900" height="400" src="{{$det->videos}}"  frameborder="0" allowfullscreen></iframe>
                                     @endif
                                     <div class="col-md-3">
-                                    @if (Session('roles')=='admin')          
+                                    @if (Session('roles')=='admin')
+
                   <button id="editpoibutton" data-toggle="modal" data-target="#editPoiModal" data-id="{{$det->id}}" data-desc="{{$det->keterangan}}" data-img="{{$det->image}}" data-img2="{{$det->image2}}" data-img3="{{$det->image3}}" data-img4="{{$det->image4}}" data-img5="{{$det->image5}}" data-img6="{{$det->image6}}" data-img7="{{$det->image7}}" data-img8="{{$det->image8}}" data-img9="{{$det->image9}}" data-img10="{{$det->image10}}" data-vid="{{$det->videos}}">Edit </button>
                   @endif
                 </div>
@@ -283,15 +276,60 @@
                 </div>
               </div>
                 @endforeach
-            @endif
+            @else
+          @if (Session('roles')=='admin')
+           <button id="addDetButton" data-toggle="modal" data-target="#addDetModal" style="position:relative;left:29px;top:3px;">Add </button>
+           @endif
+           <div id="addDetModal" class="modal fade">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header" style="color:#0000FF">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            Add <span id="namadet"></span>
+                        </div>
+                            <div class="modal-body" style="color:#0000FF">
+                                <form method="POST" action="./storedet" enctype="multipart/form-data" id="strdt">
+                                    <input name="_token" type="hidden" value="{{ csrf_token() }}">
+                                    <input id="iddt" type="hidden" name="iddsc">
+                                    Detail:<br>
+                                    <textarea id="dinput" name="newdet" style="width:830px;height:270px;" cols="40" rows="100"></textarea><br><br>
+                                    Image: (Upload Image)<br>
+                                    <input id="iinput" type="file" name="newim[]" accept="image/*" multiple><br>
+                                    Video: (Upload Video)<br>
+                                    <input id="vinput" type="file" name="newvid" accept="video/*" ><br><br>
+                                    <input type="submit" value="Save" />
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
+            @endif
             </div>
         </div>
-     </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
 </body>
+<script>
+var slideIndex = 1;
+showDivs(slideIndex);
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  if (n > x.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = x.length}
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";  
+  }
+  x[slideIndex-1].style.display = "block";
+}
+</script>
 <!--   Core JS Files   -->
 <script src="http://localhost/poi/public/BSDash/assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
 <script src="http://localhost/poi/public/BSDash/assets/js/bootstrap.min.js" type="text/javascript"></script>
@@ -304,28 +342,6 @@
 <script src="http://localhost/poi/public/BSDash/assets/js/perfect-scrollbar.jquery.min.js"></script>
 <!--  Notifications Plugin    -->
 <script src="http://localhost/poi/public/BSDash/assets/js/bootstrap-notify.js"></script>
-<script>
-var slideIndex = 1;
-if (slideIndex !== null){
-showDivs(slideIndex);
-}
-function plusDivs(n) {
-  showDivs(slideIndex += n);
-}
-
-function showDivs(n) {
-  var i;
-  var x = document.getElementsByClassName("mySlides");
-  if (x !== null){
-  if (n > x.length) {slideIndex = 1}    
-  if (n < 1) {slideIndex = x.length}
-  for (i = 0; i < x.length; i++) {
-     x[i].style.display = "none";  
-  }
-  }
-  x[slideIndex-1].style.display = "block";  
-}
-</script>
 <script>
         $(function() {
             $('#editPoiModal').on('show.bs.modal', function (e) {

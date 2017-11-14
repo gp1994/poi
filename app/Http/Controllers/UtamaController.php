@@ -61,28 +61,6 @@ class UtamaController extends Controller
         return redirect ('datatable');
     }
 
-    public function handlUpload(Request $request){
-        $rules = array(
-            'image' => 'mimes:png,jpeg',
-            'image2' => 'mimes:png,jpeg',
-            'image3' => 'mimes:png,jpeg',
-            'image4' => 'mimes:png,jpeg',
-            'image5' => 'mimes:png,jpeg',
-            'image6' => 'mimes:png,jpeg',
-            'image7' => 'mimes:png,jpeg',
-            'image8' => 'mimes:png,jpeg',
-            'image9' => 'mimes:png,jpeg',
-            'image10' => 'mimes:png,jpeg',
-            'videos' => 'mimes:mp4,mov,wmv,avi'
-        );
-        $validator = Validator::make($request->all(),$rules);
-        if ($validator->fails()){
-            return redirect()->back();
-        }
-       else if ($validator->passes()){
-            return redirect()->action('UtamaController@storedet');
-       }
-    }
      public function editdet(Request $request){
         $iddesc = $request->input('iddts');
         $detl = $request->input('editeddet');
@@ -912,7 +890,7 @@ class UtamaController extends Controller
             ]);
         }
         }
-        return redirect ('detable');
+        return redirect()->back();
     }
 
     public function downloadPDF($idlok){

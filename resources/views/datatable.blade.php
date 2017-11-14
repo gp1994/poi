@@ -57,13 +57,7 @@
                     <li class="active">
                         <a href="./datatable">
                             <i class="material-icons">content_paste</i>
-                            <p>Datatable Utama</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="./detable">
-                            <i class="material-icons">content_paste</i>
-                            <p>Datatable Detail</p>
+                            <p>Datatable POI</p>
                         </a>
                     </li>
                     @endif
@@ -75,7 +69,7 @@
           <nav class="navbar navbar-transparent navbar-absolute">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <div class="navbar-brand"> Datatable Utama </div>
+                        <div class="navbar-brand"> Datatable POI </div>
                     </div>
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
