@@ -68,7 +68,12 @@
                 </div>
             </nav>
     <div class="fresh-table full-color-orange full-screen-table">          
-        <button id="addDetButton" data-toggle="modal" data-target="#addDetModal" style="position:relative;left:29px;top:70px;">Add </button>     
+        <button id="addDetButton" data-toggle="modal" data-target="#addDetModal" style="position:relative;left:29px;top:70px;">Add </button> 
+        <div id="falert" style="position:relative;left:70px;top:47px;">
+          @if(Session::has('fmsg'))
+          {{Session::get('fmsg')}}
+          @endif 
+        </div>
         <table id="fresh-table" class="table">
             <thead>
             <tr>

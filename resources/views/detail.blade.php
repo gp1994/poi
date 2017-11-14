@@ -114,11 +114,11 @@
           </div>
       </div>
     </div>
-    <div id="err" style ="position:relative;top:-60px">
-     @if ((count($errors) > 0 ) || (session('status') == 'salah'))
-  Maaf Username atau Password anda salah!
-  @endif
-</div>
+    <div id="falert" style="position:relative;left:70px;top:47px;">
+          @if(Session::has('fmsg'))
+          {{Session::get('fmsg')}}
+          @endif 
+    </div>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
@@ -196,10 +196,10 @@
                                     <h3>No Details Available</h3>
                                     @endif
                                     <h1>Video</h1>
-                                    @if($det->videos == 'videos/' || !$det->videos)
+                                    @if($det->videos == 'videos/'|| !$det->videos)
                                     <h3>No Video Available</h3>
                                     @else
-                                    <iframe width="900" height="400" src="{{ $det->videos }}"  frameborder="0" allowfullscreen></iframe>
+                                    <iframe width="900" height="400" src="{{$det->videos}}"  frameborder="0" allowfullscreen></iframe>
                                     @endif
                                     <div class="col-md-3">
                                     @if (Session('roles')=='admin')          
@@ -274,6 +274,7 @@
                   </table><br>
                       Video: (Upload Video)<br>
                       <input id="vdinput" type="file" accept="video/*" name="editedvid" style="position:relative;top:10px;" onchange="$('#video').val($(this).val());">
+                     @if ($errors->has('editedvid')) <p class="help-block">{{ $errors->first('editedvid') }}</p> @endif
                       <input id="video" name="edtvid" style="position:relative;top:15px;" size ="89" type="text" readonly>
                       <br><br><br>
                       <input type="submit" value="Save" />
@@ -306,8 +307,9 @@
 <script src="http://localhost/poi/public/BSDash/assets/js/bootstrap-notify.js"></script>
 <script>
 var slideIndex = 1;
+if (slideIndex !== null){
 showDivs(slideIndex);
-
+}
 function plusDivs(n) {
   showDivs(slideIndex += n);
 }
@@ -315,10 +317,12 @@ function plusDivs(n) {
 function showDivs(n) {
   var i;
   var x = document.getElementsByClassName("mySlides");
+  if (x !== null){
   if (n > x.length) {slideIndex = 1}    
   if (n < 1) {slideIndex = x.length}
   for (i = 0; i < x.length; i++) {
      x[i].style.display = "none";  
+  }
   }
   x[slideIndex-1].style.display = "block";  
 }
