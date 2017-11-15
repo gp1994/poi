@@ -120,7 +120,7 @@
                             @foreach($utama as $locations)
                                 <h4>{{$locations->lokasi}}</h4>
                             @endforeach
-                        @endif
+                       
                     </div>
                     <div class="card-content">
                         <div id="typography">
@@ -306,6 +306,9 @@
             @endif
             </div>
         </div>
+        @else
+        <h2>POI Doesn't Exist!</h2>
+         @endif
     </div>
 </div>
 </div>
