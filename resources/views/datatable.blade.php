@@ -27,11 +27,14 @@
                       <input name="_token" type="hidden" value="{{ csrf_token() }}">
                       <input id="idlo" type="hidden" name="idloc">
                       Nama:<br>
-                      <input id="namainput" type="text" name="editednama" required><br>
+                      <input id="namainput" type="text" name="editednama" required>
+                      <input id="onamainput" type="hidden" name="oeditednama" readonly><br>
                       Longitude:<br>
-                      <input id="longinput" type="number" step ="0.0000001" min ="-180" max ="180" name="editedlong" required><br>
+                      <input id="longinput" type="number" step ="0.0000001" min ="-180" max ="180" name="editedlong" required>
+                      <input id="olonginput" type="hidden" step ="0.0000001" min ="-180" max ="180" name="oeditedlong" readonly><br>
                       Latitude:<br>
-                      <input id="latinput" type="number" step ="0.0000001" min ="-180" max ="180." name="editedlat" required><br><br>
+                      <input id="latinput" type="number" step ="0.0000001" min ="-180" max ="180" name="editedlat" required>
+                    <input id="olatinput" type="hidden" step ="0.0000001" min ="-180" max ="180" name="oeditedlat" readonly><br><br>
                       <input type="submit" value="Save" />
                     </form>
                   </div>
@@ -60,6 +63,14 @@
                             <p>Datatable POI</p>
                         </a>
                     </li>
+                    @if (Session('roles')=='admin')
+                    <li>
+                        <a href="./showLog">
+                            <i class="material-icons">history</i>
+                            <p>History Log</p>
+                        </a>
+                    </li>
+                    @endif
                     @endif
                 </ul>
             </div>
@@ -203,13 +214,22 @@
                 var namaloc = button.data('nama');
                 var long = button.data('longitude');
                 var lat = button.data('latitude');
+                var onamaloc = button.data('onama');
+                var olong = button.data('olongitude');
+                var olat = button.data('olatitude');
                 $('.modal-body #idlo').val(idloc);
                 $('.modal-body #namainput').val(namaloc);
                 $('.modal-body #longinput').val(long);
-                $('.modal-body #latinput').val(lat);       
+                $('.modal-body #latinput').val(lat);  
+                $('.modal-body #onamainput').val(namaloc);
+                $('.modal-body #olonginput').val(long);
+                $('.modal-body #olatinput').val(lat);     
                 $('#namaloc').html($(e.relatedTarget).data('nama'));
                 $('#long').html($(e.relatedTarget).data('longitude'));
                 $('#lat').html($(e.relatedTarget).data('latitude'));
+                $('#onamaloc').html($(e.relatedTarget).data('onama'));
+                $('#olong').html($(e.relatedTarget).data('olongitude'));
+                $('#olat').html($(e.relatedTarget).data('olatitude'));
             });
         });
     </script>

@@ -15,8 +15,11 @@ class PoiDb extends Migration
     {
         Schema::create('info_utama', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('olokasi', 30)->nullable();
             $table->string('lokasi', 30);
+            $table->decimal('olatitude',10,7)->nullable();
             $table->decimal('latitude',10,7);
+            $table->decimal('olongitude',10,7)->nullable();
             $table->decimal('longitude',10,7);
             $table->timestamps();
             $table->string('last_updated_by',30);        
@@ -24,17 +27,29 @@ class PoiDb extends Migration
 
         Schema::create('info_detail', function (Blueprint $table) {
             $table->increments('id');
+            $table->longtext('oketerangan')->nullable();
             $table->longtext('keterangan')->nullable();
+            $table->string('oimage',480)->nullable();
             $table->string('image',480)->nullable();
+            $table->string('oimage2',480)->nullable();
             $table->string('image2',480)->nullable();
+            $table->string('oimage3',480)->nullable();
             $table->string('image3',480)->nullable();
+            $table->string('oimage4',480)->nullable();
             $table->string('image4',480)->nullable();
+            $table->string('oimage5',480)->nullable();
             $table->string('image5',480)->nullable();
+            $table->string('oimage6',480)->nullable();
             $table->string('image6',480)->nullable();
+            $table->string('oimage7',480)->nullable();
             $table->string('image7',480)->nullable();
+            $table->string('oimage8',480)->nullable();
             $table->string('image8',480)->nullable();
+            $table->string('oimage9',480)->nullable();
             $table->string('image9',480)->nullable();
+            $table->string('oimage10',480)->nullable();
             $table->string('image10',480)->nullable();
+            $table->string('ovideos',480)->nullable();
             $table->string('videos',480)->nullable();
             $table->integer('update_count')->default(0);
             $table->timestamps();
@@ -49,6 +64,63 @@ class PoiDb extends Migration
           $table->string('email', 320);
           $table->string('pwd', 64);
           $table->timestamps();
+        });
+
+        Schema::create('log_utama', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('nama_admin',30);
+            $table->integer('id_utama')->unsigned();
+            $table->string('olokasi', 30)->nullable();
+            $table->string('lokasi', 30);
+            $table->decimal('olatitude',10,7)->nullable();
+            $table->decimal('latitude',10,7);
+            $table->decimal('olongitude',10,7)->nullable();
+            $table->decimal('longitude',10,7);
+            $table->string('action',10);
+            $table->timestamps();         
+        });
+
+         Schema::create('log_detail', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('nama_admin',30);
+            $table->string('nama_poi', 30);
+            $table->integer('id_detail')->unsigned();
+            $table->longtext('oketerangan')->nullable();
+            $table->longtext('keterangan')->nullable();
+            $table->string('oimage',480)->nullable();
+            $table->string('image',480)->nullable();
+            $table->string('oimage2',480)->nullable();
+            $table->string('image2',480)->nullable();
+            $table->string('oimage3',480)->nullable();
+            $table->string('image3',480)->nullable();
+            $table->string('oimage4',480)->nullable();
+            $table->string('image4',480)->nullable();
+            $table->string('oimage5',480)->nullable();
+            $table->string('image5',480)->nullable();
+            $table->string('oimage6',480)->nullable();
+            $table->string('image6',480)->nullable();
+            $table->string('oimage7',480)->nullable();
+            $table->string('image7',480)->nullable();
+            $table->string('oimage8',480)->nullable();
+            $table->string('image8',480)->nullable();
+            $table->string('oimage9',480)->nullable();
+            $table->string('image9',480)->nullable();
+            $table->string('oimage10',480)->nullable();
+            $table->string('image10',480)->nullable();
+            $table->string('ovideos',480)->nullable();
+            $table->string('videos',480)->nullable();
+            $table->string('action',10);
+            $table->timestamps();      
+        });
+
+         Schema::table('log_utama', function (Blueprint $table){
+            
+            $table->foreign('id_utama')->references('id')->on('info_utama')->onDelete('cascade')->onUpdate('cascade');
+        });
+
+          Schema::table('log_detail', function (Blueprint $table){
+            
+            $table->foreign('id_detail')->references('id')->on('info_detail')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

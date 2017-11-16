@@ -48,6 +48,14 @@
                         </a>
                     </li>
                     @endif
+                    @if (Session('roles')=='admin')
+                    <li>
+                        <a href="./showLog">
+                            <i class="material-icons">history</i>
+                            <p>History Log</p>
+                        </a>
+                    </li>
+                    @endif
                 </ul>
             </div>
         </div>

@@ -28,8 +28,6 @@ Route::post('/editloc','UtamaController@editloc');
 
 Route::post('/storeloc','UtamaController@storeloc');
 
-Route::get('/detable', 'UtamaController@infodetail');
-
 Route::post('/storedet','UtamaController@storedet');
 
 Route::post('/editdet','UtamaController@editdet');
@@ -40,4 +38,4 @@ Route::get('/downloadPDF/{id}','UtamaController@downloadPDF');
 
 Route::get('/showDet{id}','UtamaController@showDet');
 
-Route::get('/showDet{id}','UtamaController@showDet');
+Route::get('/showLog','UtamaController@showLog');

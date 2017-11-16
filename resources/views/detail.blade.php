@@ -48,6 +48,14 @@
                         </a>
                     </li>
                     @endif
+                    @if (Session('roles')=='admin')
+                    <li>
+                        <a href="./showLog">
+                            <i class="material-icons">history</i>
+                            <p>History Log</p>
+                        </a>
+                    </li>
+                    @endif
                 </ul>
             </div>
         </div>
@@ -196,7 +204,7 @@
                                     <div class="col-md-3">
                                     @if (Session('roles')=='admin')
 
-                  <button id="editpoibutton" data-toggle="modal" data-target="#editPoiModal" data-id="{{$det->id}}" data-desc="{{$det->keterangan}}" data-img="{{$det->image}}" data-img2="{{$det->image2}}" data-img3="{{$det->image3}}" data-img4="{{$det->image4}}" data-img5="{{$det->image5}}" data-img6="{{$det->image6}}" data-img7="{{$det->image7}}" data-img8="{{$det->image8}}" data-img9="{{$det->image9}}" data-img10="{{$det->image10}}" data-vid="{{$det->videos}}">Edit </button>
+                  <button id="editpoibutton" data-toggle="modal" data-target="#editPoiModal" data-id="{{$det->id}}" data-odesc ="{{$det->oketerangan}}" data-desc="{{$det->keterangan}}" data-img="{{$det->image}}" data-img2="{{$det->image2}}" data-img3="{{$det->image3}}" data-img4="{{$det->image4}}" data-img5="{{$det->image5}}" data-img6="{{$det->image6}}" data-img7="{{$det->image7}}" data-img8="{{$det->image8}}" data-img9="{{$det->image9}}" data-img10="{{$det->image10}}" data-vid="{{$det->videos}}">Edit </button>
                   @endif
                 </div>
                 <div id="editPoiModal" class="modal fade">
@@ -212,62 +220,74 @@
                       <input id="idds" type="hidden" name="iddts">
                       Detail:<br>
                       <textarea id="detinput"  name="editeddet" style="width:840px;height:270px;" cols="40" rows="100"></textarea><br><br>
-                      Image: (Upload Image)<br>
+                      <textarea id="odetinput"  name="oediteddet" style="display:none;" cols="40" rows="100" readonly></textarea><br><br>
+                      Image: (Upload JPG or PNG Image)<br>
                       <table>
                         <tr>
                         <td style="padding: 9px;">
                       <input id="iminput" type="file" accept="image/*" name="editedim" onchange="$('#pik').val($(this).val());">
                       <input id="pik" name="edtim" style="position:relative;top:10px;" size ="40" type="text" readonly>
+                      <input id ="opik" name="oedtim" style="position:relative;top:10px;" size ="40" type="hidden" readonly>
                         </td>
                         <td style="padding: 9px;">
                       <input id="iminput2" type="file" accept="image/*" name="editedim2" onchange="$('#pik2').val($(this).val());">
                       <input id="pik2" name="edtim2" style="position:relative;top:10px;" size ="40" type="text" readonly>
+                       <input id ="opik2" name="oedtim2" style="position:relative;top:10px;" size ="40" type="hidden" readonly>
                         </td>
                         </tr>
                         <tr>
                         <td style="padding: 9px;">
                       <input id="iminput3" type="file" accept="image/*" name="editedim3" onchange="$('#pik3').val($(this).val());">
                       <input id="pik3" name="edtim3" style="position:relative;top:10px;" size ="40" type="text" readonly>
+                       <input id ="opik3" name="oedtim3" style="position:relative;top:10px;" size ="40" type="hidden" readonly>
                         </td>
                         <td style="padding: 9px;">
                       <input id="iminput4" type="file" accept="image/*" name="editedim4" onchange="$('#pik4').val($(this).val());">
                       <input id="pik4" name="edtim4" style="position:relative;top:10px;" size ="40" type="text" readonly>
+                      <input id ="opik4" name="oedtim4" style="position:relative;top:10px;" size ="40" type="hidden" readonly>
                         </td>
                         </tr>
                         <tr>
                         <td style="padding: 9px;">
                       <input id="iminput5" type="file" accept="image/*" name="editedim5" onchange="$('#pik5').val($(this).val());">
                       <input id="pik5" name="edtim5"  style="position:relative;top:10px;" size ="40" type="text" readonly>
+                      <input id="opik5" name="oedtim5"  style="position:relative;top:10px;" size ="40" type="hidden" readonly>
                         </td>
                         <td style="padding: 9px;">
                       <input id="iminput6" type="file" accept="image/*" name="editedim6" onchange="$('#pik6').val($(this).val());">
                       <input id="pik6" name="edtim6"  style="position:relative;top:10px;" size ="40" type="text" readonly>
+                      <input id="opik6" name="oedtim6"  style="position:relative;top:10px;" size ="40" type="hidden" readonly>
                         </td>
                         </tr>
                         <tr>
                         <td style="padding: 9px;">
                       <input id="iminput7" type="file" accept="image/*" name="editedim7" onchange="$('#pik7').val($(this).val());">
                       <input id="pik7" name="edtim7"  style="position:relative;top:10px;" size ="40" type="text" readonly>
+                       <input id="opik7" name="oedtim7"  style="position:relative;top:10px;" size ="40" type="hidden" readonly>
                         </td>
                         <td style="padding: 9px;">
                       <input id="iminput8" type="file" accept="image/*" name="editedim8" onchange="$('#pik8').val($(this).val());">
                       <input id="pik8" name="edtim8"  style="position:relative;top:10px;" size ="40" type="text" readonly>
+                       <input id="opik8" name="oedtim8"  style="position:relative;top:10px;" size ="40" type="hidden" readonly>
                         </td>
                         </tr>
                         <tr>
                         <td style="padding: 9px;">
                       <input id="iminput9" type="file" accept="image/*" name="editedim9" onchange="$('#pik9').val($(this).val());">
                       <input id="pik9" name="edtim9"  style="position:relative;top:10px;" size ="40" type="text" readonly>
+                       <input id="opik9" name="oedtim9"  style="position:relative;top:10px;" size ="40" type="hidden" readonly>
                         </td>
                         <td style="padding: 9px;">
                       <input id="iminput10" type="file" accept="image/*" name="editedim10" onchange="$('#pik10').val($(this).val());">
-                      <input id="pik10" name="edtim10"  style="position:relative;top:10px;" size ="40" type="text" readonly><br>
+                      <input id="pik10" name="edtim10"  style="position:relative;top:10px;" size ="40" type="text" readonly>
+                      <input id="opik10" name="oedtim10"  style="position:relative;top:10px;" size ="40" type="hidden" readonly><br>
                         </td>
                         </tr>
                   </table><br>
-                      Video: (Upload Video)<br>
+                      Video: (Upload MP4 Video)<br>
                       <input id="vdinput" type="file" accept="video/*" name="editedvid" style="position:relative;top:10px;" onchange="$('#video').val($(this).val());">
                       <input id="video" name="edtvid" style="position:relative;top:15px;" size ="89" type="text" readonly>
+                      <input id="ovideo" name="oedtvid" style="position:relative;top:15px;" size ="89" type="hidden" readonly>
                       <br><br><br>
                       <input type="submit" value="Save" />
                       </form>
@@ -277,6 +297,7 @@
               </div>
                 @endforeach
             @else
+            <h3>No Details Available (Yet)</h3>
           @if (Session('roles')=='admin')
            <button id="addDetButton" data-toggle="modal" data-target="#addDetModal" style="position:relative;left:29px;top:3px;">Add </button>
            @endif
@@ -293,9 +314,9 @@
                                     <input id="iddt" type="hidden" name="iddsc">
                                     Detail:<br>
                                     <textarea id="dinput" name="newdet" style="width:830px;height:270px;" cols="40" rows="100"></textarea><br><br>
-                                    Image: (Upload Image)<br>
+                                    Image: (Upload JPG or PNG Image)<br>
                                     <input id="iinput" type="file" name="newim[]" accept="image/*" multiple><br>
-                                    Video: (Upload Video)<br>
+                                    Video: (Upload MP4 Video)<br>
                                     <input id="vinput" type="file" name="newvid" accept="video/*" ><br><br>
                                     <input type="submit" value="Save" />
                                 </form>
@@ -351,6 +372,7 @@ function showDivs(n) {
                 var button = $(e.relatedTarget);
                 var iddc = button.data('id');
                 var dsc = button.data('desc');
+                var odsc = button.data('odesc');
                 var im = button.data('img');
                 var im2 = button.data('img2');
                 var im3 = button.data('img3');
@@ -363,7 +385,8 @@ function showDivs(n) {
                 var im10 = button.data('img10');
                 var vd = button.data('vid');
                 $('.modal-body #idds').val(iddc);
-                $('.modal-body #detinput').val(dsc);    
+                $('.modal-body #detinput').val(dsc);
+                $('.modal-body #odetinput').val(dsc);
                 $('.modal-body #pik').val(im);
                 $('.modal-body #pik2').val(im2); 
                 $('.modal-body #pik3').val(im3); 
@@ -374,9 +397,21 @@ function showDivs(n) {
                 $('.modal-body #pik8').val(im8); 
                 $('.modal-body #pik9').val(im9);    
                 $('.modal-body #pik10').val(im10);
-                $('.modal-body #video').val(vd);  
+                $('.modal-body #video').val(vd);
+                $('.modal-body #opik').val(im);
+                $('.modal-body #opik2').val(im2); 
+                $('.modal-body #opik3').val(im3); 
+                $('.modal-body #opik4').val(im4); 
+                $('.modal-body #opik5').val(im5); 
+                $('.modal-body #opik6').val(im6); 
+                $('.modal-body #opik7').val(im7); 
+                $('.modal-body #opik8').val(im8); 
+                $('.modal-body #opik9').val(im9);    
+                $('.modal-body #opik10').val(im10);
+                $('.modal-body #ovideo').val(vd);    
                 $('#dsc').html($(e.relatedTarget).data('desc'));
-                $('#im').html($(e.relatedTarget).data('im1'));
+                $('#odsc').html($(e.relatedTarget).data('odesc'));
+                $('#im').html($(e.relatedTarget).data('im'));
                 $('#im2').html($(e.relatedTarget).data('im2'));
                 $('#im3').html($(e.relatedTarget).data('im3'));
                 $('#im4').html($(e.relatedTarget).data('im4'));
