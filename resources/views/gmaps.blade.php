@@ -102,10 +102,10 @@
                                 <form method="post" action="{{action('PenggunaController@cekLogin')}}">
                                 {{ csrf_field() }}
                                 <br>    
-                                <label>Username</label>
-                                <input type="text" name="usrn" class="form-control">
+                                 <label>Username</label>
+                                <input type="text" name="usrn" class="form-control" maxlength="32">
                                 <label>Password</label>
-                                <input type="password" name="pwd" class="form-control">
+                                <input type="password" name="pwd" class="form-control" maxlength="64">
                                 <button type="submit" class="btn btn-block btn-primary">Login</button>
                                 </form>
                                 </div>

@@ -101,9 +101,9 @@
                                 {{ csrf_field() }}
                                 <br>    
                                 <label>Username</label>
-                                <input type="text" name="usrn" class="form-control">
+                                <input type="text" name="usrn" class="form-control" maxlength="32">
                                 <label>Password</label>
-                                <input type="password" name="pwd" class="form-control">
+                                <input type="password" name="pwd" class="form-control" maxlength="64">
                                 <button type="submit" class="btn btn-block btn-primary">Login</button>
                                 </form>
                                 </div>
@@ -219,8 +219,8 @@
                       <input name="_token" type="hidden" value="{{ csrf_token() }}">
                       <input id="idds" type="hidden" name="iddts">
                       Detail:<br>
-                      <textarea id="detinput"  name="editeddet" style="width:840px;height:270px;" cols="40" rows="100"></textarea><br><br>
-                      <textarea id="odetinput"  name="oediteddet" style="display:none;" cols="40" rows="100" readonly></textarea><br><br>
+                      <textarea id="detinput"  name="editeddet" style="width:840px;height:270px;" cols="40" rows="100" maxlength="4294967295"></textarea><br><br>
+                      <textarea id="odetinput"  name="oediteddet" style="display:none;" cols="40" rows="100" maxlength="4294967295" readonly></textarea><br><br>
                       Image: (Upload JPG or PNG Image)<br>
                       <table>
                         <tr>
@@ -313,7 +313,7 @@
                                     <input name="_token" type="hidden" value="{{ csrf_token() }}">
                                     <input id="iddt" type="hidden" name="iddsc">
                                     Detail:<br>
-                                    <textarea id="dinput" name="newdet" style="width:830px;height:270px;" cols="40" rows="100"></textarea><br><br>
+                                <textarea id="dinput" name="newdet" style="width:830px;height:270px;" cols="40" rows="100" maxlength="4294967295"></textarea><br><br>
                                     Image: (Upload JPG or PNG Image)<br>
                                     <input id="iinput" type="file" name="newim[]" accept="image/*" multiple><br>
                                     Video: (Upload MP4 Video)<br>

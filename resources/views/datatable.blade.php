@@ -27,7 +27,7 @@
                       <input name="_token" type="hidden" value="{{ csrf_token() }}">
                       <input id="idlo" type="hidden" name="idloc">
                       Nama:<br>
-                      <input id="namainput" type="text" name="editednama" required>
+                      <input id="namainput" type="text" name="editednama" maxlength="30" required>
                       <input id="onamainput" type="hidden" name="oeditednama" readonly><br>
                       Longitude:<br>
                       <input id="longinput" type="number" step ="0.0000001" min ="-180" max ="180" name="editedlong" required>
@@ -107,7 +107,7 @@
             <input name="_token" type="hidden" value="{{ csrf_token() }}">
             <input id="idlo" type="hidden" name="idlocs">
             Nama:<br>
-            <input id="ninput" type="text" name="newnama" required><br>
+            <input id="ninput" type="text" name="newnama" maxlength="30" required><br>
             Longitude:<br>
             <input id="linput" type="number" step ="0.0000001" min ="-180" max ="180" name="newlong" required><br>
             Latitude:<br>

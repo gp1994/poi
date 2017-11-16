@@ -100,10 +100,10 @@
                                 <form method="post" action="{{action('PenggunaController@cekLogin')}}">
                                 {{ csrf_field() }}
                                 <br>    
-                                <label>Username</label>
-                                <input type="text" name="usrn" class="form-control">
+                                 <label>Username</label>
+                                <input type="text" name="usrn" class="form-control" maxlength="32">
                                 <label>Password</label>
-                                <input type="password" name="pwd" class="form-control">
+                                <input type="password" name="pwd" class="form-control" maxlength="64">
                                 <button type="submit" class="btn btn-block btn-primary">Login</button>
                                 </form>
                                 </div>
@@ -131,6 +131,7 @@
                             <div id="poilog">
                                @if(count($utama))
                                 @foreach($utama as $logu)
+                                <div id="detlog" style="border-style:solid;border-width: thin;">
                                 @if($logu->action == 'add')
                                 {{$logu->created_at}} | {{$logu->updated_at}} <b>{{$logu->nama_admin}}</b> has created POI <b>{{$logu->lokasi}}</b> with longitude <b>{{$logu->longitude}}</b> and latitude <b>{{$logu->latitude}}</b> <br><br>
                                 @endif
@@ -154,6 +155,7 @@
                                 @endif
                                <br><br>
                                 @endif
+                                </div><br>
                                 @endforeach
                                 @else
                                 <h2>No Log(s) Available Yet </h2>
@@ -175,10 +177,11 @@
                             <div id="detaillog">
                                @if(count($detil))
                                 @foreach($detil as $logd)
+                                <div id="detlog" style="border-style:solid;border-width: thin;">
                                 @if($logd->action == 'add')
                                 {{$logd->created_at}} | {{$logd->updated_at}} <b>{{$logd->nama_admin}}</b> has created 
                                   @if($logd->keterangan)
-                                  details <b>{{$logd->keterangan}}</b>
+                                  details <b>{{$logd->keterangan}}</b><br><br>
                                   @endif
                                   @if($logd->image)
                                   image <b>{{$logd->image}}</b>,
@@ -243,7 +246,7 @@
                                 @if ($logd->action =='edit')
                                   {{$logd->created_at}} | {{$logd->updated_at}} {{$logd->nama_admin}} has 
                                   @if ($logd->oketerangan != $logd->keterangan)
-                                  edited detail <b>{{$logd->oketerangan}}</b> to <b>{{$logd->keterangan}}</b>
+                                  edited detail <br><b>{{$logd->oketerangan}}</b> <br><br>to<br><br> <b>{{$logd->keterangan}},</b><br><br>
                                   @endif
                                   @if ($logd->oimage != $logd->image)
                                   replaced <b>{{$logd->oimage}}</b> to <b>{{$logd->image}}</b>,
@@ -305,6 +308,7 @@
                                   @endif
                                   on POI <b>{{$logd->nama_poi}}</b> <br><br>
                                 @endif
+                              </div><br>
                                 @endforeach
                                 @else
                                 <h2>No Log(s) Available Yet </h2>
