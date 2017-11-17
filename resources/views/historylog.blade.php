@@ -179,7 +179,7 @@
                                 @foreach($detil as $logd)
                                 <div id="detlog" style="border-style:solid;border-width: thin;">
                                 @if($logd->action == 'add')
-                                {{$logd->created_at}} | {{$logd->updated_at}} <b>{{$logd->nama_admin}}</b> has created 
+                                {{$logd->created_at}} | <b>{{$logd->nama_admin}}</b> has created 
                                   @if($logd->keterangan)
                                   details <b>{{$logd->keterangan}}</b><br><br>
                                   @endif
@@ -244,7 +244,7 @@
                                   to POI {{$logd->nama_poi}} <br><br>
                                 @endif
                                 @if ($logd->action =='edit')
-                                  {{$logd->created_at}} | {{$logd->updated_at}} {{$logd->nama_admin}} has 
+                                  {{$logd->created_at}} | <b>{{$logd->nama_admin}}</b> has 
                                   @if ($logd->oketerangan != $logd->keterangan)
                                   edited detail <br>{{$logd->oketerangan}} <br><br>to<br><br> {!!$logd->keterangan!!},<br><br>
                                   @endif
