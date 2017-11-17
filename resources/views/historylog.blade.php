@@ -246,7 +246,7 @@
                                 @if ($logd->action =='edit')
                                   {{$logd->created_at}} | {{$logd->updated_at}} {{$logd->nama_admin}} has 
                                   @if ($logd->oketerangan != $logd->keterangan)
-                                  edited detail <br><b>{{$logd->oketerangan}}</b> <br><br>to<br><br> <b>{{$logd->keterangan}},</b><br><br>
+                                  edited detail <br>{{$logd->oketerangan}} <br><br>to<br><br> {!!$logd->keterangan!!},<br><br>
                                   @endif
                                   @if ($logd->oimage != $logd->image)
                                   replaced <b>{{$logd->oimage}}</b> to <b>{{$logd->image}}</b>,
