@@ -355,7 +355,6 @@ class UtamaController extends Controller
         DB::table('info_detail')->insert([
             'id' => $idd + 1,
             'keterangan' => $desc,
-            'videos' => 'videos/',
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'last_created_by' =>Session::get('usrn')
@@ -367,7 +366,6 @@ class UtamaController extends Controller
             DB::table('info_detail')->insert([
             'id' => $idd + 1,
             'keterangan' => $desc,
-            'videos' => 'videos/',
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'last_created_by' =>Session::get('usrn')
@@ -399,7 +397,6 @@ class UtamaController extends Controller
             'id' => $idd + 1,
             'keterangan' => $desc,
             'image' => 'images/'.$newim[0],
-            'videos' => 'videos/',
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'last_created_by' =>Session::get('usrn')
@@ -412,7 +409,6 @@ class UtamaController extends Controller
             'id' => $idd + 1,
             'keterangan' => $desc,
             'image' => 'images/'.$newim[0],
-            'videos' => 'videos/',
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'last_created_by' =>Session::get('usrn')
@@ -446,7 +442,6 @@ class UtamaController extends Controller
             'keterangan' => $desc,
             'image' => 'images/'.$newim[0],
             'image2' => 'images/'.$newim[1],
-            'videos' => 'videos/',
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'last_created_by' =>Session::get('usrn')
@@ -460,7 +455,6 @@ class UtamaController extends Controller
             'keterangan' => $desc,
             'image' => 'images/'.$newim[0],
             'image2' => 'images/'.$newim[1],
-            'videos' => 'videos/',
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'last_created_by' =>Session::get('usrn')
@@ -496,7 +490,6 @@ class UtamaController extends Controller
             'image' => 'images/'.$newim[0],
             'image2' => 'images/'.$newim[1],
             'image3' => 'images/'.$newim[2],
-            'videos' => 'videos/',
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'last_created_by' =>Session::get('usrn')
@@ -511,7 +504,6 @@ class UtamaController extends Controller
             'image' => 'images/'.$newim[0],
             'image2' => 'images/'.$newim[1],
             'image3' => 'images/'.$newim[2],
-            'videos' => 'videos/',
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'last_created_by' =>Session::get('usrn')
@@ -549,7 +541,6 @@ class UtamaController extends Controller
             'image2' => 'images/'.$newim[1],
             'image3' => 'images/'.$newim[2],
             'image4' => 'images/'.$newim[3],
-            'videos' => 'videos/',
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'last_created_by' =>Session::get('usrn')
@@ -565,7 +556,6 @@ class UtamaController extends Controller
             'image2' => 'images/'.$newim[1],
             'image3' => 'images/'.$newim[2],
             'image4' => 'images/'.$newim[3],
-            'videos' => 'videos/',
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'last_created_by' =>Session::get('usrn')
@@ -605,7 +595,6 @@ class UtamaController extends Controller
             'image3' => 'images/'.$newim[2],
             'image4' => 'images/'.$newim[3],
             'image5' => 'images/'.$newim[4],
-            'videos' => 'videos/',
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'last_created_by' =>Session::get('usrn')
@@ -622,7 +611,6 @@ class UtamaController extends Controller
             'image3' => 'images/'.$newim[2],
             'image4' => 'images/'.$newim[3],
             'image5' => 'images/'.$newim[4],
-            'videos' => 'videos/',
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'last_created_by' =>Session::get('usrn')
@@ -663,7 +651,6 @@ class UtamaController extends Controller
             'image4' => 'images/'.$newim[3],
             'image5' => 'images/'.$newim[4],
             'image6' => 'images/'.$newim[5],
-            'videos' => 'videos/',
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'last_created_by' =>Session::get('usrn')
@@ -680,7 +667,6 @@ class UtamaController extends Controller
             'image4' => 'images/'.$newim[3],
             'image5' => 'images/'.$newim[4],
             'image6' => 'images/'.$newim[5],
-            'videos' => 'videos/',
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'last_created_by' =>Session::get('usrn')
@@ -722,7 +708,6 @@ class UtamaController extends Controller
             'image5' => 'images/'.$newim[4],
             'image6' => 'images/'.$newim[5],
             'image7' => 'images/'.$newim[6],
-            'videos' => 'videos/',
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'last_created_by' =>Session::get('usrn')
@@ -740,7 +725,6 @@ class UtamaController extends Controller
             'image5' => 'images/'.$newim[4],
             'image6' => 'images/'.$newim[5],
             'image7' => 'images/'.$newim[6],
-            'videos' => 'videos/',
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'last_created_by' =>Session::get('usrn')
@@ -784,7 +768,6 @@ class UtamaController extends Controller
             'image6' => 'images/'.$newim[5],
             'image7' => 'images/'.$newim[6],
             'image8' => 'images/'.$newim[7],
-            'videos' => 'videos/',
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'last_created_by' =>Session::get('usrn')
@@ -803,7 +786,6 @@ class UtamaController extends Controller
             'image6' => 'images/'.$newim[5],
             'image7' => 'images/'.$newim[6],
             'image8' => 'images/'.$newim[7],
-            'videos' => 'videos/',
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'last_created_by' =>Session::get('usrn')
@@ -849,7 +831,6 @@ class UtamaController extends Controller
             'image7' => 'images/'.$newim[6],
             'image8' => 'images/'.$newim[7],
             'image9' => 'images/'.$newim[8],
-            'videos' => 'videos/',
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'last_created_by' =>Session::get('usrn')
@@ -869,7 +850,6 @@ class UtamaController extends Controller
             'image7' => 'images/'.$newim[6],
             'image8' => 'images/'.$newim[7],
             'image9' => 'images/'.$newim[8],
-            'videos' => 'videos/',
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'last_created_by' =>Session::get('usrn')
@@ -918,7 +898,6 @@ class UtamaController extends Controller
             'image8' => 'images/'.$newim[7],
             'image9' => 'images/'.$newim[8],
             'image10' => 'images/'.$newim[9],
-            'videos' => 'videos/',
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'last_created_by' =>Session::get('usrn')
@@ -939,7 +918,6 @@ class UtamaController extends Controller
             'image8' => 'images/'.$newim[7],
             'image9' => 'images/'.$newim[8],
             'image10' => 'images/'.$newim[9],
-            'videos' => 'videos/',
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'last_created_by' =>Session::get('usrn')
@@ -987,7 +965,6 @@ class UtamaController extends Controller
             'image8' => 'images/'.$newim[7],
             'image9' => 'images/'.$newim[8],
             'image10' => 'images/'.$newim[9],
-            'videos' => 'videos/',
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'last_created_by' =>Session::get('usrn')
@@ -1009,7 +986,6 @@ class UtamaController extends Controller
             'image8' => 'images/'.$newim[7],
             'image9' => 'images/'.$newim[8],
             'image10' => 'images/'.$newim[9],
-            'videos' => 'videos/',
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'last_created_by' =>Session::get('usrn')
@@ -1162,7 +1138,7 @@ class UtamaController extends Controller
             'id_detail' => $id_detail,
             'nama_admin' => $nama_admin,
             'nama_poi'=> $nama_poi,
-            'oketerangan' => $oketerangan,
+            'oketerangan' => $oketerangan.' ',
             'keterangan' => $diff,
             'oimage' => $oimage,
             'image' => $image,

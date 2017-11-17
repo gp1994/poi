@@ -196,10 +196,10 @@
                                     <h3>No Details Available</h3>
                                     @endif
                                     <h1>Video</h1>
-                                    @if($det->videos == 'videos/'|| !$det->videos)
-                                    <h3>No Video Available</h3>
-                                    @else
+                                    @if($det->videos)
                                     <iframe width="900" height="400" src="{{$det->videos}}"  frameborder="0" allowfullscreen></iframe>
+                                    @else
+                                    <h3>No Video Available</h3>
                                     @endif
                                     <div class="col-md-3">
                                     @if (Session('roles')=='admin')

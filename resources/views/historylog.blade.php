@@ -200,7 +200,7 @@
                                   @endif
                                   @if($logd->image6)
                                   image <b>{{$logd->image6}}</b>,
-                                  @endif
+                                  @endif 
                                   @if($logd->image7)
                                   image <b>{{$logd->image7}}</b>,
                                   @endif
@@ -217,28 +217,28 @@
                                   video <b>{{$logd->videos}}</b>,
                                   @endif
                                   @if(!$logd->keterangan)
-                                  @if(!$logd->image)
-                                  @if(!$logd->image2)
-                                  @if(!$logd->image3)
-                                  @if(!$logd->image4)
-                                  @if(!$logd->image5)
-                                  @if(!$logd->image6)
-                                  @if(!$logd->image7)
-                                  @if(!$logd->image8)
-                                  @if(!$logd->image9)
-                                  @if(!$logd->image10)
-                                  @if(!$logd->videos)
-                                  detail with no contents
-                                  @endif
-                                  @endif
-                                  @endif
-                                  @endif
-                                  @endif
-                                  @endif
-                                  @endif
-                                  @endif
-                                  @endif
-                                  @endif
+                                    @if(!$logd->image)
+                                      @if(!$logd->image2)
+                                        @if(!$logd->image3)
+                                          @if(!$logd->image4)
+                                            @if(!$logd->image5)
+                                              @if(!$logd->image6)
+                                                @if(!$logd->image7)
+                                                  @if(!$logd->image8)
+                                                    @if(!$logd->image9)
+                                                      @if(!$logd->image10)
+                                                        @if(!$logd->videos)
+                                                        detail with no contents
+                                                        @endif
+                                                      @endif
+                                                    @endif
+                                                  @endif
+                                                @endif
+                                              @endif
+                                            @endif
+                                          @endif
+                                      @endif
+                                    @endif
                                   @endif
                                   @endif
                                   to POI {{$logd->nama_poi}} <br><br>
@@ -246,87 +246,90 @@
                                 @if ($logd->action =='edit')
                                   {{$logd->created_at}} | <b>{{$logd->nama_admin}}</b> has 
                                   @if ($logd->oketerangan != $logd->keterangan)
-                                  edited detail <br>{{$logd->oketerangan}} <br><br>to<br><br> {!!$logd->keterangan!!},<br><br>
+                                    @if($logd->oketerangan)
+                                    edited detail <br>{{$logd->oketerangan}} <br>to<br> {!!$logd->keterangan!!},<br>
+                                    @else
+                                    added {!!$logd->keterangan!!}, <br>
+                                    @endif
                                   @endif
                                   @if ($logd->oimage != $logd->image)
                                     @if ($logd->oimage)
                                     replaced <b>{{$logd->oimage}}</b> to <b>{{$logd->image}}</b>,
                                     @else
-                                    added <b>{{$logd->image}} (edit) </b>
+                                    added <b>{{$logd->image}} (edit), </b>
                                     @endif
                                   @endif
                                   @if ($logd->oimage2 != $logd->image2)
                                     @if ($logd->oimage2)
                                     replaced <b>{{$logd->oimage2}}</b> to <b>{{$logd->image2}}</b>,
                                     @else
-                                    added <b>{{$logd->image2}} (edit) </b>
+                                    added <b>{{$logd->image2}} (edit), </b>
                                     @endif
                                   @endif
                                   @if ($logd->oimage3 != $logd->image3)
-                                   @if ($logd->oimage3)
+                                    @if ($logd->oimage3)
                                     replaced <b>{{$logd->oimage3}}</b> to <b>{{$logd->image3}}</b>,
                                     @else
-                                    added <b>{{$logd->image3}} (edit) </b>
+                                    added <b>{{$logd->image3}} (edit), </b>
                                     @endif
                                   @endif
                                   @if ($logd->oimage4 != $logd->image4)
                                     @if ($logd->oimage4)
                                     replaced <b>{{$logd->oimage4}}</b> to <b>{{$logd->image4}}</b>,
                                     @else
-                                    added <b>{{$logd->image4}} (edit) </b>
+                                    added <b>{{$logd->image4}} (edit), </b>
                                     @endif
                                   @endif
                                   @if ($logd->oimage5 != $logd->image5)
-                                  @if ($logd->oimage5)
+                                    @if ($logd->oimage5)
                                     replaced <b>{{$logd->oimage5}}</b> to <b>{{$logd->image5}}</b>,
                                     @else
-                                    added <b>{{$logd->image5}} (edit) </b>
+                                    added <b>{{$logd->image5}} (edit), </b>
                                     @endif
                                   @endif
                                   @if ($logd->oimage6 != $logd->image6)
-                                  @if ($logd->oimage6)
+                                    @if ($logd->oimage6)
                                     replaced <b>{{$logd->oimage6}}</b> to <b>{{$logd->image6}}</b>,
                                     @else
-                                    added <b>{{$logd->image6}} (edit) </b>
+                                    added <b>{{$logd->image6}} (edit), </b>
                                     @endif
                                   @endif
                                   @if ($logd->oimage7 != $logd->image7)
-                                  @if ($logd->oimage7)
+                                    @if ($logd->oimage7)
                                     replaced <b>{{$logd->oimage7}}</b> to <b>{{$logd->image7}}</b>,
                                     @else
-                                    added <b>{{$logd->image7}} (edit) </b>
+                                    added <b>{{$logd->image7}} (edit), </b>
                                     @endif
                                   @endif
                                   @if ($logd->oimage8 != $logd->image8)
-                                  @if ($logd->oimage8)
+                                    @if ($logd->oimage8)
                                     replaced <b>{{$logd->oimage8}}</b> to <b>{{$logd->image8}}</b>,
                                     @else
-                                    added <b>{{$logd->image8}} (edit) </b>
+                                    added <b>{{$logd->image8}} (edit), </b>
                                     @endif
                                   @endif
                                   @if ($logd->oimage9 != $logd->image9)
-                                  @if ($logd->oimage9)
+                                    @if ($logd->oimage9)
                                     replaced <b>{{$logd->oimage9}}</b> to <b>{{$logd->image9}}</b>,
                                     @else
-                                    added <b>{{$logd->image4}} (edit) </b>
+                                    added <b>{{$logd->image4}} (edit), </b>
                                     @endif
                                   @endif
                                   @if ($logd->oimage10 != $logd->image10)
-                                 @if ($logd->oimage10)
+                                    @if ($logd->oimage10)
                                     replaced <b>{{$logd->oimage10}}</b> to <b>{{$logd->image10}}</b>,
                                     @else
-                                    added <b>{{$logd->image10}} (edit) </b>
+                                    added <b>{{$logd->image10}} (edit), </b>
                                     @endif
                                   @endif
                                   @if ($logd->ovideos != $logd->videos)
-                                  @if ($logd->ovideos == 'videos/')
+                                    @if ($logd->ovideos)
                                     replaced <b>{{$logd->ovideos}}</b> to <b>{{$logd->videos}}</b>,
                                     @else
-                                    added <b>{{$logd->videos}} (edit) </b>
+                                    added <b>{{$logd->videos}} (edit), </b>
                                     @endif
                                   @endif
-                                  @if(!$logd->oketerangan)
-                                  @if($logd->keterangan == ' ')
+                                  @if($logd->oketerangan == $logd->keterangan)
                                   @if($logd->oimage == $logd->image)
                                   @if($logd->oimage2 == $logd->image2)
                                   @if($logd->oimage3 == $logd->image3)
@@ -337,9 +340,8 @@
                                   @if($logd->oimage8 == $logd->image8)
                                   @if($logd->oimage9 == $logd->image9)
                                   @if($logd->oimage10 == $logd->image10)
-                                  @if($logd->ovideos == 'videos/')
+                                  @if($logd->ovideos == $logd->videos)
                                   done nothing
-                                  @endif
                                   @endif
                                   @endif
                                   @endif
