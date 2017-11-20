@@ -37,6 +37,7 @@ function cekLogin(Request $req){
 
         $user= $req->usrn;
         $pass = $req->pwd;
+        $na = $req->peng;
 
 
         $check = Pengguna::where('usrn',$user)->where('pwd',$pass)->count();
@@ -50,6 +51,7 @@ function cekLogin(Request $req){
 
         session(['usrn' => $take->usrn]);
         session(['roles' => $take->roles]);
+        session(['peng'=> $take->peng]);
         session(['pwd' => true ]);
 
         return back();

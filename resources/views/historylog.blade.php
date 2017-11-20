@@ -75,7 +75,7 @@
                         <ul class="nav navbar-nav navbar-right">
                         <li> @if ( Request::session()->has('usrn') )
                         <div id="sess" style ="position:relative;top:15px">
-                        Welcome {{session('usrn')}}! Click here to <a href="./logout">Logout</a> </div><br> 
+                        Welcome {{session('peng')}}! Click here to <a href="./logout">Logout</a> </div><br> 
                         @else
                         <a class="btn big-login" data-toggle="modal" href="javascript:void(0)" style ="position:relative;left:-10px"onclick="openLoginModal();">Login</a>
                         @endif
@@ -126,12 +126,12 @@
                     <div class="card-header" data-background-color="purple"> 
                       <h4>POI Log</h4>
                     </div>
-                    <div class="card-content">
+                    <div class="card-content" style="height:120px; overflow-y:scroll;">
                         <div id="typography">
                             <div id="poilog">
                                @if(count($utama))
                                 @foreach($utama as $logu)
-                                <div id="detlog" style="border-style:solid;border-width: thin;">
+                                <div id="detlog" class="panel-body" style="border-radius: 25px;background:orange;color:black;">
                                 @if($logu->action == 'add')
                                 {{$logu->created_at}} | {{$logu->updated_at}} <b>{{$logu->nama_admin}}</b> has created POI <b>{{$logu->lokasi}}</b> with longitude <b>{{$logu->longitude}}</b> and latitude <b>{{$logu->latitude}}</b> <br><br>
                                 @endif
@@ -172,12 +172,12 @@
                     <div class="card-header" data-background-color="purple"> 
                       <h4>Detail Log</h4>
                     </div>
-                    <div class="card-content">
-                        <div id="typography">
+                    <div class="card-content" style="height:400px; overflow-y:scroll;">
+                        <div id="typography" >
                             <div id="detaillog">
                                @if(count($detil))
                                 @foreach($detil as $logd)
-                                <div id="detlog" style="border-style:solid;border-width: thin;">
+                                <div id="detlog" class="panel-body" style="border-radius: 25px;background:orange;color:black;">
                                 @if($logd->action == 'add')
                                 {{$logd->created_at}} | <b>{{$logd->nama_admin}}</b> has created 
                                   @if($logd->keterangan)

@@ -54,7 +54,7 @@ class UtamaController extends Controller
         $loc->latitude=$lat;
         $loc->created_at = \Carbon\Carbon::now()->toDateTimeString();
         $loc->updated_at = \Carbon\Carbon::now()->toDateTimeString();
-        $loc->last_updated_by=Session::get('usrn');
+        $loc->last_updated_by=Session::get('peng');
         UtamaController::editUtamaLog($loc);
         $loc->save();
         return redirect ('datatable');
@@ -282,7 +282,7 @@ class UtamaController extends Controller
         $det->update_count=$det->update_count+1;
         $det->created_at = \Carbon\Carbon::now()->toDateTimeString();
         $det->updated_at = \Carbon\Carbon::now()->toDateTimeString();
-        $det->last_created_by=Session::get('usrn');
+        $det->last_created_by=Session::get('peng');
         }
         
         UtamaController::editDetLog($det);
@@ -304,7 +304,7 @@ class UtamaController extends Controller
                 'latitude' => $lat,
                 'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
                 'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
-                'last_updated_by' =>Session::get('usrn')
+                'last_updated_by' =>Session::get('peng')
             ]);
         $utam = Utama::find($idu);
         UtamaController::storeUtamaLog($utam);
@@ -345,7 +345,7 @@ class UtamaController extends Controller
             'videos' => 'videos/'. $bd,
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
-            'last_created_by' =>Session::get('usrn')
+            'last_created_by' =>Session::get('peng')
             ]);
 
 
@@ -357,7 +357,7 @@ class UtamaController extends Controller
             'keterangan' => $desc,
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
-            'last_created_by' =>Session::get('usrn')
+            'last_created_by' =>Session::get('peng')
             ]);
 
         }
@@ -368,7 +368,7 @@ class UtamaController extends Controller
             'keterangan' => $desc,
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
-            'last_created_by' =>Session::get('usrn')
+            'last_created_by' =>Session::get('peng')
             ]);
 
         }     
@@ -387,7 +387,7 @@ class UtamaController extends Controller
             'videos' => 'videos/'. $bd,
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
-            'last_created_by' =>Session::get('usrn')
+            'last_created_by' =>Session::get('peng')
             ]);
        
    }
@@ -399,7 +399,7 @@ class UtamaController extends Controller
             'image' => 'images/'.$newim[0],
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
-            'last_created_by' =>Session::get('usrn')
+           'last_created_by' =>Session::get('peng')
             ]);
 
         }
@@ -411,7 +411,7 @@ class UtamaController extends Controller
             'image' => 'images/'.$newim[0],
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
-            'last_created_by' =>Session::get('usrn')
+            'last_created_by' =>Session::get('peng')
             ]);
 
         }
@@ -431,7 +431,7 @@ class UtamaController extends Controller
             'videos' => 'videos/'. $bd,
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
-            'last_created_by' =>Session::get('usrn')
+            'last_created_by' =>Session::get('peng')
             ]);
  
         }
@@ -444,7 +444,7 @@ class UtamaController extends Controller
             'image2' => 'images/'.$newim[1],
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
-            'last_created_by' =>Session::get('usrn')
+            'last_created_by' =>Session::get('peng')
             ]);
    
         }
@@ -457,7 +457,7 @@ class UtamaController extends Controller
             'image2' => 'images/'.$newim[1],
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
-            'last_created_by' =>Session::get('usrn')
+            'last_created_by' =>Session::get('peng')
             ]);
 
         }
@@ -478,7 +478,7 @@ class UtamaController extends Controller
             'videos' => 'videos/'. $bd,
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
-            'last_created_by' =>Session::get('usrn')
+            'last_created_by' =>Session::get('peng')
             ]);
 
         }
@@ -492,7 +492,7 @@ class UtamaController extends Controller
             'image3' => 'images/'.$newim[2],
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
-            'last_created_by' =>Session::get('usrn')
+            'last_created_by' =>Session::get('peng')
             ]);
 
         }
@@ -506,7 +506,7 @@ class UtamaController extends Controller
             'image3' => 'images/'.$newim[2],
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
-            'last_created_by' =>Session::get('usrn')
+            'last_created_by' =>Session::get('peng')
             ]);
 
         }
@@ -528,7 +528,7 @@ class UtamaController extends Controller
             'videos' => 'videos/'.$bd,
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
-            'last_created_by' =>Session::get('usrn')
+            'last_created_by' =>Session::get('peng')
             ]);
 
         }
@@ -543,7 +543,7 @@ class UtamaController extends Controller
             'image4' => 'images/'.$newim[3],
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
-            'last_created_by' =>Session::get('usrn')
+            'last_created_by' =>Session::get('peng')
             ]);
 
         }
@@ -558,7 +558,7 @@ class UtamaController extends Controller
             'image4' => 'images/'.$newim[3],
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
-            'last_created_by' =>Session::get('usrn')
+            'last_created_by' =>Session::get('peng')
             ]);
 
         }
@@ -581,7 +581,7 @@ class UtamaController extends Controller
             'videos' => 'videos/'. $bd,
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
-            'last_created_by' =>Session::get('usrn')
+            'last_created_by' =>Session::get('peng')
             ]);
 
         }
@@ -597,7 +597,7 @@ class UtamaController extends Controller
             'image5' => 'images/'.$newim[4],
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
-            'last_created_by' =>Session::get('usrn')
+            'last_created_by' =>Session::get('peng')
             ]);
 
         }
@@ -613,7 +613,7 @@ class UtamaController extends Controller
             'image5' => 'images/'.$newim[4],
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
-            'last_created_by' =>Session::get('usrn')
+            'last_created_by' =>Session::get('peng')
             ]);
 
         }
@@ -637,7 +637,7 @@ class UtamaController extends Controller
             'videos' => 'videos/'. $bd,
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
-            'last_created_by' =>Session::get('usrn')
+            'last_created_by' =>Session::get('peng')
             ]);
         }
         else{
@@ -653,7 +653,7 @@ class UtamaController extends Controller
             'image6' => 'images/'.$newim[5],
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
-            'last_created_by' =>Session::get('usrn')
+            'last_created_by' =>Session::get('peng')
             ]);
         }
         }
@@ -669,7 +669,7 @@ class UtamaController extends Controller
             'image6' => 'images/'.$newim[5],
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
-            'last_created_by' =>Session::get('usrn')
+            'last_created_by' =>Session::get('peng')
             ]);
         }
         }
@@ -693,7 +693,7 @@ class UtamaController extends Controller
             'videos' => 'videos/'. $bd,
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
-            'last_created_by' =>Session::get('usrn')
+            'last_created_by' =>Session::get('peng')
             ]);
         }
         else{
@@ -710,7 +710,7 @@ class UtamaController extends Controller
             'image7' => 'images/'.$newim[6],
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
-            'last_created_by' =>Session::get('usrn')
+            'last_created_by' =>Session::get('peng')
             ]);
         }
         }
@@ -727,7 +727,7 @@ class UtamaController extends Controller
             'image7' => 'images/'.$newim[6],
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
-            'last_created_by' =>Session::get('usrn')
+            'last_created_by' =>Session::get('peng')
             ]);
         }
         }
@@ -752,7 +752,7 @@ class UtamaController extends Controller
             'videos' => 'videos/'. $bd,
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
-            'last_created_by' =>Session::get('usrn')
+            'last_created_by' =>Session::get('peng')
             ]);
         }
         else{
@@ -770,7 +770,7 @@ class UtamaController extends Controller
             'image8' => 'images/'.$newim[7],
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
-            'last_created_by' =>Session::get('usrn')
+            'last_created_by' =>Session::get('peng')
             ]);
         }
         }
@@ -788,7 +788,7 @@ class UtamaController extends Controller
             'image8' => 'images/'.$newim[7],
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
-            'last_created_by' =>Session::get('usrn')
+            'last_created_by' =>Session::get('peng')
             ]);
         }
         }
@@ -814,7 +814,7 @@ class UtamaController extends Controller
             'videos' => 'videos/'. $bd,
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
-            'last_created_by' =>Session::get('usrn')
+            'last_created_by' =>Session::get('peng')
             ]);
         }
         else{
@@ -833,7 +833,7 @@ class UtamaController extends Controller
             'image9' => 'images/'.$newim[8],
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
-            'last_created_by' =>Session::get('usrn')
+            'last_created_by' =>Session::get('peng')
             ]);
         }
         }
@@ -852,7 +852,7 @@ class UtamaController extends Controller
             'image9' => 'images/'.$newim[8],
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
-            'last_created_by' =>Session::get('usrn')
+            'last_created_by' =>Session::get('peng')
             ]);
         }
         }
@@ -879,7 +879,7 @@ class UtamaController extends Controller
             'videos' => 'videos/'. $bd,
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
-            'last_created_by' =>Session::get('usrn')
+            'last_created_by' =>Session::get('peng')
             ]);
 
         }
@@ -900,7 +900,7 @@ class UtamaController extends Controller
             'image10' => 'images/'.$newim[9],
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
-            'last_created_by' =>Session::get('usrn')
+           'last_created_by' =>Session::get('peng')
             ]);
         }
         }
@@ -920,7 +920,7 @@ class UtamaController extends Controller
             'image10' => 'images/'.$newim[9],
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
-            'last_created_by' =>Session::get('usrn')
+            'last_created_by' =>Session::get('peng')
             ]);
         }
         }
@@ -947,7 +947,7 @@ class UtamaController extends Controller
             'videos' => 'videos/'. $bd,
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
-            'last_created_by' =>Session::get('usrn')
+            'last_created_by' =>Session::get('peng')
             ]);
         }
         else{
@@ -967,7 +967,7 @@ class UtamaController extends Controller
             'image10' => 'images/'.$newim[9],
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
-            'last_created_by' =>Session::get('usrn')
+            'last_created_by' =>Session::get('peng')
             ]);
         }
         }
@@ -988,7 +988,7 @@ class UtamaController extends Controller
             'image10' => 'images/'.$newim[9],
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
-            'last_created_by' =>Session::get('usrn')
+            'last_created_by' =>Session::get('peng')
             ]);
         }
         }
