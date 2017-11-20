@@ -101,7 +101,7 @@
                               <div class="form loginBox">
                                 <form method="post" action="{{action('PenggunaController@cekLogin')}}">
                                 {{ csrf_field() }}
-                                <br>    
+                                 <div id="err" style ="position:relative;top:-10px"></div>
                                  <label>Username</label>
                                 <input type="text" name="usrn" class="form-control" maxlength="32">
                                 <label>Password</label>
@@ -116,11 +116,7 @@
           </div>
       </div>
     </div>
-    <div id="err" style ="position:relative;top:-60px">
-     @if ((count($errors) > 0 ) || (session('status') == 'salah'))
-  Maaf Username atau Password anda salah!
-  @endif
-</div>
+   
   <div id="mymap" style="position:relative;top:-40px;width:950px;height:520px"></div>    
       </div>
     </div>
@@ -198,5 +194,15 @@ function initMap() {
 }
 // Load initialize function
 google.maps.event.addDomListener(window, 'load', initMap);
+</script>
+<script type="text/javascript">
+@if ((count($errors) > 0 ) || (session('status') == 'salah'))
+     $('#loginModal').modal('show');
+             $('#err').addClass('alert alert-danger').html("Maaf, Username atau Password Salah!");
+             $('input[type="password"]').val('');
+             setTimeout( function(){ 
+                $('#loginModal .modal-dialog').removeClass('shake'); 
+    }, 1000 ); 
+@endif
 </script>
 </html>

@@ -99,7 +99,7 @@
                               <div class="form loginBox">
                                 <form method="post" action="{{action('PenggunaController@cekLogin')}}">
                                 {{ csrf_field() }}
-                                <br>    
+                              <div id="err" style ="position:relative;top:-10px"></div>  
                                 <label>Username</label>
                                 <input type="text" name="usrn" class="form-control" maxlength="32">
                                 <label>Password</label>
@@ -114,11 +114,7 @@
           </div>
       </div>
     </div>
-    <div id="falert" style="position:relative;left:50px;top:-37px;">
-          @if(Session::has('fmsg'))
-          {{Session::get('fmsg')}}
-          @endif 
-    </div>
+    <div id="falert" style="position:relative;left:28px;top:-27px;width:913px;"></div>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
@@ -425,4 +421,9 @@ function showDivs(n) {
             });
         });
     </script>
+   <script type="text/javascript">
+    @if(Session::has('fmsg'))
+    $('#falert').addClass('alert alert-danger').html("{{Session::get('fmsg')}}").fadeTo(2000, 500).slideUp(500, function(){$("#success-alert").slideUp(500);});   ;
+    @endif 
+</script>
 </html>
