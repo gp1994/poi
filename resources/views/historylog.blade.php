@@ -210,7 +210,7 @@
                           @if ($logd->oimage != $logd->image)
                             <td style="text-align: center;">{{$logd->created_at}}</td>
                                     <td style="text-align: center;" style="text-align: center;">{{$logd->nama_admin}}</td>
-                                    <td style="text-align: center;">{{$logd->nama_poi}}</td>
+                                   <td style="text-align: center;"><a href="./showDet{{$logd->id_detail}}">{{$logd->nama_poi}}</a></td>
                                     <td style="text-align: center;">{{$logd->action}}</td>
                           <td style="text-align: center;">Image #1</td>
                           <td style="text-align: center;">@if($logd->oimage)
@@ -225,7 +225,7 @@
                         @if ($logd->oimage2 != $logd->image2)
                           <td style="text-align: center;">{{$logd->created_at}}</td>
                                     <td style="text-align: center;">{{$logd->nama_admin}}</td>
-                                    <td style="text-align: center;">{{$logd->nama_poi}}</td>
+                                    <td style="text-align: center;"><a href="./showDet{{$logd->id_detail}}">{{$logd->nama_poi}}</a></td>
                                    <td style="text-align: center;">{{$logd->action}}</td>
                           <td style="text-align: center;">Image #2</td>
                           <td style="text-align: center;">@if($logd->oimage2)
@@ -240,7 +240,7 @@
                         @if ($logd->oimage3 != $logd->image3)
                           <td style="text-align: center;">{{$logd->created_at}}</td>
                                     <td style="text-align: center;">{{$logd->nama_admin}}</td>
-                                    <td style="text-align: center;">{{$logd->nama_poi}}</td>
+                                   <td style="text-align: center;"><a href="./showDet{{$logd->id_detail}}">{{$logd->nama_poi}}</a></td>
                                     <td style="text-align: center;">{{$logd->action}}</td>
                         <td style="text-align: center;">Image #3</td>
                             <td style="text-align: center;">@if($logd->oimage3)
@@ -255,7 +255,7 @@
                         @if ($logd->oimage4 != $logd->image4)
                           <td style="text-align: center;">{{$logd->created_at}}</td>
                                    <td style="text-align: center;">{{$logd->nama_admin}}</td>
-                                   <td style="text-align: center;">{{$logd->nama_poi}}</td>
+                                   <td style="text-align: center;"><a href="./showDet{{$logd->id_detail}}">{{$logd->nama_poi}}</a></td>
                                     <td style="text-align: center;">{{$logd->action}}</td>
                         <td style="text-align: center;">Image #4</td>
                       <td style="text-align: center;">@if($logd->oimage4)
@@ -270,7 +270,7 @@
                         @if ($logd->oimage5 != $logd->image5)
                           <td style="text-align: center;">{{$logd->created_at}}</td>
                                     <td style="text-align: center;">{{$logd->nama_admin}}</td>
-                                    <td style="text-align: center;">{{$logd->nama_poi}}</td>
+                                    <td style="text-align: center;"><a href="./showDet{{$logd->id_detail}}">{{$logd->nama_poi}}</a></td>
                                    <td style="text-align: center;">{{$logd->action}}</td>
                         <td style="text-align: center;">Image #5</td>
                            <td style="text-align: center;">@if($logd->oimage5)
@@ -285,7 +285,7 @@
                         @if ($logd->oimage6 != $logd->image6)
                           <td style="text-align: center;">{{$logd->created_at}}</td>
                                     <td style="text-align: center;">{{$logd->nama_admin}}</td>
-                                    <td style="text-align: center;">{{$logd->nama_poi}}</td>
+                                    <td style="text-align: center;"><a href="./showDet{{$logd->id_detail}}">{{$logd->nama_poi}}</a></td>
                                    <td style="text-align: center;">{{$logd->action}}</td>
                         <td style="text-align: center;">Image #6</td>
                            <td style="text-align: center;">@if($logd->oimag6)
@@ -300,7 +300,7 @@
                         @if ($logd->oimage7 != $logd->image7)
                           <td style="text-align: center;">{{$logd->created_at}}</td>
                                     <td style="text-align: center;">{{$logd->nama_admin}}</td>
-                                    <td style="text-align: center;">{{$logd->nama_poi}}</td>
+                                    <td style="text-align: center;"><a href="./showDet{{$logd->id_detail}}">{{$logd->nama_poi}}</a></td>
                                     <td style="text-align: center;">{{$logd->action}}</td>
                         <td style="text-align: center;">Image #7</td>
                             <td style="text-align: center;">@if($logd->oimage7)
@@ -315,7 +315,7 @@
                         @if ($logd->oimage8 != $logd->image8)
                           <td style="text-align: center;">{{$logd->created_at}}</td>
                                     <td style="text-align: center;">{{$logd->nama_admin}}</td>
-                                    <td style="text-align: center;">{{$logd->nama_poi}}</td>
+                                   <td style="text-align: center;"><a href="./showDet{{$logd->id_detail}}">{{$logd->nama_poi}}</a></td>
                                    <td style="text-align: center;">{{$logd->action}}</td>
                         <td style="text-align: center;">Image #8</td>
                            <td style="text-align: center;">@if($logd->oimage8)
@@ -330,7 +330,7 @@
                         @if ($logd->oimage9 != $logd->image9)
                           <td style="text-align: center;">{{$logd->created_at}}</td>
                                     <td style="text-align: center;">{{$logd->nama_admin}}</td>
-                                    <td style="text-align: center;">{{$logd->nama_poi}}</td>
+                                    <td style="text-align: center;"><a href="./showDet{{$logd->id_detail}}">{{$logd->nama_poi}}</a></td>
                                     <td style="text-align: center;">{{$logd->action}}</td>
                         <td style="text-align: center;">Image #9</td>
                             <td style="text-align: center;">@if($logd->oimage9)
@@ -345,7 +345,7 @@
                         @if ($logd->oimage10 != $logd->image10)
                           <td style="text-align: center;">{{$logd->created_at}}</td>
                                     <td style="text-align: center;">{{$logd->nama_admin}}</td>
-                                    <td style="text-align: center;">{{$logd->nama_poi}}</td>
+                                    <td style="text-align: center;"><a href="./showDet{{$logd->id_detail}}">{{$logd->nama_poi}}</a></td>
                                     <td style="text-align: center;">{{$logd->action}}</td>
                         <td style="text-align: center;">Image #10</td>
                             <td style="text-align: center;">@if($logd->oimage10)
@@ -360,7 +360,7 @@
                         @if ($logd->ovideos!= $logd->videos)
                           <td style="text-align: center;">{{$logd->created_at}}</td>
                                     <td style="text-align: center;">{{$logd->nama_admin}}</td>
-                                    <td style="text-align: center;">{{$logd->nama_poi}}</td>
+                                    <td style="text-align: center;"><a href="./showDet{{$logd->id_detail}}">{{$logd->nama_poi}}</a></td>
                                     <td style="text-align: center;">{{$logd->action}}</td>
                         <td style="text-align: center;">Video</td>
                             <td style="text-align: center;">@if($logd->ovideos)
@@ -373,15 +373,17 @@
                           @if ($logd->oketerangan != $logd->keterangan)
                           <td style="text-align: center;">{{$logd->created_at}}</td>
                                     <td style="text-align: center;">{{$logd->nama_admin}}</td>
-                                    <td style="text-align: center;">{{$logd->nama_poi}}</td>
+                                    <td style="text-align: center;"><a href="./showDet{{$logd->id_detail}}">{{$logd->nama_poi}}</a></td>
                                     <td style="text-align: center;">{{$logd->action}}</td>
                         <td style="text-align: center;">Detail</td>
                            <td style="text-align: center;">@if($logd->oketerangan)
-                            {{$logd->oketerangan}}
+                            <button data-toggle="modal" data-target="#odModal" data-id="{{$logd->id}}" data-odsc="{{$logd->oketerangan}}">Before</button>
+                           
                           @else
                         none
                       @endif</td>
-                          <td style="text-align: center;">{!!$logd->keterangan!!}</td>
+                          <td style="text-align: center;"><button data-toggle="modal" data-target="#dModal" data-id="{{$logd->id}}" data-dsc="{!!$logd->keterangan!!}">After</button>
+                            </td>
                           @endif
                         @endif
                         @if ($logd->action=='add')
@@ -389,7 +391,7 @@
                           @if (!$logd->oimage)
                             <td style="text-align: center;">{{$logd->created_at}}</td>
                                     <td style="text-align: center;">{{$logd->nama_admin}}</td>
-                                    <td style="text-align: center;">{{$logd->nama_poi}}</td>
+                                    <td style="text-align: center;"><a href="./showDet{{$logd->id_detail}}">{{$logd->nama_poi}}</a></td>
                                     <td style="text-align: center;">{{$logd->action}}</td>
                           <td style="text-align: center;">Image #1</td>
                           <td style="text-align: center;">@if(!$logd->oimage)
@@ -406,7 +408,7 @@
                         @if (!$logd->oimage2)
                           <td style="text-align: center;">{{$logd->created_at}}</td>
                                     <td style="text-align: center;">{{$logd->nama_admin}}</td>
-                                    <td style="text-align: center;">{{$logd->nama_poi}}</td>
+                                    <td style="text-align: center;"><a href="./showDet{{$logd->id_detail}}">{{$logd->nama_poi}}</a></td>
                                     <td style="text-align: center;">{{$logd->action}}</td>
                           <td style="text-align: center;">Image #2</td>
                            <td style="text-align: center;">@if(!$logd->oimage2)
@@ -423,7 +425,7 @@
                         @if (!$logd->oimage3)
                           <td style="text-align: center;">{{$logd->created_at}}</td>
                                     <td style="text-align: center;">{{$logd->nama_admin}}</td>
-                                    <td style="text-align: center;">{{$logd->nama_poi}}</td>
+                                    <td style="text-align: center;"><a href="./showDet{{$logd->id_detail}}">{{$logd->nama_poi}}</a></td>
                                     <td style="text-align: center;">{{$logd->action}}</td>
                         <td style="text-align: center;">Image #3</td>
                             <td style="text-align: center;">@if(!$logd->oimage3)
@@ -440,7 +442,7 @@
                         @if (!$logd->oimage4)
                           <td style="text-align: center;">{{$logd->created_at}}</td>
                                     <td style="text-align: center;">{{$logd->nama_admin}}</td>
-                                    <td style="text-align: center;">{{$logd->nama_poi}}</td>
+                                   <td style="text-align: center;"><a href="./showDet{{$logd->id_detail}}">{{$logd->nama_poi}}</a></td>
                                     <td style="text-align: center;">{{$logd->action}}</td>
                         <td style="text-align: center;">Image #4</td>
                        <td style="text-align: center;">@if(!$logd->oimage4)
@@ -457,7 +459,7 @@
                         @if (!$logd->oimage5)
                           <td style="text-align: center;">{{$logd->created_at}}</td>
                                     <td style="text-align: center;">{{$logd->nama_admin}}</td>
-                                    <td style="text-align: center;">{{$logd->nama_poi}}</td>
+                                    <td style="text-align: center;"><a href="./showDet{{$logd->id_detail}}">{{$logd->nama_poi}}</a></td>
                                     <td style="text-align: center;">{{$logd->action}}</td>
                         <td style="text-align: center;">Image #5</td>
                           <td style="text-align: center;">@if(!$logd->oimage5)
@@ -474,7 +476,7 @@
                         @if (!$logd->oimage6)
                           <td style="text-align: center;">{{$logd->created_at}}</td>
                                     <td style="text-align: center;">{{$logd->nama_admin}}</td>
-                                    <td style="text-align: center;">{{$logd->nama_poi}}</td>
+                                    <td style="text-align: center;"><a href="./showDet{{$logd->id_detail}}">{{$logd->nama_poi}}</a></td>
                                     <td style="text-align: center;">{{$logd->action}}</td>
                         <td style="text-align: center;">Image #6</td>
                            <td style="text-align: center;">@if(!$logd->oimage6)
@@ -491,7 +493,7 @@
                         @if (!$logd->oimage7)
                           <td style="text-align: center;">{{$logd->created_at}}</td>
                                     <td style="text-align: center;">{{$logd->nama_admin}}</td>
-                                    <td style="text-align: center;">{{$logd->nama_poi}}</td>
+                                    <td style="text-align: center;"><a href="./showDet{{$logd->id_detail}}">{{$logd->nama_poi}}</a></td>
                                     <td style="text-align: center;">{{$logd->action}}</td>
                         <td style="text-align: center;">Image #7</td>
                             <td style="text-align: center;">@if(!$logd->oimage7)
@@ -508,7 +510,7 @@
                         @if (!$logd->oimage8)
                           <td style="text-align: center;">{{$logd->created_at}}</td>
                                     <td style="text-align: center;">{{$logd->nama_admin}}</td>
-                                   <td style="text-align: center;">{{$logd->nama_poi}}</td>
+                                   <td style="text-align: center;"><a href="./showDet{{$logd->id_detail}}">{{$logd->nama_poi}}</a></td>
                                     <td style="text-align: center;">{{$logd->action}}</td>
                         <td style="text-align: center;">Image #8</td>
                             <td style="text-align: center;">@if(!$logd->oimage8)
@@ -525,7 +527,7 @@
                         @if (!$logd->oimage9)
                           <td style="text-align: center;">{{$logd->created_at}}</td>
                                    <td style="text-align: center;">{{$logd->nama_admin}}</td>
-                                    <td style="text-align: center;">{{$logd->nama_poi}}</td>
+                                   <td style="text-align: center;"><a href="./showDet{{$logd->id_detail}}">{{$logd->nama_poi}}</a></td>
                                     <td style="text-align: center;">{{$logd->action}}</td>
                         <td style="text-align: center;">Image #9</td>
                           <td style="text-align: center;">@if(!$logd->oimage9)
@@ -542,7 +544,7 @@
                         @if (!$logd->oimage10)
                           <td style="text-align: center;">{{$logd->created_at}}</td>
                                     <td style="text-align: center;">{{$logd->nama_admin}}</td>
-                                   <td style="text-align: center;">{{$logd->nama_poi}}</td>
+                                   <td style="text-align: center;"><a href="./showDet{{$logd->id_detail}}">{{$logd->nama_poi}}</a></td>
                                     <td style="text-align: center;">{{$logd->action}}</td>
                         <td style="text-align: center;">Image #10</td>
                             <td style="text-align: center;">@if(!$logd->oimage10)
@@ -559,7 +561,7 @@
                         @if (!$logd->ovideos)
                           <td style="text-align: center;">{{$logd->created_at}}</td>
                                     <td style="text-align: center;">{{$logd->nama_admin}}</td>
-                                    <td style="text-align: center;">{{$logd->nama_poi}}</td>
+                                    <td style="text-align: center;"><a href="./showDet{{$logd->id_detail}}">{{$logd->nama_poi}}</a></td>
                                     <td style="text-align: center;">{{$logd->action}}</td>
                         <td style="text-align: center;">Video</td>
                            <td style="text-align: center;">@if(!$logd->ovideos)
@@ -575,8 +577,9 @@
                           <tr>
                           @if (!$logd->oketerangan)
                           <td style="text-align: center;">{{$logd->created_at}}</td>
-                                    <td style="text-align: center;">{{$logd->nama_admin}}</td>
-                                    <td style="text-align: center;">{{$logd->nama_poi}}</td>
+                                  <td style="text-align: center;">{{$logd->nama_admin}}</td>
+                                  <td style="text-align: center;">
+                                  <a href="./showDet{{$logd->id_detail}}">{{$logd->nama_poi}}</a></td>
                                     <td style="text-align: center;">{{$logd->action}}</td>
                         <td style="text-align: center;">Detail</td>
                            <td style="text-align: center;">@if(!$logd->oketerangan)
@@ -585,13 +588,40 @@
                          <td style="text-align: center;">@if(!$logd->keterangan)
                             blank detail
                              @else
-                            {{$logd->keterangan}}
+                            <p data-toggle="modal" data-target="#dModal" data-id="{{$logd->id}}" data-dsc="{{$logd->keterangan}}">After</p>
+                        </div>
                           @endif</td>
                           @endif
                         @endif
                       @endforeach
                       </tr>
                       </table>
+                      <div class="modal fade" id="dModal" role="dialog">
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">After</h4>
+                                  </div>
+                                <div class="modal-body">
+                                  <p><span id="desc"></span></p>
+                                </div>
+                              </div>   
+                            </div>
+                          </div>
+                      <div class="modal fade" id="odModal" role="dialog">
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Before</h4>
+                                  </div>
+                                <div class="modal-body">
+                                  <p><span id="odesc"></span></p>
+                                </div>
+                              </div>   
+                            </div>
+                          </div>
                        @else
                       <h2>No Log(s) Available Yet </h2>
                     @endif
@@ -617,4 +647,18 @@
 <script src="http://localhost/poi/public/BSDash/assets/js/perfect-scrollbar.jquery.min.js"></script>
 <!--  Notifications Plugin    -->
 <script src="http://localhost/poi/public/BSDash/assets/js/bootstrap-notify.js"></script>
+<script>
+  $(function() {
+            $('#dModal').on('show.bs.modal', function (e) {
+                $('#desc').html($(e.relatedTarget).data('dsc'));
+            });
+        });
+  </script>
+  <script>
+     $(function() {
+            $('#odModal').on('show.bs.modal', function (e) {
+                $('#odesc').html($(e.relatedTarget).data('odsc'));
+            });
+        });
+  </script>
 </html>
