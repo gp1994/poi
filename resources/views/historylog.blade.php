@@ -75,7 +75,7 @@
                         <ul class="nav navbar-nav navbar-right">
                         <li> @if ( Request::session()->has('usrn') )
                         <div id="sess" style ="position:relative;top:15px">
-                        Welcome {{session('peng')}}! Click here to <a href="./logout">Logout</a> </div><br> 
+                        Welcome {{session('usrn')}}! Click here to <a href="./logout">Logout</a> </div><br> 
                         @else
                         <a class="btn big-login" data-toggle="modal" href="javascript:void(0)" style ="position:relative;left:-10px"onclick="openLoginModal();">Login</a>
                         @endif
@@ -126,41 +126,60 @@
                     <div class="card-header" data-background-color="purple"> 
                       <h4>POI Log</h4>
                     </div>
-                    <div class="card-content" style="height:120px; overflow-y:scroll;">
+                    <div class="card-content">
                         <div id="typography">
-                            <div id="poilog">
-                               @if(count($utama))
+                          <table border="solid">
+                                  <tr>
+                                  <th rowspan="2" style="text-align: center;">Tanggal</th>
+                                  <th rowspan="2" style="text-align: center;">Nama Admin</th>
+                                  <th rowspan="2" style="text-align: center;">Action</th>
+                                  <th colspan="2" style="text-align: center;">POI</th>
+                                  <th colspan="2" style="text-align: center;">Longitude</th>
+                                  <th colspan="2" style="text-align: center;">Latitude</th>
+                                  <tr>
+                                  <th style="text-align: center;">Before</th>
+                                  <th style="text-align: center;">After</th>
+                                  <th style="text-align: center;">Before</th>
+                                  <th style="text-align: center;">After</th>
+                                  <th style="text-align: center;">Before</th>
+                                  <th style="text-align: center;">After</th>
+                                  </tr>
+                                  <tr>
+                                    @if(count($utama))
                                 @foreach($utama as $logu)
-                                <div id="detlog" class="panel-body" style="border-radius: 25px;background:orange;color:black;">
-                                @if($logu->action == 'add')
-                                {{$logu->created_at}} | {{$logu->updated_at}} <b>{{$logu->nama_admin}}</b> has created POI <b>{{$logu->lokasi}}</b> with longitude <b>{{$logu->longitude}}</b> and latitude <b>{{$logu->latitude}}</b> <br><br>
+                                @if($logu->action =='add')
+                                 <tr>
+                                  <td style="text-align: center;">{{$logu->created_at}}</td>
+                                  <td style="text-align: center;">{{$logu->nama_admin}}</td>
+                                  <td style="text-align: center;">{{$logu->action}}</td>
+                                  <td style="text-align: center;">@if(!$logu->olokasi) none @endif</td>
+                                  <td style="text-align: center;">{{$logu->lokasi}}</td>
+                                  <td style="text-align: center;">@if(!$logu->olongitude) none @endif</td>
+                                  <td style="text-align: center;">{{$logu->longitude}}</td>
+                                  <td style="text-align: center;">@if(!$logu->olatitude) none @endif</td>
+                                  <td style="text-align: center;">{{$logu->latitude}}</td>
+                                  </tr>
                                 @endif
-                                @if ($logu->action =='edit')
-                                {{$logu->created_at}} | {{$logu->updated_at}} <b> {{$logu->nama_admin}}</b> has edited  
-                                @if ($logu->olokasi != $logu->lokasi)
-                                POI name from <b>{{$logu->olokasi}}</b> to <b>{{$logu->lokasi}}</b>,
+                                 @if($logu->action =='edit')
+                                 <tr>
+                                 <td style="text-align: center;">{{$logu->created_at}}</td>
+                                  <td style="text-align: center;">{{$logu->nama_admin}}</td>
+                                  <td style="text-align: center;">{{$logu->action}}</td>
+                                  <td style="text-align: center;">{{$logu->olokasi}}</td>
+                                  <td style="text-align: center;">{{$logu->lokasi}}</td>
+                                  <td style="text-align: center;">{{$logu->olongitude}}</td>
+                                  <td style="text-align: center;">{{$logu->longitude}}</td>
+                                  <td style="text-align: center;">{{$logu->olatitude}}</td>
+                                  <td style="text-align: center;">{{$logu->latitude}}</td>
+                                  </tr>
                                 @endif
-                                @if ($logu->olongitude != $logu->longitude)
-                                longitude from <b>{{$logu->olongitude}}</b> to <b>{{$logu->longitude}}</b>,
-                                @endif
-                                @if ($logu->olatitude != $logu->latitude)
-                                latitude from <b>{{$logu->olatitude}}</b> to <b>{{$logu->latitude}}</b>,
-                                @endif
-                                @if($logu->olokasi == $logu->lokasi)
-                                @if($logu->olongitude == $logu->longitude)
-                                @if($logu->olatitude == $logu->latitude)
-                                nothing on POI <b>{{$logu->lokasi}}</b>
-                                @endif
-                                @endif
-                                @endif
-                               <br><br>
-                                @endif
-                                </div><br>
-                                @endforeach
+                                 @endforeach
                                 @else
                                 <h2>No Log(s) Available Yet </h2>
-                              @endif
-                            </div>
+                              @endif 
+                                  </tr>
+                                </table>
+                       
                         </div>
                     </div>
                 </div>
@@ -172,205 +191,420 @@
                     <div class="card-header" data-background-color="purple"> 
                       <h4>Detail Log</h4>
                     </div>
-                    <div class="card-content" style="height:400px; overflow-y:scroll;">
-                        <div id="typography" >
-                            <div id="detaillog">
-                               @if(count($detil))
+                    <div class="card-content">
+                        <div id="typography">
+                                <table border="solid">
+                                  <tr>
+                                  <th style="text-align: center;">Tanggal</th>
+                                  <th style="text-align: center;">Nama Admin</th>
+                                  <th style="text-align: center;">POI</th>
+                                  <th style="text-align: center;">Action</th>
+                                  <th style="text-align: center;">Object</th>
+                                  <th style="text-align: center;">Before</th>
+                                  <th style="text-align: center;">After</th>
+                                  </tr>
+                                   @if(count($detil))
                                 @foreach($detil as $logd)
-                                <div id="detlog" class="panel-body" style="border-radius: 25px;background:orange;color:black;">
-                                @if($logd->action == 'add')
-                                {{$logd->created_at}} | <b>{{$logd->nama_admin}}</b> has created 
-                                  @if($logd->keterangan)
-                                  details <b>{{$logd->keterangan}}</b><br><br>
-                                  @endif
-                                  @if($logd->image)
-                                  image <b>{!! str_replace('images/', '', $logd->image) !!}</b>,
-                                  @endif
-                                  @if($logd->image2)
-                                  image <b>{!! str_replace('images/', '', $logd->image2) !!}</b>,
-                                  @endif
-                                  @if($logd->image3)
-                                  image <b>{!! str_replace('images/', '', $logd->image3) !!}</b>,
-                                  @endif
-                                  @if($logd->image4)
-                                  image <b>{!! str_replace('images/', '', $logd->image4) !!}</b>,
-                                  @endif
-                                  @if($logd->image5)
-                                  image <b>{!! str_replace('images/', '', $logd->image5) !!}</b>,
-                                  @endif
-                                  @if($logd->image6)
-                                  image <b>{!! str_replace('images/', '', $logd->image6) !!}</b>,
-                                  @endif 
-                                  @if($logd->image7)
-                                  image <b>{!! str_replace('images/', '', $logd->image7) !!}</b>,
-                                  @endif
-                                  @if($logd->image8)
-                                  image <b>{!! str_replace('images/', '', $logd->image8) !!}</b>,
-                                  @endif
-                                  @if($logd->image9)
-                                  image <b>{!! str_replace('images/', '', $logd->image9) !!}</b>,
-                                  @endif
-                                  @if($logd->image10)
-                                  image <b>{!! str_replace('images/', '', $logd->image10) !!}</b>,
-                                  @endif
-                                  @if($logd->videos)
-                                  video <b>{!! str_replace('videos/', '', $logd->videos) !!}</b>,
-                                  @endif
-                                  @if(!$logd->keterangan)
-                                    @if(!$logd->image)
-                                      @if(!$logd->image2)
-                                        @if(!$logd->image3)
-                                          @if(!$logd->image4)
-                                            @if(!$logd->image5)
-                                              @if(!$logd->image6)
-                                                @if(!$logd->image7)
-                                                  @if(!$logd->image8)
-                                                    @if(!$logd->image9)
-                                                      @if(!$logd->image10)
-                                                        @if(!$logd->videos)
-                                                        detail with no contents
-                                                        @endif
-                                                      @endif
-                                                    @endif
-                                                  @endif
-                                                @endif
-                                              @endif
-                                            @endif
-                                          @endif
-                                      @endif
-                                    @endif
-                                  @endif
-                                  @endif
-                                  to POI <b>{{$logd->nama_poi}}</b> <br><br>
-                                @endif
-                                @if ($logd->action =='edit')
-                                  {{$logd->created_at}} | <b>{{$logd->nama_admin}}</b> has 
-                                  @if ($logd->oketerangan != $logd->keterangan)
-                                    @if($logd->oketerangan != ' ')
-                                    edited detail <br>{{$logd->oketerangan}} <br>to<br> {!!$logd->keterangan!!},<br>
-                                    @else
-                                    added detail <b> {!!$logd->keterangan!!} </b>(edit), <br>
-                                    @endif
-                                  @endif
-                                  @if ($logd->oimage != $logd->image)
-                                    @if ($logd->oimage)
-                                    replaced image <b>{!! str_replace('images/', '', $logd->oimage) !!}</b> to <b>{!! str_replace('images/', '', $logd->image) !!}</b>,
-                                    @else
-                                    added image <b>{!! str_replace('images/', '', $logd->image) !!} (edit), </b>
-                                    @endif
-                                  @endif
-                                  @if ($logd->oimage2 != $logd->image2)
-                                    @if ($logd->oimage2)
-                                    replaced image <b>{!! str_replace('images/', '', $logd->oimage2) !!}</b> to <b>{!! str_replace('images/', '', $logd->image2) !!}</b>,
-                                    @else
-                                    added image <b>{!! str_replace('images/', '', $logd->image2) !!} (edit), </b>
-                                    @endif
-                                  @endif
-                                  @if ($logd->oimage3 != $logd->image3)
-                                    @if ($logd->oimage3)
-                                    replaced image <b>{!! str_replace('images/', '', $logd->oimage3) !!}</b> to <b>{!! str_replace('images/', '', $logd->image3) !!}</b>,
-                                    @else
-                                    added image <b>{!! str_replace('images/', '', $logd->image3) !!} (edit), </b>
-                                    @endif
-                                  @endif
-                                  @if ($logd->oimage4 != $logd->image4)
-                                    @if ($logd->oimage4)
-                                    replaced image <b>{!! str_replace('images/', '', $logd->oimage4) !!}</b> to <b>{!! str_replace('images/', '', $logd->image4) !!}</b>,
-                                    @else
-                                    added image <b>{!! str_replace('images/', '', $logd->image4) !!} (edit), </b>
-                                    @endif
-                                  @endif
-                                  @if ($logd->oimage5 != $logd->image5)
-                                    @if ($logd->oimage5)
-                                    replaced image <b>{!! str_replace('images/', '', $logd->oimage5)!!}</b> to <b>{!! str_replace('images/', '', $logd->image5) !!}</b>,
-                                    @else
-                                    added image <b>{!! str_replace('images/', '', $logd->image5) !!} (edit), </b>
-                                    @endif
-                                  @endif
-                                  @if ($logd->oimage6 != $logd->image6)
-                                    @if ($logd->oimage6)
-                                    replaced image <b>{!! str_replace('images/', '', $logd->oimage6)!!}</b> to <b>{!! str_replace('images/', '', $logd->image6) !!}</b>,
-                                    @else
-                                    added image <b>{!! str_replace('images/', '', $logd->image6) !!} (edit), </b>
-                                    @endif
-                                  @endif
-                                  @if ($logd->oimage7 != $logd->image7)
-                                    @if ($logd->oimage7)
-                                    replaced image <b>{!! str_replace('images/', '', $logd->oimage7)!!}</b> to <b>{!! str_replace('images/', '', $logd->image7) !!}</b>,
-                                    @else
-                                    added image <b>{!! str_replace('images/', '', $logd->image7) !!} (edit), </b>
-                                    @endif
-                                  @endif
-                                  @if ($logd->oimage8 != $logd->image8)
-                                    @if ($logd->oimage8)
-                                    replaced image <b>{!! str_replace('images/', '', $logd->oimage8)!!}</b> to <b>{!! str_replace('images/', '', $logd->image8) !!}</b>,
-                                    @else
-                                    added image <b>{!! str_replace('images/', '', $logd->image8) !!} (edit), </b>
-                                    @endif
-                                  @endif
-                                  @if ($logd->oimage9 != $logd->image9)
-                                    @if ($logd->oimage9)
-                                    replaced image <b>{!! str_replace('images/', '', $logd->oimage9)!!}</b> to <b>{!! str_replace('images/', '', $logd->image9) !!}</b>,
-                                    @else
-                                    added image <b>{!! str_replace('images/', '', $logd->image9) !!} (edit), </b>
-                                    @endif
-                                  @endif
-                                  @if ($logd->oimage10 != $logd->image10)
-                                    @if ($logd->oimage10)
-                                  replaced image <b>{!! str_replace('images/', '', $logd->oimage10)!!}</b> to <b>{!! str_replace('images/', '', $logd->image10) !!}</b>,
-                                    @else
-                                    added image <b>{!! str_replace('images/', '', $logd->image10) !!} (edit), </b>
-                                    @endif
-                                  @endif
-                                  @if ($logd->ovideos != $logd->videos)
-                                    @if ($logd->ovideos)
-                                  replaced video <b>{!! str_replace('videos/', '', $logd->ovideos) !!}</b> to <b>{!! str_replace('videos/', '', $logd->videos) !!}</b>,
-                                    @else
-                                    added video <b>{!! str_replace('videos/', '', $logd->videos) !!} (edit), </b>
-                                    @endif
-                                  @endif
-                                  @if($logd->oketerangan == $logd->keterangan)
-                                  @if($logd->oimage == $logd->image)
-                                  @if($logd->oimage2 == $logd->image2)
-                                  @if($logd->oimage3 == $logd->image3)
-                                  @if($logd->oimage4 == $logd->image4)
-                                  @if($logd->oimage5 == $logd->image5)
-                                  @if($logd->oimage6 == $logd->image6)
-                                  @if($logd->oimage7 == $logd->image7)
-                                  @if($logd->oimage8 == $logd->image8)
-                                  @if($logd->oimage9 == $logd->image9)
-                                  @if($logd->oimage10 == $logd->image10)
-                                  @if($logd->ovideos == $logd->videos)
-                                  edited nothing
-                                  @endif
-                                  @endif
-                                  @endif
-                                  @endif
-                                  @endif
-                                  @endif
-                                  @endif
-                                  @endif
-                                  @endif
-                                  @endif
-                                  @endif
-                                  @endif
-                                  on POI <b>{{$logd->nama_poi}}</b> <br><br>
-                                @endif
-                              </div><br>
-                                @endforeach
-                                @else
-                                <h2>No Log(s) Available Yet </h2>
-                              @endif
-                            </div>
-                        </div>
-                    </div>
+                        @if ($logd->action=='edit')
+                        <tr>
+                          @if ($logd->oimage != $logd->image)
+                            <td style="text-align: center;">{{$logd->created_at}}</td>
+                                    <td style="text-align: center;" style="text-align: center;">{{$logd->nama_admin}}</td>
+                                    <td style="text-align: center;">{{$logd->nama_poi}}</td>
+                                    <td style="text-align: center;">{{$logd->action}}</td>
+                          <td style="text-align: center;">Image #1</td>
+                          <td style="text-align: center;">@if($logd->oimage)
+                            {{str_replace('images/','',$logd->oimage)}}
+                          @else
+                        none
+                      @endif</td>
+                          <td style="text-align: center;">{{str_replace('images/','',$logd->image)}}</td>
+                          @endif
+                        </tr>
+                        <tr>
+                        @if ($logd->oimage2 != $logd->image2)
+                          <td style="text-align: center;">{{$logd->created_at}}</td>
+                                    <td style="text-align: center;">{{$logd->nama_admin}}</td>
+                                    <td style="text-align: center;">{{$logd->nama_poi}}</td>
+                                   <td style="text-align: center;">{{$logd->action}}</td>
+                          <td style="text-align: center;">Image #2</td>
+                          <td style="text-align: center;">@if($logd->oimage2)
+                             {{str_replace('images/','',$logd->oimage2)}}
+                          @else
+                        none
+                      @endif</td>
+                          <td style="text-align: center;">{{str_replace('images/','',$logd->image2)}}</td>
+                          @endif
+                        </tr>
+                        <tr>
+                        @if ($logd->oimage3 != $logd->image3)
+                          <td style="text-align: center;">{{$logd->created_at}}</td>
+                                    <td style="text-align: center;">{{$logd->nama_admin}}</td>
+                                    <td style="text-align: center;">{{$logd->nama_poi}}</td>
+                                    <td style="text-align: center;">{{$logd->action}}</td>
+                        <td style="text-align: center;">Image #3</td>
+                            <td style="text-align: center;">@if($logd->oimage3)
+                             {{str_replace('images/','',$logd->oimage3)}}
+                          @else
+                        none
+                      @endif</td>
+                          <td style="text-align: center;">{{str_replace('images/','',$logd->image3)}}</td>
+                          @endif
+                        </tr>
+                        <tr>
+                        @if ($logd->oimage4 != $logd->image4)
+                          <td style="text-align: center;">{{$logd->created_at}}</td>
+                                   <td style="text-align: center;">{{$logd->nama_admin}}</td>
+                                   <td style="text-align: center;">{{$logd->nama_poi}}</td>
+                                    <td style="text-align: center;">{{$logd->action}}</td>
+                        <td style="text-align: center;">Image #4</td>
+                      <td style="text-align: center;">@if($logd->oimage4)
+                            {{str_replace('images/','',$logd->oimage4)}}
+                          @else
+                        none
+                      @endif</td>
+                         <td style="text-align: center;">{{str_replace('images/','',$logd->image4)}}</td>
+                          @endif
+                        </tr>
+                        <tr>
+                        @if ($logd->oimage5 != $logd->image5)
+                          <td style="text-align: center;">{{$logd->created_at}}</td>
+                                    <td style="text-align: center;">{{$logd->nama_admin}}</td>
+                                    <td style="text-align: center;">{{$logd->nama_poi}}</td>
+                                   <td style="text-align: center;">{{$logd->action}}</td>
+                        <td style="text-align: center;">Image #5</td>
+                           <td style="text-align: center;">@if($logd->oimage5)
+                             {{str_replace('images/','',$logd->oimage5)}}
+                          @else
+                        none
+                      @endif</td>
+                          <td style="text-align: center;">{{str_replace('images/','',$logd->image5)}}</td>
+                          @endif
+                        </tr>
+                        <tr>
+                        @if ($logd->oimage6 != $logd->image6)
+                          <td style="text-align: center;">{{$logd->created_at}}</td>
+                                    <td style="text-align: center;">{{$logd->nama_admin}}</td>
+                                    <td style="text-align: center;">{{$logd->nama_poi}}</td>
+                                   <td style="text-align: center;">{{$logd->action}}</td>
+                        <td style="text-align: center;">Image #6</td>
+                           <td style="text-align: center;">@if($logd->oimag6)
+                            {{str_replace('images/','',$logd->oimage6)}}
+                          @else
+                        none
+                      @endif</td>
+                          <td style="text-align: center;">{{str_replace('images/','',$logd->image6)}}</td>
+                          @endif
+                        </tr>
+                        <tr>
+                        @if ($logd->oimage7 != $logd->image7)
+                          <td style="text-align: center;">{{$logd->created_at}}</td>
+                                    <td style="text-align: center;">{{$logd->nama_admin}}</td>
+                                    <td style="text-align: center;">{{$logd->nama_poi}}</td>
+                                    <td style="text-align: center;">{{$logd->action}}</td>
+                        <td style="text-align: center;">Image #7</td>
+                            <td style="text-align: center;">@if($logd->oimage7)
+                             {{str_replace('images/','',$logd->oimage7)}}
+                          @else
+                        none
+                      @endif</td>
+                          <td style="text-align: center;">{{str_replace('images/','',$logd->image7)}}</td>
+                          @endif
+                        </tr>
+                        <tr>
+                        @if ($logd->oimage8 != $logd->image8)
+                          <td style="text-align: center;">{{$logd->created_at}}</td>
+                                    <td style="text-align: center;">{{$logd->nama_admin}}</td>
+                                    <td style="text-align: center;">{{$logd->nama_poi}}</td>
+                                   <td style="text-align: center;">{{$logd->action}}</td>
+                        <td style="text-align: center;">Image #8</td>
+                           <td style="text-align: center;">@if($logd->oimage8)
+                             {{str_replace('images/','',$logd->oimage8)}}
+                          @else
+                        none
+                      @endif</td>
+                       <td style="text-align: center;">{{str_replace('images/','',$logd->image8)}}</td>
+                          @endif
+                        </tr>
+                        <tr>
+                        @if ($logd->oimage9 != $logd->image9)
+                          <td style="text-align: center;">{{$logd->created_at}}</td>
+                                    <td style="text-align: center;">{{$logd->nama_admin}}</td>
+                                    <td style="text-align: center;">{{$logd->nama_poi}}</td>
+                                    <td style="text-align: center;">{{$logd->action}}</td>
+                        <td style="text-align: center;">Image #9</td>
+                            <td style="text-align: center;">@if($logd->oimage9)
+                            {{str_replace('images/','',$logd->oimage9)}}
+                          @else
+                        none
+                      @endif</td>
+                          <td style="text-align: center;">{{str_replace('images/','',$logd->image9)}}</td>
+                          @endif
+                        </tr>
+                        <tr>
+                        @if ($logd->oimage10 != $logd->image10)
+                          <td style="text-align: center;">{{$logd->created_at}}</td>
+                                    <td style="text-align: center;">{{$logd->nama_admin}}</td>
+                                    <td style="text-align: center;">{{$logd->nama_poi}}</td>
+                                    <td style="text-align: center;">{{$logd->action}}</td>
+                        <td style="text-align: center;">Image #10</td>
+                            <td style="text-align: center;">@if($logd->oimage10)
+                            {{str_replace('images/','',$logd->oimage10)}}
+                          @else
+                        none
+                      @endif</td>
+                          <td style="text-align: center;">{{str_replace('images/','',$logd->image10)}}</td>
+                          @endif
+                        </tr>
+                        <tr>
+                        @if ($logd->ovideos!= $logd->videos)
+                          <td style="text-align: center;">{{$logd->created_at}}</td>
+                                    <td style="text-align: center;">{{$logd->nama_admin}}</td>
+                                    <td style="text-align: center;">{{$logd->nama_poi}}</td>
+                                    <td style="text-align: center;">{{$logd->action}}</td>
+                        <td style="text-align: center;">Video</td>
+                            <td style="text-align: center;">@if($logd->ovideos)
+                            {{str_replace('videos/','',$logd->ovideos)}}
+                          @else
+                        none
+                      @endif</td>
+                          <td style="text-align: center;">{{str_replace('videos/','',$logd->videos)}}</td>
+                          @endif
+                          @if ($logd->oketerangan != $logd->keterangan)
+                          <td style="text-align: center;">{{$logd->created_at}}</td>
+                                    <td style="text-align: center;">{{$logd->nama_admin}}</td>
+                                    <td style="text-align: center;">{{$logd->nama_poi}}</td>
+                                    <td style="text-align: center;">{{$logd->action}}</td>
+                        <td style="text-align: center;">Detail</td>
+                           <td style="text-align: center;">@if($logd->oketerangan)
+                            {{$logd->oketerangan}}
+                          @else
+                        none
+                      @endif</td>
+                          <td style="text-align: center;">{!!$logd->keterangan!!}</td>
+                          @endif
+                        @endif
+                        @if ($logd->action=='add')
+                        <tr>
+                          @if (!$logd->oimage)
+                            <td style="text-align: center;">{{$logd->created_at}}</td>
+                                    <td style="text-align: center;">{{$logd->nama_admin}}</td>
+                                    <td style="text-align: center;">{{$logd->nama_poi}}</td>
+                                    <td style="text-align: center;">{{$logd->action}}</td>
+                          <td style="text-align: center;">Image #1</td>
+                          <td style="text-align: center;">@if(!$logd->oimage)
+                            none
+                          @endif</td>
+                          <td style="text-align: center;">@if(!$logd->image)
+                            blank picture
+                             @else
+                            {{str_replace('images/','',$logd->image)}}
+                          @endif</td>
+                          @endif
+                        </tr>
+                        <tr>
+                        @if (!$logd->oimage2)
+                          <td style="text-align: center;">{{$logd->created_at}}</td>
+                                    <td style="text-align: center;">{{$logd->nama_admin}}</td>
+                                    <td style="text-align: center;">{{$logd->nama_poi}}</td>
+                                    <td style="text-align: center;">{{$logd->action}}</td>
+                          <td style="text-align: center;">Image #2</td>
+                           <td style="text-align: center;">@if(!$logd->oimage2)
+                            none
+                          @endif</td>
+                          <td style="text-align: center;">@if(!$logd->image2)
+                            blank picture
+                             @else
+                            {{str_replace('images/','',$logd->image2)}}
+                          @endif</td>
+                          @endif
+                        </tr>
+                        <tr>
+                        @if (!$logd->oimage3)
+                          <td style="text-align: center;">{{$logd->created_at}}</td>
+                                    <td style="text-align: center;">{{$logd->nama_admin}}</td>
+                                    <td style="text-align: center;">{{$logd->nama_poi}}</td>
+                                    <td style="text-align: center;">{{$logd->action}}</td>
+                        <td style="text-align: center;">Image #3</td>
+                            <td style="text-align: center;">@if(!$logd->oimage3)
+                            none
+                          @endif</td>
+                          <td style="text-align: center;">@if(!$logd->image3)
+                            blank picture
+                             @else
+                            {{str_replace('images/','',$logd->image3)}}
+                          @endif</td>
+                          @endif
+                        </tr>
+                        <tr>
+                        @if (!$logd->oimage4)
+                          <td style="text-align: center;">{{$logd->created_at}}</td>
+                                    <td style="text-align: center;">{{$logd->nama_admin}}</td>
+                                    <td style="text-align: center;">{{$logd->nama_poi}}</td>
+                                    <td style="text-align: center;">{{$logd->action}}</td>
+                        <td style="text-align: center;">Image #4</td>
+                       <td style="text-align: center;">@if(!$logd->oimage4)
+                            none
+                          @endif</td>
+                          <td style="text-align: center;">@if(!$logd->image4)
+                            blank picture
+                             @else
+                            {{str_replace('images/','',$logd->image4)}}
+                          @endif</td>
+                          @endif
+                        </tr>
+                        <tr>
+                        @if (!$logd->oimage5)
+                          <td style="text-align: center;">{{$logd->created_at}}</td>
+                                    <td style="text-align: center;">{{$logd->nama_admin}}</td>
+                                    <td style="text-align: center;">{{$logd->nama_poi}}</td>
+                                    <td style="text-align: center;">{{$logd->action}}</td>
+                        <td style="text-align: center;">Image #5</td>
+                          <td style="text-align: center;">@if(!$logd->oimage5)
+                            none
+                          @endif</td>
+                          <td style="text-align: center;">@if(!$logd->image5)
+                            blank picture
+                             @else
+                            {{str_replace('images/','',$logd->image5)}}
+                          @endif</td>
+                          @endif
+                        </tr>
+                        <tr>
+                        @if (!$logd->oimage6)
+                          <td style="text-align: center;">{{$logd->created_at}}</td>
+                                    <td style="text-align: center;">{{$logd->nama_admin}}</td>
+                                    <td style="text-align: center;">{{$logd->nama_poi}}</td>
+                                    <td style="text-align: center;">{{$logd->action}}</td>
+                        <td style="text-align: center;">Image #6</td>
+                           <td style="text-align: center;">@if(!$logd->oimage6)
+                            none
+                          @endif</td>
+                          <td style="text-align: center;">@if(!$logd->image6)
+                            blank picture
+                             @else
+                            {{str_replace('images/','',$logd->image6)}}
+                          @endif</td>
+                          @endif
+                        </tr>
+                        <tr>
+                        @if (!$logd->oimage7)
+                          <td style="text-align: center;">{{$logd->created_at}}</td>
+                                    <td style="text-align: center;">{{$logd->nama_admin}}</td>
+                                    <td style="text-align: center;">{{$logd->nama_poi}}</td>
+                                    <td style="text-align: center;">{{$logd->action}}</td>
+                        <td style="text-align: center;">Image #7</td>
+                            <td style="text-align: center;">@if(!$logd->oimage7)
+                            none
+                          @endif</td>
+                          <td style="text-align: center;">@if(!$logd->image7)
+                            blank picture
+                             @else
+                            {{str_replace('images/','',$logd->image7)}}
+                          @endif</td>
+                          @endif
+                        </tr>
+                        <tr>
+                        @if (!$logd->oimage8)
+                          <td style="text-align: center;">{{$logd->created_at}}</td>
+                                    <td style="text-align: center;">{{$logd->nama_admin}}</td>
+                                   <td style="text-align: center;">{{$logd->nama_poi}}</td>
+                                    <td style="text-align: center;">{{$logd->action}}</td>
+                        <td style="text-align: center;">Image #8</td>
+                            <td style="text-align: center;">@if(!$logd->oimage8)
+                            none
+                          @endif</td>
+                          <td style="text-align: center;">@if(!$logd->image8)
+                            blank picture
+                             @else
+                            {{str_replace('images/','',$logd->image8)}}
+                          @endif</td>
+                          @endif
+                        </tr>
+                        <tr>
+                        @if (!$logd->oimage9)
+                          <td style="text-align: center;">{{$logd->created_at}}</td>
+                                   <td style="text-align: center;">{{$logd->nama_admin}}</td>
+                                    <td style="text-align: center;">{{$logd->nama_poi}}</td>
+                                    <td style="text-align: center;">{{$logd->action}}</td>
+                        <td style="text-align: center;">Image #9</td>
+                          <td style="text-align: center;">@if(!$logd->oimage9)
+                            none
+                          @endif</td>
+                          <td style="text-align: center;">@if(!$logd->image9)
+                            blank picture
+                            @else
+                            {{str_replace('images/','',$logd->image9)}}
+                          @endif</td>
+                          @endif
+                        </tr>
+                        <tr>
+                        @if (!$logd->oimage10)
+                          <td style="text-align: center;">{{$logd->created_at}}</td>
+                                    <td style="text-align: center;">{{$logd->nama_admin}}</td>
+                                   <td style="text-align: center;">{{$logd->nama_poi}}</td>
+                                    <td style="text-align: center;">{{$logd->action}}</td>
+                        <td style="text-align: center;">Image #10</td>
+                            <td style="text-align: center;">@if(!$logd->oimage10)
+                            none
+                          @endif</td>
+                          <td style="text-align: center;">@if(!$logd->image10)
+                            blank picture
+                             @else
+                            {{str_replace('images/','',$logd->image10)}}
+                          @endif</td>
+                          @endif
+                        </tr>
+                        <tr>
+                        @if (!$logd->ovideos)
+                          <td style="text-align: center;">{{$logd->created_at}}</td>
+                                    <td style="text-align: center;">{{$logd->nama_admin}}</td>
+                                    <td style="text-align: center;">{{$logd->nama_poi}}</td>
+                                    <td style="text-align: center;">{{$logd->action}}</td>
+                        <td style="text-align: center;">Video</td>
+                           <td style="text-align: center;">@if(!$logd->ovideos)
+                            none
+                          @endif</td>
+                          <td style="text-align: center;">@if(!$logd->videos)
+                            blank video
+                             @else
+                            {{str_replace('videos/','',$logd->videos)}}
+                          @endif</td>
+                          @endif
+                        </tr>
+                          <tr>
+                          @if (!$logd->oketerangan)
+                          <td style="text-align: center;">{{$logd->created_at}}</td>
+                                    <td style="text-align: center;">{{$logd->nama_admin}}</td>
+                                    <td style="text-align: center;">{{$logd->nama_poi}}</td>
+                                    <td style="text-align: center;">{{$logd->action}}</td>
+                        <td style="text-align: center;">Detail</td>
+                           <td style="text-align: center;">@if(!$logd->oketerangan)
+                            none
+                          @endif</td>
+                         <td style="text-align: center;">@if(!$logd->keterangan)
+                            blank detail
+                             @else
+                            {{$logd->keterangan}}
+                          @endif</td>
+                          @endif
+                        @endif
+                      @endforeach
+                      </tr>
+                      </table>
+                       @else
+                      <h2>No Log(s) Available Yet </h2>
+                    @endif
                 </div>
+              </div>
             </div>
           </div>
-        </div>
+        </div>     
       </div>
     </div>
+  </div>
 </body>
+
 <!--   Core JS Files   -->
 <script src="http://localhost/poi/public/BSDash/assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
 <script src="http://localhost/poi/public/BSDash/assets/js/bootstrap.min.js" type="text/javascript"></script>
