@@ -18,6 +18,7 @@
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
     <link rel ="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link href="http://localhost/poi/public/BSLogin/bootstrap3/css/bootstrap.css" rel="stylesheet" />
     <link href="http://localhost/poi/public/BSLogin/login-register.css" rel="stylesheet" />
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">  
@@ -131,7 +132,7 @@
                             <div class="title">
                                @if(count($detil))
                                 @foreach($detil as $det)
-                                <div class="w3-content w3-display-container">
+                                <div class="w3-content w3-display-container" onmouseover="showNav()" onmouseout="fadeNav()">
                                     @if($det->image)
                                         <img class="mySlides" src="{{$det->image}}" style="width:900px;height:400px;">
                                     @endif
@@ -184,8 +185,9 @@
                                         @endif
                                     @endif
                                     </div>
-                                    <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
-                                    <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
+                                    <button id = "left" class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)" onmouseover="showNav()" onmouseout="fadeNav()" style="top:260px;left:20px;opacity:0;">&#10094;</button>
+                                    <div id="idx" onmouseover="showNav()" onmouseout="fadeNav()" style ="color:white;background-color:black; text-align: center;width:40px;position:relative;top:-370px;left:20px;font-size:30px;opacity:0;"></div>
+                                    <button id = "right" class="w3-button w3-black w3-display-right" onclick="plusDivs(1)" onmouseover="showNav()" onmouseout="fadeNav()" style="top:260px;right:20px;opacity:0;">&#10095;</button>
                                     @if($det->keterangan)
                                     <div id ="keterangan">{{$det->keterangan}}</div><br>
                                     @else
@@ -222,60 +224,60 @@
                         <tr>
                         <td style="padding: 9px;">
                       <input id="iminput" type="file" accept="image/*" name="editedim" onchange="$('#pik').val($(this).val());">
-                      <input id="pik" name="edtim" style="position:relative;top:10px;" size ="40" type="text" readonly>
+                      <input id="pik" name="edtim" style="position:relative;top:10px;" size ="35" type="text" readonly> <div style="position:absolute;top:441px;left:20px;text-align: center;">1</div>
                       <input id ="opik" name="oedtim" style="position:relative;top:10px;" size ="40" type="hidden" readonly>
                         </td>
                         <td style="padding: 9px;">
                       <input id="iminput2" type="file" accept="image/*" name="editedim2" onchange="$('#pik2').val($(this).val());">
-                      <input id="pik2" name="edtim2" style="position:relative;top:10px;" size ="40" type="text" readonly>
+                      <input id="pik2" name="edtim2" style="position:relative;top:10px;" size ="35" type="text" readonly> <div style="position:absolute;top:441px;left:317px;text-align: center;">2</div>
                        <input id ="opik2" name="oedtim2" style="position:relative;top:10px;" size ="40" type="hidden" readonly>
                         </td>
                         </tr>
                         <tr>
                         <td style="padding: 9px;">
                       <input id="iminput3" type="file" accept="image/*" name="editedim3" onchange="$('#pik3').val($(this).val());">
-                      <input id="pik3" name="edtim3" style="position:relative;top:10px;" size ="40" type="text" readonly>
+                      <input id="pik3" name="edtim3" style="position:relative;top:10px;" size ="35" type="text" readonly><div style="position:absolute;top:512px;left:20px;text-align: center;">3</div>
                        <input id ="opik3" name="oedtim3" style="position:relative;top:10px;" size ="40" type="hidden" readonly>
                         </td>
                         <td style="padding: 9px;">
                       <input id="iminput4" type="file" accept="image/*" name="editedim4" onchange="$('#pik4').val($(this).val());">
-                      <input id="pik4" name="edtim4" style="position:relative;top:10px;" size ="40" type="text" readonly>
+                      <input id="pik4" name="edtim4" style="position:relative;top:10px;" size ="35" type="text" readonly><div style="position:absolute;top:512px;left:317px;text-align: center;">4</div>
                       <input id ="opik4" name="oedtim4" style="position:relative;top:10px;" size ="40" type="hidden" readonly>
                         </td>
                         </tr>
                         <tr>
                         <td style="padding: 9px;">
                       <input id="iminput5" type="file" accept="image/*" name="editedim5" onchange="$('#pik5').val($(this).val());">
-                      <input id="pik5" name="edtim5"  style="position:relative;top:10px;" size ="40" type="text" readonly>
+                      <input id="pik5" name="edtim5"  style="position:relative;top:10px;" size ="35" type="text" readonly><div style="position:absolute;top:581px;left:20px;text-align: center;">5</div>
                       <input id="opik5" name="oedtim5"  style="position:relative;top:10px;" size ="40" type="hidden" readonly>
                         </td>
                         <td style="padding: 9px;">
                       <input id="iminput6" type="file" accept="image/*" name="editedim6" onchange="$('#pik6').val($(this).val());">
-                      <input id="pik6" name="edtim6"  style="position:relative;top:10px;" size ="40" type="text" readonly>
+                      <input id="pik6" name="edtim6"  style="position:relative;top:10px;" size ="35" type="text" readonly><div style="position:absolute;top:581px;left:317px;text-align: center;">6</div>
                       <input id="opik6" name="oedtim6"  style="position:relative;top:10px;" size ="40" type="hidden" readonly>
                         </td>
                         </tr>
                         <tr>
                         <td style="padding: 9px;">
                       <input id="iminput7" type="file" accept="image/*" name="editedim7" onchange="$('#pik7').val($(this).val());">
-                      <input id="pik7" name="edtim7"  style="position:relative;top:10px;" size ="40" type="text" readonly>
+                      <input id="pik7" name="edtim7"  style="position:relative;top:10px;" size ="35" type="text" readonly><div style="position:absolute;top:652px;left:20px;text-align: center;">7</div>
                        <input id="opik7" name="oedtim7"  style="position:relative;top:10px;" size ="40" type="hidden" readonly>
                         </td>
                         <td style="padding: 9px;">
                       <input id="iminput8" type="file" accept="image/*" name="editedim8" onchange="$('#pik8').val($(this).val());">
-                      <input id="pik8" name="edtim8"  style="position:relative;top:10px;" size ="40" type="text" readonly>
+                      <input id="pik8" name="edtim8"  style="position:relative;top:10px;" size ="35" type="text" readonly><div style="position:absolute;top:652px;left:317px;text-align: center;">8</div>
                        <input id="opik8" name="oedtim8"  style="position:relative;top:10px;" size ="40" type="hidden" readonly>
                         </td>
                         </tr>
                         <tr>
                         <td style="padding: 9px;">
                       <input id="iminput9" type="file" accept="image/*" name="editedim9" onchange="$('#pik9').val($(this).val());">
-                      <input id="pik9" name="edtim9"  style="position:relative;top:10px;" size ="40" type="text" readonly>
+                      <input id="pik9" name="edtim9"  style="position:relative;top:10px;" size ="35" type="text" readonly><div style="position:absolute;top:721px;left:20px;text-align: center;">9</div>
                        <input id="opik9" name="oedtim9"  style="position:relative;top:10px;" size ="40" type="hidden" readonly>
                         </td>
                         <td style="padding: 9px;">
                       <input id="iminput10" type="file" accept="image/*" name="editedim10" onchange="$('#pik10').val($(this).val());">
-                      <input id="pik10" name="edtim10"  style="position:relative;top:10px;" size ="40" type="text" readonly>
+                      <input id="pik10" name="edtim10"  style="position:relative;top:10px;" size ="35" type="text" readonly><div style="position:absolute;top:721px;left:312px;text-align: center;">10</div>
                       <input id="opik10" name="oedtim10"  style="position:relative;top:10px;" size ="40" type="hidden" readonly><br>
                         </td>
                         </tr>
@@ -345,10 +347,24 @@ function showDivs(n) {
   if (n > x.length) {slideIndex = 1}    
   if (n < 1) {slideIndex = x.length}
   for (i = 0; i < x.length; i++) {
+    document.getElementById("idx").innerHTML = slideIndex;
      x[i].style.display = "none";  
   }
   x[slideIndex-1].style.display = "block";
 }
+
+function showNav() {
+   document.getElementById("idx").style.opacity = "1";
+   document.getElementById("left").style.opacity = "1";
+   document.getElementById("right").style.opacity = "1";
+}
+
+function fadeNav() {
+document.getElementById("idx").style.opacity = "0";
+   document.getElementById("left").style.opacity = "0";
+   document.getElementById("right").style.opacity = "0";
+}
+
 </script>
 <!--   Core JS Files   -->
 <script src="http://localhost/poi/public/BSDash/assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
