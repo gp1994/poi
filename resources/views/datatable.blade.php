@@ -12,7 +12,17 @@
     <link href="http://localhost/poi/public/BSDash/assets/css/material-dashboard.css?v=1.2.0" rel="stylesheet" />
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">  
-     
+     <style>
+    .btn.btn-default{
+        top:8px;
+    }
+    .btn.btn-default.dropdown-toggle{
+        top:8px;
+    }
+    .pull-right.search{
+        top:20px;
+    }
+    </style>
 </head>
 <body>
   <div id="editPoiModal" class="modal fade">

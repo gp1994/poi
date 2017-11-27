@@ -1028,9 +1028,11 @@ h2.title {
 .open>.navbar .navbar-nav>li>a.btn.btn-default.dropdown-toggle,
 .open>.navbar .navbar-nav>li>a.btn.btn-default.dropdown-toggle:focus,
 .open>.navbar .navbar-nav>li>a.btn.btn-default.dropdown-toggle:hover {
+
     background-color: #999999;
     color: #FFFFFF;
 }
+
 
 .btn:focus,
 .btn:active,
