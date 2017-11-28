@@ -583,7 +583,7 @@
                           @endif</td>
                           <td>@if(!$logd->keterangan)
                           blank detail
-                          @else <p data-toggle="modal" data-target="#dModal" data-id="{{$logd->id}}" data-dsc="{{$logd->keterangan}}">After</p> @endif</td> </tr> 
+                          @else <button data-toggle="modal" data-target="#dModal" data-id="{{$logd->id}}" data-dsc="{{$logd->keterangan}}">After</button> @endif</td> </tr> 
                           @endif
                       
                         @endif
