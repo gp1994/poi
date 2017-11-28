@@ -155,6 +155,7 @@
                                 @if(count($utama))
                                 @foreach($utama as $logu)
                                 @if($logu->action =='add')
+                                
                                  <tr>
                                   <td>{{$logu->created_at}}</td>
                                   <td>{{$logu->nama_admin}}</td>
@@ -166,8 +167,10 @@
                                   <td>@if(!$logu->olatitude) none @endif</td>
                                   <td>{{$logu->latitude}}</td>
                                   </tr>
+                                 
                                 @endif
                                  @if($logu->action =='edit')
+                                 @if($logu->olokasi != $logu->lokasi || $logu->olongitude != $logu->longitude || $logu->olatitude != $logu->latitude)
                                  <tr>
                                  <td>{{$logu->created_at}}</td>
                                   <td>{{$logu->nama_admin}}</td>
@@ -179,6 +182,7 @@
                                   <td>{{$logu->olatitude}}</td>
                                   <td>{{$logu->latitude}}</td>
                                   </tr>
+                                @endif
                                 @endif
                                  @endforeach
                               @endif 
