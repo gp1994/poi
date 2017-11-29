@@ -186,7 +186,6 @@
                                     @endif
                                     </div>
                                     <button id = "left" class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)" onmouseover="showNav()" onmouseout="fadeNav()" style="top:260px;left:20px;opacity:0;">&#10094;</button>
-                                    <div id="idx" onmouseover="showNav()" onmouseout="fadeNav()" style ="color:white;background-color:black; text-align: center;width:40px;position:relative;top:-370px;left:20px;font-size:30px;opacity:0;"></div>
                                     <button id = "right" class="w3-button w3-black w3-display-right" onclick="plusDivs(1)" onmouseover="showNav()" onmouseout="fadeNav()" style="top:260px;right:20px;opacity:0;">&#10095;</button>
                                     @if($det->keterangan)
                                     <div id ="keterangan">{{$det->keterangan}}</div><br>
@@ -347,20 +346,17 @@ function showDivs(n) {
   if (n > x.length) {slideIndex = 1}    
   if (n < 1) {slideIndex = x.length}
   for (i = 0; i < x.length; i++) {
-    document.getElementById("idx").innerHTML = slideIndex;
      x[i].style.display = "none";  
   }
   x[slideIndex-1].style.display = "block";
 }
 
 function showNav() {
-   document.getElementById("idx").style.opacity = "1";
    document.getElementById("left").style.opacity = "1";
    document.getElementById("right").style.opacity = "1";
 }
 
 function fadeNav() {
-document.getElementById("idx").style.opacity = "0";
    document.getElementById("left").style.opacity = "0";
    document.getElementById("right").style.opacity = "0";
 }

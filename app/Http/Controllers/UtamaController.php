@@ -12,8 +12,7 @@ use DB;
 use PDF;
 use Session;
 use Validator;
-use App\UtamaLog;
-use App\DetailLog;
+use App\Log;
 
 class UtamaController extends Controller
 
@@ -55,7 +54,7 @@ class UtamaController extends Controller
         $loc->created_at = \Carbon\Carbon::now()->toDateTimeString();
         $loc->updated_at = \Carbon\Carbon::now()->toDateTimeString();
         $loc->last_updated_by=Session::get('peng');
-        UtamaController::editUtamaLog($loc);
+        UtamaController::editLog($loc,'POI');
         $loc->save();
         return redirect ('datatable');
     }
@@ -285,7 +284,7 @@ class UtamaController extends Controller
         $det->last_created_by=Session::get('peng');
         }
         
-        UtamaController::editDetLog($det);
+        UtamaController::editLog($det,'Detail');
         $det->save();
         return redirect()->back();
 
@@ -307,7 +306,7 @@ class UtamaController extends Controller
                 'last_updated_by' =>Session::get('peng')
             ]);
         $utam = Utama::find($idu);
-        UtamaController::storeUtamaLog($utam);
+        UtamaController::storeLog($utam,'POI');
         return redirect ('datatable');
         // echo "Term added successfully.<br/>";
         // echo '<a href="./archive">Click Here</a> to go back';
@@ -1011,161 +1010,484 @@ class UtamaController extends Controller
     }
 
     public function showLog() {
-        $utama = UtamaLog::orderBy('id', 'desc')->get();
-        $detil = DetailLog::orderBy('id', 'desc')->get();
+        $log= Log::orderBy('id', 'desc')->get();
          if (Session::get('roles') == 'admin'){
-         return view('historylog',compact('detil','utama'));
+         return view('historylog',compact('log'));
         }
         else{
          return redirect('/');
         }
     }
 
-    public function storeUtamaLog($utama){
-        $id_utama = $utama->id + 1;
-        $ut = Utama::find($id_utama);
-        $nama_admin = $ut->last_updated_by;
+    public function storeLog($ob,$type){
+        $object_id = $ob->id+1;
+        $ut = Utama::find($object_id);
+        $poi_admin = $ut->last_updated_by;
+        $olokasi = $ut->olokasi;
         $lokasi = $ut->lokasi;
+        $olongitude = $ut->olongitude;
         $longitude = $ut->longitude;
+        $olatitude = $ut->olatitude;
         $latitude = $ut->latitude;
-        DB::table('log_utama')->insert([
-            'id_utama' => $id_utama,
-            'nama_admin' => $nama_admin,
-            'lokasi' => $lokasi,
-            'longitude' => $longitude,
-            'latitude' => $latitude,
-            'action' => 'add',
-            'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
-            'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+    
+            if(!empty($lokasi)){
+                DB::table('log')->insert([
+                'nama_admin' => $poi_admin,
+                'tipe' => 'POI',
+                'action' => 'add',
+                'poi_id' => $object_id,
+                'object' => 'Lokasi',
+                'before' => $olokasi,
+                'after' => $lokasi,
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
             ]);
+            }
+            if(!empty($longitude)){
+                DB::table('log')->insert([
+                'nama_admin' => $poi_admin,
+                'tipe' => 'POI',
+                'action' => 'add',
+                'poi_id' => $object_id,
+                'object' => 'Longitude',
+                'before' => $olongitude,
+                'after' => $longitude,
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+            ]);
+            }
+            if(!empty($latitude)){
+                DB::table('log')->insert([
+                'nama_admin' => $poi_admin,
+                'tipe' => 'POI',
+                'action' => 'add',
+                'poi_id' => $object_id,
+                'object' => 'Latitude',
+                'before' => $olatitude,
+                'after' => $latitude,
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+            ]);
+            }
     }
 
-    public function editUtamaLog($utama){
-        $id_utama = $utama->id;
-        $nama_admin = $utama->last_updated_by;
-        $olokasi = $utama->olokasi;
-        $lokasi = $utama->lokasi;
-        $olongitude = $utama->olongitude;
-        $longitude = $utama->longitude;
-        $olatitude = $utama->olatitude;
-        $latitude = $utama->latitude;
-        DB::table('log_utama')->insert([
-            'id_utama' => $id_utama,
-            'nama_admin' => $nama_admin,
-            'olokasi' => $olokasi,
-            'lokasi' => $lokasi,
-            'olongitude' => $olongitude,
-            'longitude' => $longitude,
-            'olatitude' => $olatitude,
-            'latitude' => $latitude,
-            'action' => 'edit',
-            'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
-            'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
-            ]);
-    }
-
-    public function storeDetLog($detil){
-        $id_detail = $detil->id + 1;
-        $deta = Detil::find($id_detail);
-        $lok = Utama::find($id_detail);
+     public function storeDetLog($ob){
+        $object_id = $ob->id+1;
+        $deta = Detil::find($object_id);
         $nama_admin = $deta->last_created_by;
-        $nama_poi = $lok->lokasi;
+        $oketerangan = $deta->keterangan;
         $keterangan=$deta->keterangan;
-        $image = $deta->image;
+        $oimage = $deta->oimage;
+        $image =$deta->image;
+        $oimage2 = $deta->oimage2;
         $image2 = $deta->image2;
+        $oimage3 =$deta->oimage3;
         $image3 = $deta->image3;
+        $oimage4 = $deta->oimage4;
         $image4 = $deta->image4;
+        $oimage5 =$deta->oimage5;
         $image5 = $deta->image5;
+        $oimage6 = $deta->oimage6;
         $image6 = $deta->image6;
-        $image7 = $deta->image7;
+        $oimage7 = $deta->oimage7;
+        $image7 =$deta->image7;
+        $oimage8 =$deta->oimage8;
         $image8 = $deta->image8;
+        $oimage9 =$deta->oimage9;
         $image9 = $deta->image9;
-        $image10 = $deta->image10;
+        $oimage10 = $deta->oimage10;
+        $image10 =$deta->image10;
+        $ovideos = $deta->ovideos;
         $videos = $deta->videos;
-         DB::table('log_detail')->insert([
-            'id_detail' => $id_detail,
-            'nama_admin' => $nama_admin,
-            'nama_poi'=> $nama_poi,
-            'keterangan' => $keterangan,
-            'image' => $image,
-            'image2' => $image2,
-            'image3' => $image3,
-            'image4' => $image4,
-            'image5' => $image5,
-            'image6' => $image6,
-            'image7' => $image7,
-            'image8' => $image8,
-            'image9' => $image9,
-            'image10' => $image10,
-            'videos' => $videos,
-            'action' => 'add',
-            'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
-            'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+
+    
+                DB::table('log')->insert([
+                'nama_admin' => $nama_admin,
+                'tipe' => 'Detail',
+                'action' => 'add',
+                'object_id' => $object_id,
+                'object' => 'Detail',
+                'before' => $oketerangan,
+                'after' => $keterangan,
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
             ]);
-    }
-    public function editDetLog($detil){
-        $id_detail = $detil->id;
-        $nama_admin = $detil->last_created_by;
-        $lok = Utama::find($id_detail);
-        $nama_poi = $lok->lokasi;
-        $oketerangan=$detil->oketerangan;
-        $keterangan=$detil->keterangan;
-        $diff = UtamaController::htmlDiff($oketerangan,$keterangan);
-        $oimage = $detil->oimage;
-        $image = $detil->image;
-        $oimage2 = $detil->oimage2;
-        $image2 = $detil->image2;
-        $oimage3 = $detil->oimage3;
-        $image3 = $detil->image3;
-        $oimage4 = $detil->oimage4;
-        $image4 = $detil->image4;
-        $oimage5 = $detil->oimage5;
-        $image5 = $detil->image5;
-        $oimage6 = $detil->oimage6;
-        $image6 = $detil->image6;
-        $oimage7 = $detil->oimage7;
-        $image7 = $detil->image7;
-        $oimage8 = $detil->oimage8;
-        $image8 = $detil->image8;
-        $oimage9 = $detil->oimage9;
-        $image9 = $detil->image9;
-        $oimage10 = $detil->oimage10;
-        $image10 = $detil->image10;
-        $ovideos = $detil->ovideos;
-        $videos = $detil->videos;
+
+
+                DB::table('log')->insert([
+                'nama_admin' => $nama_admin,
+                'tipe' => 'Detail',
+                'action' => 'add',
+                'object_id' => $object_id,
+                'object' => 'Image 1',
+                'before' => $oimage,
+                'after' => $image,
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+            ]);
+
+                DB::table('log')->insert([
+                'nama_admin' => $nama_admin,
+                'tipe' => 'Detail',
+                'action' => 'add',
+                'object_id' => $object_id,
+                'object' => 'Image 2',
+                'before' => $oimage2,
+                'after' => $image2,
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+]);
+
+                DB::table('log')->insert([
+                'nama_admin' => $nama_admin,
+                'tipe' => 'Detail',
+                'action' => 'add',
+                'object_id' => $object_id,
+                'object' => 'Image 3',
+                'before' => $oimage3,
+                'after' => $image3,
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+            ]);
+
+      
+                DB::table('log')->insert([
+                'nama_admin' => $nama_admin,
+                'tipe' => 'Detail',
+                'action' => 'add',
+                'object_id' => $object_id,
+                'object' => 'Image 4',
+                'before' => $oimage4,
+                'after' => $image4,
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+            ]);
+
+                DB::table('log')->insert([
+                'nama_admin' => $nama_admin,
+                'tipe' => 'Detail',
+                'action' => 'add',
+                'object_id' => $object_id,
+                'object' => 'Image 5',
+                'before' => $oimage5,
+                'after' => $image5,
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+            ]);
+
+
+                DB::table('log')->insert([
+                'nama_admin' => $nama_admin,
+                'tipe' => 'Detail',
+                'action' => 'add',
+                'object_id' => $object_id,
+                'object' => 'Image 6',
+                'before' => $oimage6,
+                'after' => $image6,
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+            ]);
+
+
+                DB::table('log')->insert([
+                'nama_admin' => $nama_admin,
+                'tipe' => 'Detail',
+                'action' => 'add',
+                'object_id' => $object_id,
+                'object' => 'Image 7',
+                'before' => $oimage7,
+                'after' => $image7,
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+            ]);
+
         
-        DB::table('log_detail')->insert([
-            'id_detail' => $id_detail,
-            'nama_admin' => $nama_admin,
-            'nama_poi'=> $nama_poi,
-            'oketerangan' => $oketerangan.' ',
-            'keterangan' => $diff,
-            'oimage' => $oimage,
-            'image' => $image,
-            'oimage2' => $oimage2,
-            'image2' => $image2,
-            'oimage3' => $oimage3,
-            'image3' => $image3,
-            'oimage4' => $oimage4,
-            'image4' => $image4,
-            'oimage5' => $oimage5,
-            'image5' => $image5,
-            'oimage6' => $oimage6,
-            'image6' => $image6,
-            'oimage7' => $oimage7,
-            'image7' => $image7,
-            'oimage8' => $oimage8,
-            'image8' => $image8,
-            'oimage9' => $oimage9,
-            'image9' => $image9,
-            'oimage10' => $oimage10,
-            'image10' => $image10,
-            'ovideos' => $ovideos,
-            'videos' => $videos,
-            'action' => 'edit',
-            'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
-            'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+                DB::table('log')->insert([
+                'nama_admin' => $nama_admin,
+                'tipe' => 'Detail',
+                'action' => 'add',
+                'object_id' => $object_id,
+                'object' => 'Image 8',
+                'before' => $oimage8,
+                'after' => $image8,
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
             ]);
+
+
+                DB::table('log')->insert([
+                'nama_admin' => $nama_admin,
+                'tipe' => 'Detail',
+                'action' => 'add',
+                'object_id' => $object_id,
+                'object' => 'Image 9',
+                'before' => $oimage9,
+                'after' => $image9,
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+            ]);
+
+                DB::table('log')->insert([
+                'nama_admin' => $nama_admin,
+                'tipe' => 'Detail',
+                'action' => 'add',
+                'object_id' => $object_id,
+                'object' => 'Image 10',
+                'before' => $oimage10,
+                'after' => $image10,
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+            ]);
+
+                DB::table('log')->insert([
+                'nama_admin' => $nama_admin,
+                'tipe' => 'Detail',
+                'action' => 'add',
+                'object_id' => $object_id,
+                'object' => 'Video',
+                'before' => $ovideos,
+                'after' => $videos,
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+            ]);
+
+    }
+
+     public function editLog($obj,$type){
+         $object_id = $obj->id;
+        $poi_admin = $obj->last_updated_by;
+        $nama_admin = $obj->last_created_by;
+        $olokasi = $obj->olokasi;
+        $lokasi = $obj->lokasi;
+        $olongitude = $obj->olongitude;
+        $longitude = $obj->longitude;
+        $olatitude = $obj->olatitude;
+        $latitude = $obj->latitude;
+        $oketerangan = $obj->oketerangan;
+        $keterangan=$obj->keterangan;
+        $diff = UtamaController::htmlDiff($oketerangan,$keterangan);
+        $oimage = $obj->oimage;
+        $image =$obj->image;
+        $oimage2 = $obj->oimage2;
+        $image2 = $obj->image2;
+        $oimage3 = $obj->oimage3;
+        $image3 = $obj->image3;
+        $oimage4 = $obj->oimage4;
+        $image4 = $obj->image4;
+        $oimage5 = $obj->oimage5;
+        $image5 = $obj->image5;
+        $oimage6 = $obj->oimage6;
+        $image6 = $obj->image6;
+        $oimage7 = $obj->oimage7;
+        $image7 = $obj->image7;
+        $oimage8 =$obj->oimage8;
+        $image8 = $obj->image8;
+        $oimage9 =$obj->oimage9;
+        $image9 = $obj->image9;
+        $oimage10 = $obj->oimage10;
+        $image10 =$obj->image10;
+        $ovideos = $obj->ovideos;
+        $videos = $obj->videos;
+
+        if($type == 'POI'){
+            if(!empty($olokasi) || !empty($lokasi)){
+                DB::table('log')->insert([
+                'nama_admin' => $poi_admin,
+                'tipe' => 'POI',
+                'action' => 'edit',
+                'poi_id' => $object_id,
+                'object' => 'Lokasi',
+                'before' => $olokasi,
+                'after' => $lokasi,
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+            ]);
+            }
+            if(!empty($olongitude) || !empty($longitude)){
+                DB::table('log')->insert([
+                'nama_admin' => $poi_admin,
+                'tipe' => 'POI',
+                'action' => 'edit',
+                'poi_id' => $object_id,
+                'object' => 'Longitude',
+                'before' => $olongitude,
+                'after' => $longitude,
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+            ]);
+            }
+            if(!empty($olatitude) || !empty($latitude)){
+                DB::table('log')->insert([
+                'nama_admin' => $poi_admin,
+                'tipe' => 'POI',
+                'action' => 'edit',
+                'poi_id' => $object_id,
+                'object' => 'Latitude',
+                'before' => $olatitude,
+                'after' => $latitude,
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+            ]);
+            }
+        }
+        if($type == 'Detail'){
+            if(!empty($oketerangan) || !empty($keterangan)){
+                DB::table('log')->insert([
+                'nama_admin' => $nama_admin,
+                'tipe' => 'Detail',
+                'action' => 'edit',
+                'object_id' => $object_id,
+                'object' => 'Detail',
+                'before' => $oketerangan.' ',
+                'after' => $diff,
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+            ]);
+            }
+            if(!empty($oimage) || !empty($image)){
+                DB::table('log')->insert([
+                'nama_admin' => $nama_admin,
+                'tipe' => 'Detail',
+                'action' => 'edit',
+                'object_id' => $object_id,
+                'object' => 'Image 1',
+                'before' => $oimage,
+                'after' => $image,
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+            ]);
+            }
+            if(!empty($oimage2) || !empty($image2)){
+                DB::table('log')->insert([
+                'nama_admin' => $nama_admin,
+                'tipe' => 'Detail',
+                'action' => 'edit',
+                'object_id' => $object_id,
+                'object' => 'Image 2',
+                'before' => $oimage2,
+                'after' => $image2,
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+            ]);
+            }
+            if(!empty($oimage3) || !empty($image3)){
+                DB::table('log')->insert([
+                'nama_admin' => $nama_admin,
+                'tipe' => 'Detail',
+                'action' => 'edit',
+                'object_id' => $object_id,
+                'object' => 'Image 3',
+                'before' => $oimage3,
+                'after' => $image3,
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+            ]);
+            }
+            if(!empty($oimage4) || !empty($image4)){
+                DB::table('log')->insert([
+                'nama_admin' => $nama_admin,
+                'tipe' => 'Detail',
+                'action' => 'edit',
+                'object_id' => $object_id,
+                'object' => 'Image 4',
+                'before' => $oimage4,
+                'after' => $image4,
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+            ]);
+            }
+            if(!empty($oimage5) || !empty($image5)){
+                DB::table('log')->insert([
+                'nama_admin' => $nama_admin,
+                'tipe' => 'Detail',
+                'action' => 'edit',
+                'object_id' => $object_id,
+                'object' => 'Image 5',
+                'before' => $oimage5,
+                'after' => $image5,
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+            ]);
+            }
+            if(!empty($oimage6) || !empty($image6)){
+                DB::table('log')->insert([
+                'nama_admin' => $nama_admin,
+                'tipe' => 'Detail',
+                'action' => 'edit',
+                'object_id' => $object_id,
+                'object' => 'Image 6',
+                'before' => $oimage6,
+                'after' => $image6,
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+            ]);
+            }
+            if(!empty($oimage7) || !empty($image7)){
+                DB::table('log')->insert([
+                'nama_admin' => $nama_admin,
+                'tipe' => 'Detail',
+                'action' => 'edit',
+                'object_id' => $object_id,
+                'object' => 'Image 7',
+                'before' => $oimage7,
+                'after' => $image7,
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+            ]);
+            }
+            if(!empty($oimage8) || !empty($image8)){
+                DB::table('log')->insert([
+                'nama_admin' => $nama_admin,
+                'tipe' => 'Detail',
+                'action' => 'edit',
+                'object_id' => $object_id,
+                'object' => 'Image 8',
+                'before' => $oimage8,
+                'after' => $image8,
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+            ]);
+            }
+            if(!empty($oimage9) || !empty($image9)){
+                DB::table('log')->insert([
+                'nama_admin' => $nama_admin,
+                'tipe' => 'Detail',
+                'action' => 'edit',
+                'object_id' => $object_id,
+                'object' => 'Image 9',
+                'before' => $oimage9,
+                'after' => $image9,
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+            ]);
+            }
+            if(!empty($oimage10) || !empty($image10)){
+                DB::table('log')->insert([
+                'nama_admin' => $nama_admin,
+                'tipe' => 'Detail',
+                'action' => 'edit',
+                'object_id' => $object_id,
+                'object' => 'Image 10',
+                'before' => $oimage10,
+                'after' => $image10,
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+            ]);
+            }
+            if(!empty($ovideos) || !empty($videos)){
+                DB::table('log')->insert([
+                'nama_admin' => $nama_admin,
+                'tipe' => 'Detail',
+                'action' => 'edit',
+                'object_id' => $object_id,
+                'object' => 'Video',
+                'before' => $ovideos,
+                'after' => $videos,
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+            ]);
+            }
+        }
     }
 
     function diff($old, $new){
