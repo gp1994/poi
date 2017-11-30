@@ -158,8 +158,8 @@
                         <td>{{$logd->action}}</td>
                         <td>{{$logd->object}}</td>
                         <td>{{$logd->poi_id}}</td>
-                        <td>@if($logd->before){{$logd->before}}@else none @endif</td>
-                        <td>{{$logd->after}}</td>
+                        <td>@if($logd->before)<?php echo trim(json_encode($logd->before), '"');?>@else none @endif</td>
+                        <td><?php echo trim(json_encode($logd->after), '"');?></td>
                         </tr>
                         @endif
                         @endif
@@ -185,8 +185,8 @@
                         <td>{{$logd->action}}</td>
                         <td>{{$logd->object}}</td>
                         <td><a href="./showDet{{$logd->object_id}}">{{$logd->object_id}}</a></td>
-                        <td>@if($logd->before){{str_replace('images/','',$logd->before)}}@else none @endif</td>
-                        <td>{{str_replace('images/','',$logd->after)}}</td>
+                        <td>@if($logd->before)<?php echo trim(json_encode(str_replace('images/','',$logd->before)), '"');?>@else none @endif</td>
+                        <td><?php echo trim(json_encode(str_replace('images/','',$logd->after)), '"');?></td>
                         </tr>
                         @endif
                         @if ($logd->object == 'Video')
@@ -197,8 +197,8 @@
                         <td>{{$logd->action}}</td>
                         <td>{{$logd->object}}</td>
                         <td><a href="./showDet{{$logd->object_id}}">{{$logd->object_id}}</a></td>
-                        <td>@if($logd->before){{str_replace('videos/','',$logd->before)}}@else none @endif</td>
-                        <td>{{str_replace('videos/','',$logd->after)}}</td>
+                        <td>@if($logd->before)<?php echo trim(json_encode(str_replace('videos/','',$logd->before)), '"');?>@else none @endif</td>
+                        <td><?php echo trim(json_encode(str_replace('videos/','',$logd->after)), '"');?></td>
                         </tr>
                         @endif
                          @if ($logd->object == 'Detail')
